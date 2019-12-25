@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Your Company Name</Name>
+    <Assembly>Revit_2020_Add-In.dll</Assembly>
+    <AddInId>6CCBACAF-008D-4204-BCE5-F3EFB3EC5852</AddInId>
+    <FullClassName>Revit_2020_Add-In.App</FullClassName>
+    <ClientId>EE245D6B-173B-4755-8678-EAFEC87B0CC6</ClientId>
+    <VendorId>Your Company Name</VendorId>
+    <VendorDescription>Your Company Name, www.contorso.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>
