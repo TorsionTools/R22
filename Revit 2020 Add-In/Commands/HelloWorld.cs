@@ -10,7 +10,7 @@ namespace Revit_2020_Add_In.Commands
 {
     //This allows us to create transactions within our code, but also allows us to roll the entire command back if the Result is Failed or Cancelled
     [Transaction(TransactionMode.Manual)]
-    class Test: IExternalCommand
+    class HelloWorld: IExternalCommand
     {
         //THis has to be here to make sure Revit knows this command is running inside Revit
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
