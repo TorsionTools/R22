@@ -10,7 +10,7 @@ namespace Revit_2020_Add_In.Commands
     [Transaction(TransactionMode.Manual)]
 
     //Change the Class Name to something other than 'TEMPLATE'
-    class TSheetSelection : IExternalCommand
+    class SheetSelection : IExternalCommand
     {
         //This line has to be here in order for the command to execute in the current Revit context
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)

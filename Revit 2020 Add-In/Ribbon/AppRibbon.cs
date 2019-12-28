@@ -28,7 +28,7 @@ namespace Revit_2020_Add_In.Ribbon
 
             //Create Push Button Data to create the Push button from
             PushButtonData pbdTestButton = new PushButtonData("cmdTestButton", "Button Name", AssemblyPath, "Revit_2020_Add_In.Commands.HelloWorld");
-            PushButtonData pbdSheetSelection = new PushButtonData("cmdSheetSelection", "Sheet" + Environment.NewLine + "Selector", AssemblyPath, "Revit_2020_Add_In.Commands.TSheetSelection");
+            PushButtonData pbdSheetSelection = new PushButtonData("cmdSheetSelection", "Sheet" + Environment.NewLine + "Selector", AssemblyPath, "Revit_2020_Add_In.Commands.SheetSelection");
 
             //Create a Push Button from the Push Button Data
             PushButton pbTestButton = RibbonPanelOne.AddItem(pbdTestButton) as PushButton;
