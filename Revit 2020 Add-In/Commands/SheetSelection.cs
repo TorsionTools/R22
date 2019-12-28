@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using Autodesk.Revit.Attributes;
 using System.Windows.Forms;
-using System;
 
 
 namespace Revit_2020_Add_In.Commands
 {
     //This allows us to create transactions within our code, but also allows us to roll the entire command back if the Result is Failed or Cancelled
     [Transaction(TransactionMode.Manual)]
-    
+
     //Change the Class Name to something other than 'TEMPLATE'
     class TSheetSelection : IExternalCommand
     {
