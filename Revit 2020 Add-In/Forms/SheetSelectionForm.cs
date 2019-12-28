@@ -37,8 +37,9 @@ namespace Revit_2020_Add_In.Forms
             //Cycle through each Checked Sheet in the ListView
             foreach (ListViewItem item in lvSheets.CheckedItems)
             {
-                //Display a TaskDialog box with each Checked Sheet Name after casting it from the Tag property
-                TaskDialog.Show("Sheets", ((ViewSheet)item.Tag).Name);
+                //Display a TaskDialog box with each Checked Sheet Number after casting it from the Tag property
+                ViewSheet sheet = item.Tag as ViewSheet;
+                TaskDialog.Show("Selected Sheet", "You selected sheet number " + sheet.SheetNumber);
             }
             //Set the DialogResult to make sure the form was successfuly used
             DialogResult = DialogResult.OK;
