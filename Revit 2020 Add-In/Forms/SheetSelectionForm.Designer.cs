@@ -52,6 +52,7 @@
             this.lvSheets.CheckBoxes = true;
             this.lvSheets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
+            this.lvSheets.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvSheets.HideSelection = false;
             this.lvSheets.Location = new System.Drawing.Point(12, 12);
             this.lvSheets.Name = "lvSheets";
