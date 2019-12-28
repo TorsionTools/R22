@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Revit 2020 Add-In")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Revit 2020 Add-In Template project solution.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Your Company Name")]
+[assembly: AssemblyCompany("Torsion Tools")]
 [assembly: AssemblyProduct("Revit 2020 Add-In")]
 [assembly: AssemblyCopyright("Copyright ©  2019 Torsion Tools")]
 [assembly: AssemblyTrademark("")]
