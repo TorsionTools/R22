@@ -34,5 +34,24 @@ namespace Revit_2020_Add_In
             //Let Revit know it was successfully executed
             return Result.Succeeded;
         }
+
+        //Do somethind when a Document is opening
+        private void Application_DocumentOpening(object sender, Autodesk.Revit.DB.Events.DocumentOpeningEventArgs args)
+        {
+
+        }
+
+        //Do Something when the Document has finished opening
+        private void Application_DocumentOpened(object sender, Autodesk.Revit.DB.Events.DocumentOpenedEventArgs args)
+        {
+
+        }
+
+        //Do something when the Document is Closing
+        private void Application_DocumentClosing(object sender, Autodesk.Revit.DB.Events.DocumentClosingEventArgs args)
+        {
+
+        }
+
     }
 }

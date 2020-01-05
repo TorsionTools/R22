@@ -74,6 +74,7 @@
             this.Controls.Add(this.lvSheets);
             this.Controls.Add(this.btnOK);
             this.Name = "SheetSelectionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sheet Selector";
             this.Load += new System.EventHandler(this.SheetSelectionForm_Load);
             this.ResumeLayout(false);

@@ -62,7 +62,15 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Commands\HelloWorld.cs" />
+    <Compile Include="Commands\SheetFindReplace.cs" />
+    <Compile Include="Commands\SheetNameCapitalize.cs" />
     <Compile Include="Commands\SheetSelection.cs" />
+    <Compile Include="Forms\SheetFindReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SheetFindReplaceForm.Designer.cs">
+      <DependentUpon>SheetFindReplaceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SheetSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +83,8 @@
     <Compile Include="Commands\TEMPLATE.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\FindReplace100x100.png" />
+    <Resource Include="Resources\UpperCase100x100.png" />
     <Content Include="square.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -82,6 +92,9 @@
     <Content Include="Revit_2020_Add-In.addin" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\SheetFindReplaceForm.resx">
+      <DependentUpon>SheetFindReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SheetSelectionForm.resx">
       <DependentUpon>SheetSelectionForm.cs</DependentUpon>
     </EmbeddedResource>

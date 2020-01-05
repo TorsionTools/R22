@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Torsion Tools")]
 [assembly: AssemblyProduct("Revit 2020 Add-In")]
-[assembly: AssemblyCopyright("Copyright ©  2019 Torsion Tools")]
+[assembly: AssemblyCopyright("Copyright © 2019 Torsion Tools")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("2020.1.5.0")]

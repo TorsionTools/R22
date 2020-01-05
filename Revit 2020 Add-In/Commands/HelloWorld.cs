@@ -8,7 +8,7 @@ using System;
 
 namespace Revit_2020_Add_In.Commands
 {
-    //This allows us to create transactions within our code, but also allows us to roll the entire command back if the Result is Failed or Cancelled
+    //Used to create transactions within our code, but also allows us to roll the entire command back if the Result is Failed or Cancelled
     [Transaction(TransactionMode.Manual)]
     class HelloWorld: IExternalCommand
     {
@@ -22,7 +22,7 @@ namespace Revit_2020_Add_In.Commands
             Document doc = uiapp.ActiveUIDocument.Document;
 
             //Show a Pop Up dialog weith specified Title and Message
-            TaskDialog.Show("My Add-In", "Hello World! \n This is your Revit Add-In.");
+            TaskDialog.Show("My Add-In", "Hello World!\nThis is your Revit Add-In.");
 
             //Let Revit know it was successfully executed
             return Result.Succeeded;
