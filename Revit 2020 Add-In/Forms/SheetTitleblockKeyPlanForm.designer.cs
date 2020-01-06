@@ -49,7 +49,7 @@
             // 
             // cboParameter
             // 
-            this.cboParameter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cboParameter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboParameter.FormattingEnabled = true;
             this.cboParameter.Location = new System.Drawing.Point(12, 81);
@@ -131,7 +131,7 @@
             // 
             // cboTitleBlock
             // 
-            this.cboTitleBlock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cboTitleBlock.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboTitleBlock.FormattingEnabled = true;
             this.cboTitleBlock.Location = new System.Drawing.Point(12, 28);
@@ -142,7 +142,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Location = new System.Drawing.Point(12, 134);
             this.txtSearch.Name = "txtSearch";
@@ -191,7 +191,7 @@
             this.rdoNumber.Text = "Sheet Number";
             this.rdoNumber.UseVisualStyleBackColor = true;
             // 
-            // TitleBlockKeyPlanVisibilityForm
+            // SheetTitleblockKeyPlanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -211,7 +211,7 @@
             this.MaximumSize = new System.Drawing.Size(500, 345);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(240, 345);
-            this.Name = "TitleBlockKeyPlanVisibilityForm";
+            this.Name = "SheetTitleblockKeyPlanForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Title Block Key Plan";
             this.Load += new System.EventHandler(this.SheetTitleblockKeyPlanForm_Load);

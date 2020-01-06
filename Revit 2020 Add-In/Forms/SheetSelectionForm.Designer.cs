@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SheetSelectionForm));
             this.btnOK = new System.Windows.Forms.Button();
             this.lvSheets = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -73,6 +74,7 @@
             this.ClientSize = new System.Drawing.Size(384, 661);
             this.Controls.Add(this.lvSheets);
             this.Controls.Add(this.btnOK);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SheetSelectionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sheet Selector";
