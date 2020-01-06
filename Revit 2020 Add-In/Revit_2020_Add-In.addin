@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RevitAddIns>
   <AddIn Type="Application">
-    <!--Change 'Your Company Name' to the name you want visible in Revit-->
+    <!--Change 'Your Add-In Name' to the name you want visible in Revit-->
     <Name>Your Add-In Name</Name>
     <Assembly>Revit 2020 Add-In.dll</Assembly>
     <!--Use an online generator to create a new GUID to minimize any conflicts-->
