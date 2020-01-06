@@ -65,6 +65,7 @@
     <Compile Include="Commands\SheetFindReplace.cs" />
     <Compile Include="Commands\SheetNameCapitalize.cs" />
     <Compile Include="Commands\SheetSelection.cs" />
+    <Compile Include="Commands\SheetTitleblockKeyPlan.cs" />
     <Compile Include="Forms\SheetFindReplaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +78,12 @@
     <Compile Include="Forms\SheetSelectionForm.Designer.cs">
       <DependentUpon>SheetSelectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SheetTitleblockKeyPlanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SheetTitleblockKeyPlanForm.designer.cs">
+      <DependentUpon>SheetTitleblockKeyPlanForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Collectors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ribbon\AppRibbon.cs" />
@@ -84,7 +91,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\FindReplace100x100.png" />
-    <Resource Include="Resources\UpperCase100x100.png" />
+    <Resource Include="Resources\SheetSelection100x100.png" />
+    <Resource Include="Resources\ToUpper100x100.png" />
     <Content Include="square.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -97,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SheetSelectionForm.resx">
       <DependentUpon>SheetSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SheetTitleblockKeyPlanForm.resx">
+      <DependentUpon>SheetTitleblockKeyPlanForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

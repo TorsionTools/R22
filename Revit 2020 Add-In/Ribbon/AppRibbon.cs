@@ -22,7 +22,9 @@ namespace Revit_2020_Add_In.Ribbon
             //Create an Image to display on the buttons
             BitmapImage ButtonImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/Button100x100.png"));
             BitmapImage SheetFindReplaceImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/FindReplace100x100.png"));
-            BitmapImage SheetCapitalizeImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/UpperCase100x100.png"));
+            BitmapImage SheetCapitalizeImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ToUpper100x100.png"));
+            BitmapImage SheetSelectionImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetSelection100x100.png"));
+
 
             //Create a Panel within the Tab
             RibbonPanel RibbonPanelOne = application.CreateRibbonPanel(TabName, "PANEL 1");
@@ -33,24 +35,27 @@ namespace Revit_2020_Add_In.Ribbon
             PushButtonData pbdSheetSelection = new PushButtonData("cmdSheetSelection", "Sheet\nSelector", AssemblyPath, "Revit_2020_Add_In.Commands.SheetSelection");
             PushButtonData pbdSheetFindReplace = new PushButtonData("cmdSheetFindReplace", "Find Replace", AssemblyPath, "Revit_2020_Add_In.Commands.SheetFindReplace");
             PushButtonData pbdSheetNameCapitalize = new PushButtonData("cmdSheetNameCapitalize", "Capitalize\nName", AssemblyPath, "Revit_2020_Add_In.Commands.SheetNameCapitalize");
+            PushButtonData pbdSheetTitleblockKeyPlan = new PushButtonData("cmdSheetTitleblockKeyPlan", "Key Plan\nVisibility", AssemblyPath, "Revit_2020_Add_In.Commands.SheetTitleblockKeyPlan");
 
             //Create a Push Button from the Push Button Data
             PushButton pbTestButton = RibbonPanelOne.AddItem(pbdTestButton) as PushButton;
             PushButton pbSheetSelection = RibbonPanelSheets.AddItem(pbdSheetSelection) as PushButton;
             PushButton pbSheetFindReplace = RibbonPanelSheets.AddItem(pbdSheetFindReplace) as PushButton;
             PushButton pbSheetNameCapitalize = RibbonPanelSheets.AddItem(pbdSheetNameCapitalize) as PushButton;
+            PushButton pbSheetTitleblockKeyPlan = RibbonPanelSheets.AddItem(pbdSheetTitleblockKeyPlan) as PushButton;
 
             //Set Button Image
             pbTestButton.LargeImage = ButtonImage;
             pbSheetFindReplace.LargeImage = SheetFindReplaceImage;
-            pbdSheetNameCapitalize.LargeImage = SheetCapitalizeImage;
-                       
+            pbSheetNameCapitalize.LargeImage = SheetCapitalizeImage;
+            pbSheetSelection.LargeImage = SheetSelectionImage;
 
             //Set Button Tool Tip
             pbTestButton.ToolTip = "Tell the user what your button does here";
             pbSheetSelection.ToolTip = "Select from all of the Sheets in the Model";
             pbSheetFindReplace.ToolTip = "Find and Replace values in Sheet Name or Number";
             pbSheetNameCapitalize.ToolTip = "Capitalize the Name of all Sheets in the Model";
+            pbSheetTitleblockKeyPlan.ToolTip = "Set Yes / No parameters of a Titleblock type based on search criteria of the Sheet Name or Sheet Number";
 
             //Set Button Long description which is the text that flys out when you hover on a button longer
             pbTestButton.LongDescription = "Give the user more information about how they need to use the button features";
