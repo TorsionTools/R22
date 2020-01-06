@@ -50,7 +50,7 @@ namespace Revit_2020_Add_In.Ribbon
             pbSheetNameCapitalize.LargeImage = SheetCapitalizeImage;
             pbSheetFindReplace.LargeImage = SheetFindReplaceImage;
             pbSheetSelection.LargeImage = SheetSelectionImage;
-            pbdSheetTitleblockKeyPlan.LargeImage = SheetTitleblockKeyPlanImage;
+            pbSheetTitleblockKeyPlan.LargeImage = SheetTitleblockKeyPlanImage;
 
             //Set Button Tool Tip
             pbTestButton.ToolTip = "Tell the user what your button does here";
