@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RevitAddIns>
   <AddIn Type="Application">
-    <Name>Your Company Name</Name>
+    <!--Change 'Your Company Name' to the name you want visible in Revit-->
+    <Name>Your Add-In Name</Name>
     <Assembly>Revit 2020 Add-In.dll</Assembly>
+    <!--Use an online generator to create a new GUID to minimize any conflicts-->
     <AddInId>6CCBACAF-008D-4204-BCE5-F3EFB3EC5852</AddInId>
     <FullClassName>Revit_2020_Add_In.App</FullClassName>
+    <!--Use an online generator to create a new GUID to minimize any conflicts and make SURE it is not the same as above-->
     <ClientId>EE245D6B-173B-4755-8678-EAFEC87B0CC6</ClientId>
+    <!--Change to you or your company name-->
     <VendorId>Your Company Name</VendorId>
+    <!--Give additional informaiton, email, or website information-->
     <VendorDescription>Your Company Name, www.contorso.com</VendorDescription>
   </AddIn>
 </RevitAddIns>
