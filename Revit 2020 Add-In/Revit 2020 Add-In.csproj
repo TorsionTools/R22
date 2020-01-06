@@ -93,6 +93,7 @@
     <Resource Include="Resources\FindReplace100x100.png" />
     <Resource Include="Resources\SheetSelection100x100.png" />
     <Resource Include="Resources\ToUpper100x100.png" />
+    <Resource Include="Resources\SheetTitleblockKeyPlan100x100.png" />
     <Content Include="square.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
