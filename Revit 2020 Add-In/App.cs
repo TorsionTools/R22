@@ -19,7 +19,7 @@ namespace Revit_2020_Add_In
             Ribbon.AppRibbon.AddRibbonPanel(RevitApplication);
 
             //Do something when Revit opens
-            TaskDialog.Show("Opening", "Revit is Opening!");
+            //TaskDialog.Show("Opening", "Revit is Opening!");
 
             //Let Revit know it was successfully executed
             return Result.Succeeded;
@@ -29,7 +29,7 @@ namespace Revit_2020_Add_In
         public Result OnShutdown(UIControlledApplication application)
         {
             //Do something here when Revit closes
-            TaskDialog.Show("Closing", "Revit is Closing!");
+            //TaskDialog.Show("Closing", "Revit is Closing!");
 
             //Let Revit know it was successfully executed
             return Result.Succeeded;
