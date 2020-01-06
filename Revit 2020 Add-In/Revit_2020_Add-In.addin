@@ -11,7 +11,7 @@
     <ClientId>EE245D6B-173B-4755-8678-EAFEC87B0CC6</ClientId>
     <!--Change to you or your company name-->
     <VendorId>Your Company Name</VendorId>
-    <!--Give additional informaiton, email, or website information-->
+    <!--Give additional information, email, or website information-->
     <VendorDescription>Your Company Name, www.contorso.com</VendorDescription>
   </AddIn>
 </RevitAddIns>
