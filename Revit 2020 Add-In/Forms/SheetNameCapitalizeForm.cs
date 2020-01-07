@@ -52,8 +52,11 @@ namespace Revit_2020_Add_In.Forms
                     btnCapitalize.Enabled = true;
                     //Use the Data Table to set the Data Source of the Data Grid View to display the sheet information
                     dgvSheets.DataSource = dt;
-                    //Set the Sheet Name column to fill the extra space in the Data Grid View
+                    //Set the Sheet Name column to be as wide as te largest cell in Data Grid View
+                    dgvSheets.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    //Set the Preview column to fill the extra space in the Data Grid View
                     dgvSheets.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
                 }
                 //Display a message that no Sheets were found based on the critera and set the Data Source to null for the Data Grid View
                 else
