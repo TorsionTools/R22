@@ -71,6 +71,12 @@
     <Compile Include="Forms\SheetFindReplaceForm.Designer.cs">
       <DependentUpon>SheetFindReplaceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SheetNameCapitalizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SheetNameCapitalizeForm.Designer.cs">
+      <DependentUpon>SheetNameCapitalizeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SheetSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\SheetFindReplaceForm.resx">
       <DependentUpon>SheetFindReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SheetNameCapitalizeForm.resx">
+      <DependentUpon>SheetNameCapitalizeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SheetSelectionForm.resx">
       <DependentUpon>SheetSelectionForm.cs</DependentUpon>

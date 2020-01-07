@@ -91,7 +91,7 @@ namespace Revit_2020_Add_In.Forms
                     //Set the Sheet Name column to fill the extra space in the Data Grid View
                     dgvSheets.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
-                //Display a message that now Sheets were found based on the critera and set the Data Source to null for the Data Grid View
+                //Display a message that no Sheets were found based on the critera and set the Data Source to null for the Data Grid View
                 else
                 {
                     TaskDialog.Show("Preview", "No Sheets match the search criteria.");

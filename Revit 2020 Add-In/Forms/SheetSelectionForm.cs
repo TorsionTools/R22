@@ -22,7 +22,7 @@ namespace Revit_2020_Add_In.Forms
         private void SheetSelectionForm_Load(object sender, EventArgs e)
         {
             //Use the Collectors helper class to get all sheets in the project
-            foreach (ViewSheet sheet in Collectors.ByCategory(doc, BuiltInCategory.OST_Sheets))
+            foreach (ViewSheet sheet in Helpers.Collectors.ByCategory(doc, BuiltInCategory.OST_Sheets))
             {
                 //Create a new item in the ListVIew for each Sheet
                 ListViewItem item = lvSheets.Items.Add(sheet.SheetNumber + " - " + sheet.Name);

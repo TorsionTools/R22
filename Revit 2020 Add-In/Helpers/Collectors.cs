@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
 using System.Collections.Generic;
-using Autodesk.Revit.DB;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Revit_2020_Add_In
+namespace Revit_2020_Add_In.Helpers
 {
     class Collectors
     {
