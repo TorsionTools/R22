@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Revit 2020 Add-In")]
 [assembly: AssemblyDescription("Revit 2020 Add-In Template project solution.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Torsion Tools")]
+[assembly: AssemblyCompany("Mott MacDonald")]
 [assembly: AssemblyProduct("Revit 2020 Add-In")]
-[assembly: AssemblyCopyright("Copyright © 2020 Torsion Tools")]
+[assembly: AssemblyCopyright("Copyright © 2020 Mott MacDonald")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

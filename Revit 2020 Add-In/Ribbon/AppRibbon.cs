@@ -11,7 +11,7 @@ namespace Revit_2020_Add_In.Ribbon
         internal static void AddRibbonPanel(UIControlledApplication application)
         {
             //Tab Name that will display in Revit
-            string TabName = "My Tab";
+            string TabName = "Mott MacDonald Add-In";
             
             //Create the Ribbon Tab
             application.CreateRibbonTab(TabName);

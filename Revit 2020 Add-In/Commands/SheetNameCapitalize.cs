@@ -32,9 +32,18 @@ namespace Revit_2020_Add_In.Commands
                     {
                         //Loop through each sheet in the Collector
                         foreach (ViewSheet sheet in fec.ToElements())
-                        {
-                            //Capitalize the Sheet Name
-                            sheet.Name = sheet.Name.ToUpper();
+                        {   
+                            //If name is already in UpperCase then change it to lower case
+                            if (sheet.Name == sheet.Name.ToUpper())
+                            {
+                                sheet.Name = sheet.Name.ToLower();
+                            }
+
+                            else
+                            {
+                                //Capitalize the Sheet Name
+                                sheet.Name = sheet.Name.ToUpper();
+                            }
                         }
                     }
                     //Commit the transaction to save the changes to the Document
@@ -45,8 +54,8 @@ namespace Revit_2020_Add_In.Commands
             catch (Exception ex)
             {
                 TaskDialog.Show("Error", ex.ToString() + " : " + ex.InnerException);
-            }
 
+            }
             //Let Revit know it executed successfully. This is also how you can roll back the entire command with Result.Failed or Result.Cancelled
             return Result.Succeeded;
         }

@@ -10,8 +10,8 @@
     <!--Use an online generator to create a new GUID to minimize any conflicts and make SURE it is not the same as above-->
     <ClientId>EE245D6B-173B-4755-8678-EAFEC87B0CC6</ClientId>
     <!--Change to you or your company name-->
-    <VendorId>Your Company Name</VendorId>
+    <VendorId>Mott MacDonald</VendorId>
     <!--Give additional information, email, or website information-->
-    <VendorDescription>Your Company Name, www.contorso.com</VendorDescription>
+    <VendorDescription>Mott MacDonald, www.mottmac.com</VendorDescription>
   </AddIn>
 </RevitAddIns>
