@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SheetNameCapitalizeForm));
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCapitalize = new System.Windows.Forms.Button();
@@ -94,6 +95,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCapitalize);
             this.Controls.Add(this.dgvSheets);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SheetNameCapitalizeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sheet Name Capitalize";
