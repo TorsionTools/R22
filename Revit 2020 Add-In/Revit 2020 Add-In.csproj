@@ -65,6 +65,7 @@
     <Compile Include="Commands\SheetNameCapitalize.cs" />
     <Compile Include="Commands\SheetSelection.cs" />
     <Compile Include="Commands\SheetTitleblockKeyPlan.cs" />
+    <Compile Include="Commands\Warnings.cs" />
     <Compile Include="Forms\SheetFindReplaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,7 +90,14 @@
     <Compile Include="Forms\SheetTitleblockKeyPlanForm.designer.cs">
       <DependentUpon>SheetTitleblockKeyPlanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\WarningsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WarningsForm.designer.cs">
+      <DependentUpon>WarningsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Collectors.cs" />
+    <Compile Include="Helpers\Functions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ribbon\AppRibbon.cs" />
     <Compile Include="Commands\TEMPLATE.cs" />
@@ -99,6 +107,7 @@
     <Resource Include="Resources\SheetSelection100x100.png" />
     <Resource Include="Resources\ToUpper100x100.png" />
     <Resource Include="Resources\SheetTitleblockKeyPlan100x100.png" />
+    <Resource Include="Resources\Warning100x100.png" />
     <Content Include="square.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -117,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SheetTitleblockKeyPlanForm.resx">
       <DependentUpon>SheetTitleblockKeyPlanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WarningsForm.resx">
+      <DependentUpon>WarningsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

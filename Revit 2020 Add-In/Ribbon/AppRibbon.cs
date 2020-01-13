@@ -25,11 +25,13 @@ namespace Revit_2020_Add_In.Ribbon
             BitmapImage SheetCapitalizeImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ToUpper100x100.png"));
             BitmapImage SheetSelectionImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetSelection100x100.png"));
             BitmapImage SheetTitleblockKeyPlanImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetTitleblockKeyPlan100x100.png"));
+            BitmapImage ToolsWarnings = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/Warning100x100.png"));
 
 
             //Create a Panel within the Tab
             RibbonPanel RibbonPanelOne = application.CreateRibbonPanel(TabName, "PANEL 1");
             RibbonPanel RibbonPanelSheets = application.CreateRibbonPanel(TabName, "Sheets");
+            RibbonPanel RibbonPanelTools = application.CreateRibbonPanel(TabName, "Tools");
 
             //Create Push Button Data to create the Push button from
             PushButtonData pbdTestButton = new PushButtonData("cmdTestButton", "Button Name", AssemblyPath, "Revit_2020_Add_In.Commands.HelloWorld");
@@ -37,6 +39,7 @@ namespace Revit_2020_Add_In.Ribbon
             PushButtonData pbdSheetFindReplace = new PushButtonData("cmdSheetFindReplace", "Find Replace", AssemblyPath, "Revit_2020_Add_In.Commands.SheetFindReplace");
             PushButtonData pbdSheetNameCapitalize = new PushButtonData("cmdSheetNameCapitalize", "Capitalize\nName", AssemblyPath, "Revit_2020_Add_In.Commands.SheetNameCapitalize");
             PushButtonData pbdSheetTitleblockKeyPlan = new PushButtonData("cmdSheetTitleblockKeyPlan", "Key Plan\nVisibility", AssemblyPath, "Revit_2020_Add_In.Commands.SheetTitleblockKeyPlan");
+            PushButtonData pbdToolsWarnings = new PushButtonData("cmdToolsWarnings", "Warnings", AssemblyPath, "Revit_2020_Add_In.Commands.Warnings");
 
             //Create a Push Button from the Push Button Data
             PushButton pbTestButton = RibbonPanelOne.AddItem(pbdTestButton) as PushButton;
@@ -45,6 +48,8 @@ namespace Revit_2020_Add_In.Ribbon
             PushButton pbSheetFindReplace = RibbonPanelSheets.AddItem(pbdSheetFindReplace) as PushButton;
             PushButton pbSheetTitleblockKeyPlan = RibbonPanelSheets.AddItem(pbdSheetTitleblockKeyPlan) as PushButton;
 
+            PushButton pbToolsWarnings = RibbonPanelTools.AddItem(pbdToolsWarnings) as PushButton;
+
             //Set Button Image
             pbTestButton.LargeImage = ButtonImage;
             pbSheetNameCapitalize.LargeImage = SheetCapitalizeImage;
@@ -52,12 +57,16 @@ namespace Revit_2020_Add_In.Ribbon
             pbSheetSelection.LargeImage = SheetSelectionImage;
             pbSheetTitleblockKeyPlan.LargeImage = SheetTitleblockKeyPlanImage;
 
+            pbToolsWarnings.LargeImage = ToolsWarnings;
+
             //Set Button Tool Tip
             pbTestButton.ToolTip = "Tell the user what your button does here";
             pbSheetSelection.ToolTip = "Select from all of the Sheets in the Model";
             pbSheetFindReplace.ToolTip = "Find and Replace values in Sheet Name or Number";
             pbSheetNameCapitalize.ToolTip = "Capitalize the Name of all Sheets in the Model";
             pbSheetTitleblockKeyPlan.ToolTip = "Set Yes / No parameters of a Titleblock type based on search criteria of the Sheet Name or Sheet Number";
+
+            pbToolsWarnings.ToolTip = "Display and isolate Warnings in the Document";
 
             //Set Button Long description which is the text that flys out when you hover on a button longer
             pbTestButton.LongDescription = "Give the user more information about how they need to use the button features";
