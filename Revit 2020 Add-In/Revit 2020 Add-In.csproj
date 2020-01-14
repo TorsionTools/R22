@@ -41,11 +41,11 @@
     <Reference Include="PresentationCore" />
     <Reference Include="RevitAPI, Version=20.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI, Version=20.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,12 +60,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Commands\ElementsOfCategory.cs" />
     <Compile Include="Commands\HelloWorld.cs" />
     <Compile Include="Commands\SheetFindReplace.cs" />
     <Compile Include="Commands\SheetNameCapitalize.cs" />
     <Compile Include="Commands\SheetSelection.cs" />
     <Compile Include="Commands\SheetTitleblockKeyPlan.cs" />
     <Compile Include="Commands\Warnings.cs" />
+    <Compile Include="Forms\ElementsOfCategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ElementsOfCategoryForm.Designer.cs">
+      <DependentUpon>ElementsOfCategoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SheetFindReplaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +122,9 @@
     <Content Include="Revit_2020_Add-In.addin" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\ElementsOfCategoryForm.resx">
+      <DependentUpon>ElementsOfCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SheetFindReplaceForm.resx">
       <DependentUpon>SheetFindReplaceForm.cs</DependentUpon>
     </EmbeddedResource>
