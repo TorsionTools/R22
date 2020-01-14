@@ -25,7 +25,8 @@ namespace Revit_2020_Add_In.Ribbon
             BitmapImage SheetCapitalizeImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ToUpper100x100.png"));
             BitmapImage SheetSelectionImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetSelection100x100.png"));
             BitmapImage SheetTitleblockKeyPlanImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetTitleblockKeyPlan100x100.png"));
-            BitmapImage ToolsWarnings = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/Warning100x100.png"));
+            BitmapImage ToolsWarningsImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/Warning100x100.png"));
+            BitmapImage ToolsElemOfCategoryImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ComponentInfo100x100.png"));
 
 
             //Create a Panel within the Tab
@@ -63,7 +64,8 @@ namespace Revit_2020_Add_In.Ribbon
             pbSheetSelection.LargeImage = SheetSelectionImage;
             pbSheetTitleblockKeyPlan.LargeImage = SheetTitleblockKeyPlanImage;
 
-            pbToolsWarnings.LargeImage = ToolsWarnings;
+            pbToolsWarnings.LargeImage = ToolsWarningsImage;
+            pbToolsElemOfCategory.LargeImage = ToolsElemOfCategoryImage;
 
             //Set Button Tool Tip
             pbTestButton.ToolTip = "Tell the user what your button does here";
