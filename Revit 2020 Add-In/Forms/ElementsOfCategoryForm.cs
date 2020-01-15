@@ -59,6 +59,7 @@ namespace Revit_2020_Add_In.Forms
                 //Set the "TKey" and "TValue" of the Sorted list to the Display and Value Members of the ComboBox
                 cbCategories.DisplayMember = "Key";
                 cbCategories.ValueMember = "Value";
+
             }
             //Catch any errors int he Try an display the information
             catch (Exception ex)
@@ -93,6 +94,8 @@ namespace Revit_2020_Add_In.Forms
                     }
                 }
             }
+            //Add the Number of Elements to the Name Column Header
+            dgvElements.Columns[1].HeaderText = "Name (" + dgvElements.Rows.Count + ")";
         }
 
         //Closes the Form
