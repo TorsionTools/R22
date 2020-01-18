@@ -19,17 +19,21 @@ namespace Revit_2020_Add_In
             Ribbon.AppRibbon.AddRibbonPanel(RevitApplication);
 
             //Do something when Revit opens
-            //TaskDialog.Show("Opening", "Revit is Opening!");
+
+            //Add an event handler that will do something when the Document has finished Synchronizing
+            RevitApplication.ControlledApplication.DocumentSynchronizedWithCentral += new EventHandler<Autodesk.Revit.DB.Events.DocumentSynchronizedWithCentralEventArgs>(Application_DocumentSynchronized);
 
             //Let Revit know it was successfully executed
             return Result.Succeeded;
         }
 
         //This is the Function that tells the Revit application to do something when Revit closes.
-        public Result OnShutdown(UIControlledApplication application)
+        public Result OnShutdown(UIControlledApplication RevitApplication)
         {
             //Do something here when Revit closes
-            //TaskDialog.Show("Closing", "Revit is Closing!");
+
+            //Remove the Event Handler for Document Synchronized
+            RevitApplication.ControlledApplication.DocumentSynchronizedWithCentral -= Application_DocumentSynchronized;
 
             //Let Revit know it was successfully executed
             return Result.Succeeded;
@@ -53,5 +57,10 @@ namespace Revit_2020_Add_In
 
         }
 
+        //Do something when the Document has finished Synchronizing
+        private void Application_DocumentSynchronized(object sender, Autodesk.Revit.DB.Events.DocumentSynchronizedWithCentralEventArgs args)
+        {
+
+        }
     }
 }
