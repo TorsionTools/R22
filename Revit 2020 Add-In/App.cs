@@ -60,7 +60,7 @@ namespace Revit_2020_Add_In
         //Do something when the Document has finished Synchronizing
         private void Application_DocumentSynchronized(object sender, Autodesk.Revit.DB.Events.DocumentSynchronizedWithCentralEventArgs args)
         {
-
+           
         }
     }
 }

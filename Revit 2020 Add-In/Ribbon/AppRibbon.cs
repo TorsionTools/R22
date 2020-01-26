@@ -27,6 +27,7 @@ namespace Revit_2020_Add_In.Ribbon
             BitmapImage SheetTitleblockKeyPlanImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetTitleblockKeyPlan100x100.png"));
             BitmapImage ToolsWarningsImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/Warning100x100.png"));
             BitmapImage ToolsElemOfCategoryImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ComponentInfo100x100.png"));
+            BitmapImage ToolsViewLegendCopyImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ViewLegendCopy100x100.png"));
 
 
             //Create a Panel within the Tab
@@ -43,6 +44,7 @@ namespace Revit_2020_Add_In.Ribbon
             PushButtonData pbdSheetTitleblockKeyPlan = new PushButtonData("cmdSheetTitleblockKeyPlan", "Key Plan\nVisibility", AssemblyPath, "Revit_2020_Add_In.Commands.SheetTitleblockKeyPlan");
 
             PushButtonData pbdToolsWarnings = new PushButtonData("cmdToolsWarnings", "Warnings", AssemblyPath, "Revit_2020_Add_In.Commands.Warnings");
+            PushButtonData pbdToolsViewLegendCopy = new PushButtonData("cmdToolsViewLegendCopy", "Copy\nLegends", AssemblyPath, "Revit_2020_Add_In.Commands.ViewLegendCopy");
             PushButtonData pbdToolsElemOfCategory = new PushButtonData("cmdToolsElemOfCategory", "Family Instances\nof Category", AssemblyPath, "Revit_2020_Add_In.Commands.ElementsOfCategory");
 
             //Create a Push Button from the Push Button Data
@@ -54,6 +56,7 @@ namespace Revit_2020_Add_In.Ribbon
             PushButton pbSheetTitleblockKeyPlan = RibbonPanelSheets.AddItem(pbdSheetTitleblockKeyPlan) as PushButton;
 
             PushButton pbToolsWarnings = RibbonPanelTools.AddItem(pbdToolsWarnings) as PushButton;
+            PushButton pbToolsViewLegendCopy = RibbonPanelTools.AddItem(pbdToolsViewLegendCopy) as PushButton;
             PushButton pbToolsElemOfCategory = RibbonPanelTools.AddItem(pbdToolsElemOfCategory) as PushButton;
 
             //Set Button Image
@@ -65,6 +68,7 @@ namespace Revit_2020_Add_In.Ribbon
             pbSheetTitleblockKeyPlan.LargeImage = SheetTitleblockKeyPlanImage;
 
             pbToolsWarnings.LargeImage = ToolsWarningsImage;
+            pbToolsViewLegendCopy.LargeImage = ToolsViewLegendCopyImage;
             pbToolsElemOfCategory.LargeImage = ToolsElemOfCategoryImage;
 
             //Set Button Tool Tip
@@ -75,10 +79,12 @@ namespace Revit_2020_Add_In.Ribbon
             pbSheetTitleblockKeyPlan.ToolTip = "Set Yes / No parameters of a Titleblock type based on search criteria of the Sheet Name or Sheet Number";
 
             pbToolsWarnings.ToolTip = "Display and isolate Warnings in the Document";
+            pbToolsViewLegendCopy.ToolTip = "Copy one or more Legend Views from a Linked Document";
             pbToolsElemOfCategory.ToolTip = "Get all Elements of selected Category";
 
             //Set Button Long description which is the text that flys out when you hover on a button longer
             pbTestButton.LongDescription = "Give the user more information about how they need to use the button features";
+            pbToolsViewLegendCopy.LongDescription = "Select the Linked Document from which you want to copy the Legend from. Then select from the available Legend views. Then press the Copy button to copy the legends into the current Document.";
             pbSheetSelection.LongDescription = "The Sheet Selection Form can be used in multiple ways to allow the user to select one or multiple sheets in the project and perform additiona actions on the sheets returned.";
         }
     }

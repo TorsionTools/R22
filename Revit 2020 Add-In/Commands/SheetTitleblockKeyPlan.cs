@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace Revit_2020_Add_In.Commands
 {
     [Transaction(TransactionMode.Manual)]
-    //This command will call the Sheet Titleblock Key Plan form to change Yes / No instance Parameters on Titleblocks
+    //This class will call the Sheet Titleblock Key Plan form to change Yes / No instance Parameters on Titleblocks
     class SheetTitleblockKeyPlan : IExternalCommand
     {
         //This line has to be here in order for the command to execute in the current Revit context
@@ -30,7 +30,7 @@ namespace Revit_2020_Add_In.Commands
                 }
                 else
                 {
-                    //Let Revit know it executed successfully. This is also how you can roll back the entire feature.
+                    //Let Revit know the Execute method did not finish successfully. All modifications to the Document will be rolled back based on the TransactionMode
                     return Result.Cancelled;
                 }
             }

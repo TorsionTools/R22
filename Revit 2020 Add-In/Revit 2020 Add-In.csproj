@@ -73,6 +73,13 @@
     <Compile Include="Forms\ElementsOfCategoryForm.Designer.cs">
       <DependentUpon>ElementsOfCategoryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\ViewLegendCopy.cs" />
+    <Compile Include="Forms\ViewLegendCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewLegendCopyForm.designer.cs">
+      <DependentUpon>ViewLegendCopyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SheetFindReplaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +123,7 @@
     <Resource Include="Resources\SheetTitleblockKeyPlan100x100.png" />
     <Resource Include="Resources\Warning100x100.png" />
     <Resource Include="Resources\ComponentInfo100x100.png" />
+    <Resource Include="Resources\ViewLegendCopy100x100.png" />
     <Content Include="square.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -125,6 +133,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\ElementsOfCategoryForm.resx">
       <DependentUpon>ElementsOfCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewLegendCopyForm.resx">
+      <DependentUpon>ViewLegendCopyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SheetFindReplaceForm.resx">
       <DependentUpon>SheetFindReplaceForm.cs</DependentUpon>

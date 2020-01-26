@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
+using System;
 using System.Diagnostics;
 using IWin32Window = System.Windows.Forms.IWin32Window;
 
@@ -28,6 +29,16 @@ namespace Revit_2020_Add_In.Helpers
             {
                 return _hwnd;
             }
+        }
+    }
+
+    //This is a helper class and method to control the Duplicate Elements Warning when copying elements between models.
+    //For example, it is used in the ViewLegendCopyForm code to  help minimize prompts
+    internal class CopyHandler : IDuplicateTypeNamesHandler
+    {
+        public DuplicateTypeAction OnDuplicateTypeNamesFound(DuplicateTypeNamesHandlerArgs args)
+        {
+            return DuplicateTypeAction.UseDestinationTypes;
         }
     }
 }
