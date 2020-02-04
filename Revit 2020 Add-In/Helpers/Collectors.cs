@@ -65,5 +65,17 @@ namespace Revit_2020_Add_In.Helpers
             }
             return elementId;
         }
+
+        internal static IList<ElementType> ViewportTypes(Document doc)
+        {
+            FilterRule rule = ParameterFilterRuleFactory.CreateEqualsRule(new ElementId((int)BuiltInParameter.SYMBOL_FAMILY_NAME_PARAM), "Viewport", false);
+            ElementParameterFilter filter = new ElementParameterFilter(rule);
+            IList<ElementType> viewportTypes;
+            using (FilteredElementCollector fec = new FilteredElementCollector(doc).OfClass(typeof(ElementType)).WherePasses(filter))
+            {
+                viewportTypes = fec.Cast<ElementType>().ToList();
+            }
+            return viewportTypes;
+        }
     }
 }

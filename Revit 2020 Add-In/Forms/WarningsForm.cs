@@ -6,7 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using Form = System.Windows.Forms.Form;
-using MessageBox = System.Windows.Forms.MessageBox;
 using View = Autodesk.Revit.DB.View;
 
 namespace Revit_2020_Add_In.Forms
