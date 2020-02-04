@@ -230,15 +230,20 @@ namespace Revit_2020_Add_In.Forms
                     linkDoc = (Document)cboLinks.SelectedValue;
                     foreach (Viewport vp in Helpers.Collectors.ByCategoryNotElementType(linkDoc, BuiltInCategory.OST_Viewports))
                     {
-                        if (linkDoc.GetElement(vp.ViewId) is View view)
+                        //Check to make sure the viewport type is Showing the Title so we can get the location
+                        ElementType viewportType = linkDoc.GetElement(vp.GetTypeId()) as ElementType;
+                        if (viewportType.LookupParameter("Show Title").AsInteger() == 1)
                         {
-                            if (view.ViewType != ViewType.Legend)
+                            if (linkDoc.GetElement(vp.ViewId) is View view)
                             {
-                                if (vp.get_Parameter(BuiltInParameter.VIEWPORT_SHEET_NUMBER) is Parameter sNum && vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER) is Parameter dNum)
+                                if (view.ViewType != ViewType.Legend)
                                 {
-                                    if (vp.GetLabelOutline().MinimumPoint is XYZ point)
+                                    if (vp.get_Parameter(BuiltInParameter.VIEWPORT_SHEET_NUMBER) is Parameter sNum && vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER) is Parameter dNum)
                                     {
-                                        dtViews.Rows.Add(view.ViewType.ToString(), dNum.AsString(), sNum.AsString(), view.Name, view.LookupParameter("Title on Sheet").AsString(), vp.UniqueId, view, vp.GetLabelOutline().MinimumPoint);
+                                        if (vp.GetLabelOutline().MinimumPoint is XYZ point)
+                                        {
+                                            dtViews.Rows.Add(view.ViewType.ToString(), dNum.AsString(), sNum.AsString(), view.Name, view.LookupParameter("Title on Sheet").AsString(), vp.UniqueId, view, vp.GetLabelOutline().MinimumPoint);
+                                        }
                                     }
                                 }
                             }
