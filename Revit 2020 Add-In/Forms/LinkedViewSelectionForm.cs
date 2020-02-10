@@ -12,6 +12,7 @@ namespace Revit_2020_Add_In.Forms
 {
     public partial class LinkedViewSelectionForm : System.Windows.Forms.Form
     {
+        //Set Class Variables
         Document doc;
         Document linkDoc;
         SortedList<string, ElementId> vpTypes = new SortedList<string, ElementId>();
@@ -58,9 +59,16 @@ namespace Revit_2020_Add_In.Forms
                 titleBlocks.Add(tb.Name, tb);
             }
 
-            cboTitleBlock.DataSource = titleBlocks.ToList();
-            cboTitleBlock.DisplayMember = "Key";
-            cboTitleBlock.ValueMember = "Value";
+            if (titleBlocks.Count > 0)
+            {
+                cboTitleBlock.DataSource = titleBlocks.ToList();
+                cboTitleBlock.DisplayMember = "Key";
+                cboTitleBlock.ValueMember = "Value";
+            }
+            else
+            {
+                titleBlocks.Add("No Title Blocks Found", null);
+            }
 
             foreach (ElementType vp in Helpers.Collectors.ViewportTypes(doc))
             {
@@ -84,7 +92,23 @@ namespace Revit_2020_Add_In.Forms
         private void btnOK_Click(object sender, EventArgs e)
         {
             int itemCount = 0;
+            bool TitleLocation = true;
             ElementId typeId = (ElementId)cbViewPortTypes.SelectedValue;
+            ElementType vpType = doc.GetElement(typeId) as ElementType;
+            //Check to see if the Viewport Type has the Show Title property set to Yes, if it is not, we can't calculate its location
+            //relative to the viewport to move it to the same location as the Linked Model
+            if (vpType.LookupParameter("Show Title").AsInteger() != 1)
+            {
+                if (TaskDialog.Show("Viewport Show Title", "The Viewport Type selected does not have the 'Show Title' property set to Yes and the View placement may not be as expected.\nWould you like to continue?", TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No, TaskDialogResult.No) == TaskDialogResult.No)
+                {
+                    return;
+                }
+                else
+                {
+                    TitleLocation = false;
+                }
+            }
+
             //Use a Transaction Group for multiple transactions to be grouped as one. This enables the creation of sheets and views during the method
             //without throwing an exception that the elements don't exist
             using (TransactionGroup tGroup = new TransactionGroup(doc, "Create Linked Views"))
@@ -171,8 +195,17 @@ namespace Revit_2020_Add_In.Forms
                                             vPort.ChangeTypeId(typeId);
                                         }
 
-                                        //Get the location of the Viewport and Viewport Label to set Viewport Location
-                                        ElementTransformUtils.MoveElement(doc, vPort.Id, labelPoint - vPort.GetLabelOutline().MinimumPoint);
+                                        if (TitleLocation)
+                                        {
+                                            //Get the location of the Viewport and Viewport Label and Move the Viewport to match the Linked Document
+                                            ElementTransformUtils.MoveElement(doc, vPort.Id, labelPoint - vPort.GetLabelOutline().MinimumPoint);
+                                        }
+                                        else
+                                        {
+                                            //If the Viewport Type does not have the Show Title property set to yes, we can't calculate the location
+                                            //and we just place it int he location from the Linked model. This may not be the same location.
+                                            ElementTransformUtils.MoveElement(doc, vPort.Id, labelPoint);
+                                        }
                                     }
                                     else
                                     {
@@ -186,6 +219,7 @@ namespace Revit_2020_Add_In.Forms
                         }
                         catch (Exception ex)
                         {
+                            //This Exception will check if the View already exits in the project
                             if (ex.GetType() == typeof(Autodesk.Revit.Exceptions.ArgumentException))
                             {
                                 TaskDialog.Show("Existing View", "View '" + (string)row.Cells[3].Value + "' already exists and will not be created.");
@@ -198,13 +232,23 @@ namespace Revit_2020_Add_In.Forms
                             else
                             {
                                 TaskDialog.Show("Error", ex.ToString());
-                                tGroup.RollBack();
+                                //Check to see if a Transaction is active and roll it back if so
+                                if (t.HasStarted())
+                                {
+                                    t.RollBack();
+                                }
+                                //check to see if the Group Transaction has started and roll it back if so
+                                if (tGroup.HasStarted())
+                                {
+                                    tGroup.RollBack();
+                                }
                             }
                         }
                     }
-                    //Commit all of the changes from the Transaction group and other transactions
-                    tGroup.Assimilate();
                 }
+                //Commit all of the changes from the Transaction group and other transactions
+                tGroup.Assimilate();
+
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -290,7 +334,6 @@ namespace Revit_2020_Add_In.Forms
             {
                 return true;
             }
-
         }
 
         //Check to see if a Sheet Number already exists in the project and create it if not

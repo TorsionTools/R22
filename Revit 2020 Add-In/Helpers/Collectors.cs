@@ -77,5 +77,41 @@ namespace Revit_2020_Add_In.Helpers
             }
             return viewportTypes;
         }
+
+        //This method will check to see if there are any Schedules in the specified document with the same name
+        internal static bool CheckSchedule(Document _doc, string _name)
+        {
+            ParameterValueProvider pvp = new ParameterValueProvider(new ElementId(BuiltInParameter.VIEW_NAME));
+            FilterStringRuleEvaluator fsr = new FilterStringEquals();
+            FilterRule fRule = new FilterStringRule(pvp, fsr, _name, true);
+            ElementParameterFilter filter = new ElementParameterFilter(fRule);
+
+            if (new FilteredElementCollector(_doc).OfCategory(BuiltInCategory.OST_Schedules).WherePasses(filter).FirstOrDefault() is ViewSchedule vs)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        //This method will check to see if there are any Legends in the specified document with the same name
+        internal static bool CheckLegend(Document _doc, string _name)
+        {
+            ParameterValueProvider pvp = new ParameterValueProvider(new ElementId(BuiltInParameter.VIEW_NAME));
+            FilterStringRuleEvaluator fsr = new FilterStringEquals();
+            FilterRule fRule = new FilterStringRule(pvp, fsr, _name, true);
+            ElementParameterFilter filter = new ElementParameterFilter(fRule);
+
+            if (new FilteredElementCollector(_doc).OfCategory(BuiltInCategory.OST_Views).WherePasses(filter).FirstOrDefault() is View lg)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

@@ -28,9 +28,10 @@ namespace Revit_2020_Add_In.Ribbon
             BitmapImage ToolsWarningsImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/Warning100x100.png"));
             BitmapImage ToolsElemOfCategoryImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ComponentInfo100x100.png"));
             BitmapImage ToolsViewLegendCopyImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ViewLegendCopy100x100.png"));
+            BitmapImage ToolsViewScheduleCopyImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ViewScheduleCopy100x100.png"));
             BitmapImage ToolsLinkedViewsImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/LinkedView100x100.png"));
             BitmapImage ToolsLinkedViewsUpdateImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/LinkedViewUpdate100x100.png"));
-
+            
             //Create a Panel within the Tab
             RibbonPanel RibbonPanelOne = application.CreateRibbonPanel(TabName, "PANEL 1");
             RibbonPanel RibbonPanelSheets = application.CreateRibbonPanel(TabName, "Sheets");
@@ -47,6 +48,7 @@ namespace Revit_2020_Add_In.Ribbon
             PushButtonData pbdToolsWarnings = new PushButtonData("cmdToolsWarnings", "Warnings", AssemblyPath, "Revit_2020_Add_In.Commands.Warnings");
             PushButtonData pbdToolsElemOfCategory = new PushButtonData("cmdToolsElemOfCategory", "Family Instances\nof Category", AssemblyPath, "Revit_2020_Add_In.Commands.ElementsOfCategory");
             PushButtonData pbdToolsViewLegendCopy = new PushButtonData("cmdToolsViewLegendCopy", "Copy\nLegends", AssemblyPath, "Revit_2020_Add_In.Commands.ViewLegendCopy");
+            PushButtonData pbdToolsViewScheduleCopy = new PushButtonData("cmdToolsViewScheduleCopy", "Copy\nSchedules", AssemblyPath, "Revit_2020_Add_In.Commands.ViewScheduleCopy");
             PushButtonData pbdToolsLinkedViews = new PushButtonData("cmdToolsLinkedViews", "Linked\nViews", AssemblyPath, "Revit_2020_Add_In.Commands.LinkedViews");
             PushButtonData pbdToolsLinkedViewsUpdate = new PushButtonData("cmdToolsLinkedViewsUpdate", "Update\nViews", AssemblyPath, "Revit_2020_Add_In.Commands.LinkedViewUpdate");
 
@@ -60,16 +62,27 @@ namespace Revit_2020_Add_In.Ribbon
 
             PushButton pbToolsWarnings = RibbonPanelTools.AddItem(pbdToolsWarnings) as PushButton;
             PushButton pbToolsElemOfCategory = RibbonPanelTools.AddItem(pbdToolsElemOfCategory) as PushButton;
-            PushButton pbToolsViewLegendCopy = RibbonPanelTools.AddItem(pbdToolsViewLegendCopy) as PushButton;
-            
+
             //If you are going to use PushButtonData objects for Pulldown or Split buttons, you have to set these properties BEFORE adding them
             pbdToolsLinkedViews.LargeImage = ToolsLinkedViewsImage;
             pbdToolsLinkedViewsUpdate.LargeImage = ToolsLinkedViewsUpdateImage;
+            pbdToolsViewLegendCopy.LargeImage = ToolsViewLegendCopyImage;
+            pbdToolsViewScheduleCopy.LargeImage = ToolsViewScheduleCopyImage;
             pbdToolsLinkedViews.ToolTip = "Create Drafting Views based on Views in a Linked Model for reference";
             pbdToolsLinkedViewsUpdate.ToolTip = "Update Linked View information referenced from a Linked Model";
             pbdToolsLinkedViews.LongDescription = "Verify the current Revit Model has the following three parameters under Phasing paramter group and View category:\nLinked View - Yes/No\nLinked View GUID - Text\nLink Name - Text ";
+            pbdToolsViewLegendCopy.ToolTip = "Copy one or more Legend Views from a Linked Document";
+            pbdToolsViewLegendCopy.LongDescription = "Select the Linked Document from which you want to copy the Legend from. Then select from the available Legend views. Then press the Copy button to copy the Legends into the current Document.";
+            pbdToolsViewScheduleCopy.ToolTip = "Copy one or more Schedules form a Linked Document";
+            pbdToolsViewScheduleCopy.LongDescription = "Select the Linked Document from which you want to copy the Schedule from. Then select from the available Schedules. Then press the Copy button to copy the Schedules into the current Document.";
 
             //Pull Down buttons allow you to stack similar or grouped buttons into a stack that you can expand down and select
+            PulldownButtonData pdbdCopyLegendSchedule = new PulldownButtonData("pullDownCopyLegendSchedule", "Copy\nLegend");
+            PulldownButton pdbCopyLegendSchedule = RibbonPanelTools.AddItem(pdbdCopyLegendSchedule) as PulldownButton;
+            pdbCopyLegendSchedule.LargeImage = ToolsViewLegendCopyImage;
+            pdbCopyLegendSchedule.AddPushButton(pbdToolsViewLegendCopy);
+            pdbCopyLegendSchedule.AddPushButton(pbdToolsViewScheduleCopy);
+
             PulldownButtonData pdbdLinkedViews = new PulldownButtonData("pullDownLinkView", "Link\nViews");
             PulldownButton pdbLinkedViews = RibbonPanelTools.AddItem(pdbdLinkedViews) as PulldownButton;
             pdbLinkedViews.LargeImage = ToolsLinkedViewsImage;
@@ -85,9 +98,7 @@ namespace Revit_2020_Add_In.Ribbon
             pbSheetTitleblockKeyPlan.LargeImage = SheetTitleblockKeyPlanImage;
 
             pbToolsWarnings.LargeImage = ToolsWarningsImage;
-            pbToolsViewLegendCopy.LargeImage = ToolsViewLegendCopyImage;
             pbToolsElemOfCategory.LargeImage = ToolsElemOfCategoryImage;
-            
 
             //Set Button Tool Tips
             pbTestButton.ToolTip = "Tell the user what your button does here";
@@ -98,13 +109,10 @@ namespace Revit_2020_Add_In.Ribbon
 
             pbToolsWarnings.ToolTip = "Display and isolate Warnings in the Document";
             pbToolsElemOfCategory.ToolTip = "Get all Elements of selected Category";
-            pbToolsViewLegendCopy.ToolTip = "Copy one or more Legend Views from a Linked Document";
 
             //Set Button Long description which is the text that flys out when you hover on a button longer
             pbTestButton.LongDescription = "Give the user more information about how they need to use the button features";
-            pbToolsViewLegendCopy.LongDescription = "Select the Linked Document from which you want to copy the Legend from. Then select from the available Legend views. Then press the Copy button to copy the legends into the current Document.";
             pbSheetSelection.LongDescription = "The Sheet Selection Form can be used in multiple ways to allow the user to select one or multiple sheets in the project and perform additiona actions on the sheets returned.";
-            
         }
     }
 }

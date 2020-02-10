@@ -35,6 +35,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ButtonCopy = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +52,8 @@
             this.ComboBoxLinks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxLinks.FormattingEnabled = true;
-            this.ComboBoxLinks.Location = new System.Drawing.Point(15, 30);
+            this.ComboBoxLinks.Location = new System.Drawing.Point(12, 27);
+            this.ComboBoxLinks.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.ComboBoxLinks.Name = "ComboBoxLinks";
             this.ComboBoxLinks.Size = new System.Drawing.Size(357, 21);
             this.ComboBoxLinks.TabIndex = 4;
@@ -68,9 +70,11 @@
             this.ListViewLegends.FullRowSelect = true;
             this.ListViewLegends.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.ListViewLegends.HideSelection = false;
-            this.ListViewLegends.Location = new System.Drawing.Point(15, 67);
+            this.ListViewLegends.Location = new System.Drawing.Point(12, 82);
+            this.ListViewLegends.Margin = new System.Windows.Forms.Padding(3, 5, 3, 3);
             this.ListViewLegends.Name = "ListViewLegends";
-            this.ListViewLegends.Size = new System.Drawing.Size(357, 453);
+            this.ListViewLegends.Size = new System.Drawing.Size(357, 438);
+            this.ListViewLegends.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.ListViewLegends.TabIndex = 6;
             this.ListViewLegends.UseCompatibleStateImageBehavior = false;
             this.ListViewLegends.View = System.Windows.Forms.View.Details;
@@ -83,7 +87,7 @@
             // ButtonCopy
             // 
             this.ButtonCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonCopy.Location = new System.Drawing.Point(297, 526);
+            this.ButtonCopy.Location = new System.Drawing.Point(294, 526);
             this.ButtonCopy.Name = "ButtonCopy";
             this.ButtonCopy.Size = new System.Drawing.Size(75, 23);
             this.ButtonCopy.TabIndex = 7;
@@ -94,13 +98,22 @@
             // ButtonClose
             // 
             this.ButtonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonClose.Location = new System.Drawing.Point(15, 526);
+            this.ButtonClose.Location = new System.Drawing.Point(12, 526);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(75, 23);
             this.ButtonClose.TabIndex = 8;
             this.ButtonClose.Text = "Close";
             this.ButtonClose.UseVisualStyleBackColor = true;
             this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 64);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(123, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Select Legends to Copy:";
             // 
             // ViewLegendCopyForm
             // 
@@ -110,6 +123,7 @@
             this.Controls.Add(this.ButtonClose);
             this.Controls.Add(this.ButtonCopy);
             this.Controls.Add(this.ListViewLegends);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ComboBoxLinks);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -131,5 +145,6 @@
         private System.Windows.Forms.Button ButtonCopy;
         private System.Windows.Forms.Button ButtonClose;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Label label2;
     }
 }

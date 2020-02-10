@@ -68,6 +68,7 @@
     <Compile Include="Commands\SheetNameCapitalize.cs" />
     <Compile Include="Commands\SheetSelection.cs" />
     <Compile Include="Commands\SheetTitleblockKeyPlan.cs" />
+    <Compile Include="Commands\ViewScheduleCopy.cs" />
     <Compile Include="Commands\Warnings.cs" />
     <Compile Include="Forms\ElementsOfCategoryForm.cs">
       <SubType>Form</SubType>
@@ -118,6 +119,12 @@
     <Compile Include="Forms\SheetTitleblockKeyPlanForm.designer.cs">
       <DependentUpon>SheetTitleblockKeyPlanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViewScheduleCopyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewScheduleCopyForm.Designer.cs">
+      <DependentUpon>ViewScheduleCopyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\WarningsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +147,7 @@
     <Resource Include="Resources\ViewLegendCopy100x100.png" />
     <Resource Include="Resources\LinkedView100x100.png" />
     <Resource Include="Resources\LinkedViewUpdate100x100.png" />
+    <Resource Include="Resources\ViewScheduleCopy100x100.png" />
     <Content Include="square.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -170,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SheetTitleblockKeyPlanForm.resx">
       <DependentUpon>SheetTitleblockKeyPlanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewScheduleCopyForm.resx">
+      <DependentUpon>ViewScheduleCopyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\WarningsForm.resx">
       <DependentUpon>WarningsForm.cs</DependentUpon>
