@@ -39,9 +39,11 @@ namespace Revit_2020_Add_In.Commands
                             //Check to see if the Link is currently Loaded 
                             if (rvtLink.GetLinkedFileStatus() == LinkedFileStatus.Loaded)
                             {
+                                //Create a Filter Rule and Elemenet Parameter Filter for the Revit Link Instance Collector to Match the Type
+                                FilterRule rule = ParameterFilterRuleFactory.CreateEqualsRule(new ElementId(BuiltInParameter.SYMBOL_ID_PARAM),rvtLink.get_Parameter(BuiltInParameter.ID_PARAM).AsElementId());
+                                ElementParameterFilter filter = new ElementParameterFilter(rule);
                                 //In order to get the Document, we have to get the first or default Revit Link Instance that is of the Revit Link Type
-                                //The use of Linq here is helpful to do in line filtering
-                                RevitLinkInstance link = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_RvtLinks).OfClass(typeof(RevitLinkInstance)).Where(x => x.GetTypeId() == rvtLink.Id).First() as RevitLinkInstance;
+                                RevitLinkInstance link = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_RvtLinks).OfClass(typeof(RevitLinkInstance)).WherePasses(filter).First() as RevitLinkInstance;
                                 //Add the Link Name and Link Document to the SortedList
                                 links.Add(rvtLink.Name, link.GetLinkDocument());
                             }
