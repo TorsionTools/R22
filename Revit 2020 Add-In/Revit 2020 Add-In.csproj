@@ -64,7 +64,9 @@
     <Compile Include="Commands\HelloWorld.cs" />
     <Compile Include="Commands\LinkedViewUpdate.cs" />
     <Compile Include="Commands\LinkedViews.cs" />
+    <Compile Include="Commands\SheetScheduleToMultiple.cs" />
     <Compile Include="Commands\SheetFindReplace.cs" />
+    <Compile Include="Commands\SheetLegendToMultiple.cs" />
     <Compile Include="Commands\SheetNameCapitalize.cs" />
     <Compile Include="Commands\SheetSelection.cs" />
     <Compile Include="Commands\SheetTitleblockKeyPlan.cs" />
@@ -148,6 +150,8 @@
     <Resource Include="Resources\LinkedView100x100.png" />
     <Resource Include="Resources\LinkedViewUpdate100x100.png" />
     <Resource Include="Resources\ViewScheduleCopy100x100.png" />
+    <Resource Include="Resources\SheetScheduleToMultiple100x100.png" />
+    <Resource Include="Resources\SheetLegendToMultiple100x100.png" />
     <Content Include="square.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
