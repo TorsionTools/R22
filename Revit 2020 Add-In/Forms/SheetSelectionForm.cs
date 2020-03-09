@@ -60,5 +60,13 @@ namespace Revit_2020_Add_In.Forms
             //Close the form and return the DialogResult to the Command
             Close();
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            //Set the DialogResult to make sure the command knows the form was canceled
+            DialogResult = DialogResult.Cancel;
+            //Close the form and return the DialogResult to the Command
+            Close();
+        }
     }
 }
