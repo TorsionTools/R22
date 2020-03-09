@@ -64,6 +64,8 @@
     <Compile Include="Commands\HelloWorld.cs" />
     <Compile Include="Commands\LinkedViewUpdate.cs" />
     <Compile Include="Commands\LinkedViews.cs" />
+    <Compile Include="Commands\LinksReloadAll.cs" />
+    <Compile Include="Commands\FamilyMultipleSharedParameters.cs" />
     <Compile Include="Commands\SheetScheduleToMultiple.cs" />
     <Compile Include="Commands\SheetFindReplace.cs" />
     <Compile Include="Commands\SheetLegendToMultiple.cs" />
@@ -84,6 +86,12 @@
     </Compile>
     <Compile Include="Forms\LinkedViewSelectionForm.designer.cs">
       <DependentUpon>LinkedViewSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FamilyMultipleSharedParametersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FamilyMultipleSharedParametersForm.designer.cs">
+      <DependentUpon>FamilyMultipleSharedParametersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SheetRevisionOnSheetForm.cs">
       <SubType>Form</SubType>
@@ -127,6 +135,12 @@
     <Compile Include="Forms\ViewScheduleCopyForm.Designer.cs">
       <DependentUpon>ViewScheduleCopyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViewSheetUpdaterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewSheetUpdaterForm.designer.cs">
+      <DependentUpon>ViewSheetUpdaterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\WarningsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,9 +149,13 @@
     </Compile>
     <Compile Include="Helpers\Collectors.cs" />
     <Compile Include="Helpers\Functions.cs" />
+    <Compile Include="Helpers\StaticVariables.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ribbon\AppRibbon.cs" />
     <Compile Include="Commands\TEMPLATE.cs" />
+    <Compile Include="Settings\UpdatersOff.cs" />
+    <Compile Include="Settings\UpdatersOn.cs" />
+    <Compile Include="Updaters\ViewSheetUpdater.cs" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\FindReplace100x100.png" />
@@ -152,6 +170,7 @@
     <Resource Include="Resources\ViewScheduleCopy100x100.png" />
     <Resource Include="Resources\SheetScheduleToMultiple100x100.png" />
     <Resource Include="Resources\SheetLegendToMultiple100x100.png" />
+    <Resource Include="Resources\MultipleSharedParameters100x100.png" />
     <Content Include="square.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -164,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LinkedViewSelectionForm.resx">
       <DependentUpon>LinkedViewSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FamilyMultipleSharedParametersForm.resx">
+      <DependentUpon>FamilyMultipleSharedParametersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SheetRevisionOnSheetForm.resx">
       <DependentUpon>SheetRevisionOnSheetForm.cs</DependentUpon>
@@ -185,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewScheduleCopyForm.resx">
       <DependentUpon>ViewScheduleCopyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewSheetUpdaterForm.resx">
+      <DependentUpon>ViewSheetUpdaterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\WarningsForm.resx">
       <DependentUpon>WarningsForm.cs</DependentUpon>

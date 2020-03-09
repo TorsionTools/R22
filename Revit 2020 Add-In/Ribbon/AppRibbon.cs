@@ -34,11 +34,13 @@ namespace Revit_2020_Add_In.Ribbon
             BitmapImage ToolsLinkedViewsUpdateImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/LinkedViewUpdate100x100.png"));
             BitmapImage ToolsSheetLegendMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetLegendToMultiple100x100.png"));
             BitmapImage ToolsSheetScheduleMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetScheduleToMultiple100x100.png"));
+            BitmapImage ToolsFamilyMultipleSharedParametersImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/MultipleSharedParameters100x100.png"));
 
             //Create a Panel within the Tab
             RibbonPanel RibbonPanelOne = application.CreateRibbonPanel(TabName, "PANEL 1");
             RibbonPanel RibbonPanelSheets = application.CreateRibbonPanel(TabName, "Sheets");
             RibbonPanel RibbonPanelTools = application.CreateRibbonPanel(TabName, "Tools");
+            RibbonPanel RibbonPanelSettings = application.CreateRibbonPanel(TabName, "Settings");
 
             //Create Push Button Data to create the Push button from
             PushButtonData pbdTestButton = new PushButtonData("cmdTestButton", "Button Name", AssemblyPath, "Revit_2020_Add_In.Commands.HelloWorld");
@@ -56,6 +58,7 @@ namespace Revit_2020_Add_In.Ribbon
             PushButtonData pbdToolsViewScheduleCopy = new PushButtonData("cmdToolsViewScheduleCopy", "Copy\nSchedules", AssemblyPath, "Revit_2020_Add_In.Commands.ViewScheduleCopy");
             PushButtonData pbdToolsLinkedViews = new PushButtonData("cmdToolsLinkedViews", "Linked\nViews", AssemblyPath, "Revit_2020_Add_In.Commands.LinkedViews");
             PushButtonData pbdToolsLinkedViewsUpdate = new PushButtonData("cmdToolsLinkedViewsUpdate", "Update\nViews", AssemblyPath, "Revit_2020_Add_In.Commands.LinkedViewUpdate");
+            PushButtonData pbdToolsFamilyMultipleSharedParameters = new PushButtonData("cmdToolsFamilyMultipleSharedParameters", "Shared\nParameters", AssemblyPath, "Revit_2020_Add_In.Commands.FamilyMultipleSharedParameters");
 
             //Create a Push Button from the Push Button Data
             PushButton pbTestButton = RibbonPanelOne.AddItem(pbdTestButton) as PushButton;
@@ -67,6 +70,7 @@ namespace Revit_2020_Add_In.Ribbon
 
             PushButton pbToolsWarnings = RibbonPanelTools.AddItem(pbdToolsWarnings) as PushButton;
             PushButton pbToolsElemOfCategory = RibbonPanelTools.AddItem(pbdToolsElemOfCategory) as PushButton;
+            PushButton pbToolsFmailyMultipleSharedParameters = RibbonPanelTools.AddItem(pbdToolsFamilyMultipleSharedParameters) as PushButton;
 
             //If you are going to use PushButtonData objects for Pulldown or Split buttons, you have to set these properties BEFORE adding them
             pbdToolsLinkedViews.LargeImage = ToolsLinkedViewsImage;
@@ -104,6 +108,17 @@ namespace Revit_2020_Add_In.Ribbon
             pdbLinkedViews.AddPushButton(pbdToolsLinkedViews);
             pdbLinkedViews.AddPushButton(pbdToolsLinkedViewsUpdate);
 
+            RadioButtonGroupData rbgdUpdaters = new RadioButtonGroupData("UpdaterSettings");
+            RadioButtonGroup rdoBtnGroup = RibbonPanelSettings.AddItem(rbgdUpdaters) as RadioButtonGroup;
+            ToggleButtonData tbdUpdaterOn = new ToggleButtonData("cmdUpdaterOn", "Turn On\nDynamic\nUpdaters", AssemblyPath, "Revit_2020_Add_In.Settings.UpdatersOn");
+            ToggleButtonData tbdUpdaterOff = new ToggleButtonData("cmdUpdaterOff", "Turn Off\nDynamic\nUpdaters", AssemblyPath, "Revit_2020_Add_In.Settings.UpdatersOff");
+
+            tbdUpdaterOn.ToolTip = "Turn all Dynamic Model Updaters On";
+            tbdUpdaterOff.ToolTip = "Turn all Dynamic Model Updaters Off";
+
+            rdoBtnGroup.AddItem(tbdUpdaterOn);
+            rdoBtnGroup.AddItem(tbdUpdaterOff);
+
             //Set Button Image
             pbTestButton.LargeImage = ButtonImage;
 
@@ -114,6 +129,7 @@ namespace Revit_2020_Add_In.Ribbon
 
             pbToolsWarnings.LargeImage = ToolsWarningsImage;
             pbToolsElemOfCategory.LargeImage = ToolsElemOfCategoryImage;
+            pbToolsFmailyMultipleSharedParameters.LargeImage = ToolsFamilyMultipleSharedParametersImage;
 
             //Set Button Tool Tips
             pbTestButton.ToolTip = "Tell the user what your button does here";
@@ -121,6 +137,7 @@ namespace Revit_2020_Add_In.Ribbon
             pbSheetFindReplace.ToolTip = "Find and Replace values in Sheet Name or Number";
             pbSheetNameCapitalize.ToolTip = "Capitalize the Name of all Sheets in the Model";
             pbSheetTitleblockKeyPlan.ToolTip = "Set Yes / No parameters of a Titleblock type based on search criteria of the Sheet Name or Sheet Number";
+            pbdToolsFamilyMultipleSharedParameters.ToolTip = "Add the selected Shared Parameters in all Revit Families within the selected Directory";
             
             pbToolsWarnings.ToolTip = "Display and isolate Warnings in the Document";
             pbToolsElemOfCategory.ToolTip = "Get all Elements of selected Category";
