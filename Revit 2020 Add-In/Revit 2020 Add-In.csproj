@@ -215,6 +215,9 @@
       <DependentUpon>WarningsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WPF\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Revit 2020 Add-In.dll" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
