@@ -1,0 +1,80 @@
+﻿<Window x:Class="Revit_2020_Add_In.WPF.SheetFindReplaceWPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Revit_2020_Add_In.WPF"
+             mc:Ignorable="d" 
+             Height="500" Width="800" FontFamily="Arial Narrow" Title="Find and Replace Sheet Name or Number" Icon="../Resources/square.ico" WindowStartupLocation="CenterScreen" FontSize="13" FontWeight="Bold">
+    <Window.Resources>
+        <BitmapImage x:Key="TorsionIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="pack://application:,,,/Revit 2020 Add-In;component/Resources/square.ico"/>
+    </Window.Resources>
+
+    <Border Padding="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                <GroupBox Header="Select Parameter" Height="Auto" Margin="5 0 5 0">
+                    <StackPanel Height="Auto" Margin="0 0 0 5">
+                        <RadioButton Name="rdoSheetName" Content="Sheet Name" Margin="5" IsChecked="True" Background="#9BAD22"/>
+                        <RadioButton Name="rdoSheetNumber" Content="Sheet Number" Margin="5" Background="#9BAD22"/>
+                    </StackPanel>
+                </GroupBox>
+                <TextBlock Text="Find:" Margin="5 15 5 3"/>
+                <TextBox Name="txtFind" Margin="5 0 5 0" BorderBrush="#9BAD22"/>
+                <TextBlock Text="Replace With:" Margin="5 10 5 3"/>
+                <TextBox Name="txtReplace" Margin="5 0 5 0" BorderBrush="#9BAD22"/>
+                <Button Name="btnPreview" Content="Preview" Width="75" Height="25" HorizontalAlignment="Right" Margin="5 15 5 0" Click="BtnPreview_Click" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+
+            <DataGrid Name="DataGridSheets" Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding}" Margin="5 0 0 10" CanUserAddRows="False" IsReadOnly="True" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Visibility="Hidden" Binding="{Binding SheetId}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Sheet Number" Binding="{Binding SheetNumber}"/>
+                    <DataGridTextColumn Header="Sheet Name" Binding="{Binding SheetName}" Width="*"/>
+                    <DataGridTextColumn Header="Preview" Binding="{Binding Preview}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button Name="btnRemove" Click="BtnRemove_Click" Content="Remove" Width="75" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="5 5 0 5" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.ToolTip>
+                    <TextBlock>Select Rows and press Remove to Delete them from the List.</TextBlock>
+                </Button.ToolTip>
+            </Button>
+            <Button Name="btnClose" Click="BtnClose_Click" Content="Close" Width="75" Grid.Column="1" Grid.Row="1" Margin="5 5 80 5" HorizontalAlignment="Right" IsCancel="True" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Name="btnReplace" Click="BtnReplace_Click" Content="OK" Width="75" Grid.Column="1" Grid.Row="1" Margin="5 5 0 5" HorizontalAlignment="Right" IsEnabled="False" IsDefault="True" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">                
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

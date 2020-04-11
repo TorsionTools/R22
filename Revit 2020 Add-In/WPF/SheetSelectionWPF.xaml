@@ -1,0 +1,94 @@
+﻿<Window x:Class="Revit_2020_Add_In.WPF.SheetSelectionWPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Revit_2020_Add_In.WPF"
+             mc:Ignorable="d" 
+             Height="700" Width="400" Title="Sheet Selection" ResizeMode="CanMinimize"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Icon="../Resources/square.ico" FontFamily="Arial Narrow" FontSize="13">
+    <Window.Resources>
+        <BitmapImage x:Key="TorsionIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="pack://application:,,,/Revit 2020 Add-In;component/Resources/square.ico"/>
+    </Window.Resources>
+
+    <!--Define a border for the entire window to offsetthings from the perimeter-->
+    <Border Padding="10">
+        <!--Create the master grid layout for the Window-->
+        <Grid>
+            <!--Define the columns, numbering starts at 0-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!-- Define the Rows, numbering starts at 0-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <!--Create a lable for the Search box, set the Row and Column properties then other visual settings-->
+            <Label Grid.Column="0" Grid.Row="0" Content="Search:" VerticalAlignment="Center" FontFamily="Arial Black" FontSize="12"/>
+            <!--Create a text box for the user to search the sheets. Make sure to create the TextChange event-->
+            <TextBox Name="txtFilter" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" Margin="-15 0 0 0" TextChanged="TextBox_TextChanged" BorderBrush="#9BAD22"/>
+            <!--ListView with the ItemSource set to binding since the ViewSheets class is driving the items-->
+            <ListView x:Name="ListViewSheets" Grid.Column="0" Grid.ColumnSpan="4" ItemsSource="{Binding}" Grid.Row="1" >
+                <!--Turn off the Column Headers-->
+                <ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                </ListView.Resources>
+                <!--Change the View / GridView settings for the columns needed-->
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!--The Check bool variable can be represented as a checkbox. See the Binding in the IsChecked property-->
+                                        <CheckBox IsChecked="{Binding Check}" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <!--You can apply the Content property and bind the Sheet name to the Checkbox, but that mean
+                            that selecting any part of the row checks the box. here we create a separate column and bind the Sheet name
+                            to it so it looks like the same thing-->
+                            <GridViewColumn DisplayMemberBinding="{Binding SheetName}"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <!--Add each of the four buttons, make sure the names are different and that you have Click event handlers for each-->
+            <Button Name="btnSelectAll" Content="Select All" Grid.Row="2" Grid.Column="0" Width="75" HorizontalAlignment="Left" Margin="0 5 5 5" Click="BtnSelectAll_Click" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+                <!--This resource enables us to round the corners of the buttons for a cleaner look-->
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Name="btnSelectNone" Content="Clear All" Grid.Row="2" Grid.Column="1" Width="75" HorizontalAlignment="Left" Margin="0,5,0,0" Height="26" VerticalAlignment="Top" Click="BtnSelectNone_Click" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="btnCancel" Content="Cancel" Grid.Row="2" Grid.Column="2" Width="75" HorizontalAlignment="Right" Margin="5 5 0 5" Click="BtnCancel_Click" IsCancel="True" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Name="btnOK" Content="OK"  Grid.Row="2" Grid.Column="3" Width="75" HorizontalAlignment="Right" Margin="5 5 0 5" Click="BtnOK_Click" IsDefault="True" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

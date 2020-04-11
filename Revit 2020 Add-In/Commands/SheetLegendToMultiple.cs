@@ -41,9 +41,9 @@ namespace Revit_2020_Add_In.Commands
                         //Get the Location of the Legend Viewport selected
                         XYZ locPt = viewPort.GetBoxCenter();
                         //Prompt the user with a model dialog to select the sheets to place or update the Legends on
-                        Forms.SheetSelectionForm frm = new Forms.SheetSelectionForm(doc);
+                        WPF.SheetSelectionWPF frm = new WPF.SheetSelectionWPF(doc);
                         //Make sure the Sheet Selection Form returns the correct DialogResult
-                        if (frm.ShowDialog() == DialogResult.OK)
+                        if (frm.ShowDialog().Value)
                         {
                             //Make sure the user selected at least 1 sheet
                             if (frm.ViewSheetIds.Count > 0)

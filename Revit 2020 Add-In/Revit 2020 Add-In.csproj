@@ -32,13 +32,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>square.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\square.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdWindows, Version=2018.11.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\AdWindows.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="RevitAPI, Version=20.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -51,12 +52,14 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
@@ -72,6 +75,7 @@
     <Compile Include="Commands\SheetNameCapitalize.cs" />
     <Compile Include="Commands\SheetSelection.cs" />
     <Compile Include="Commands\SheetTitleblockKeyPlan.cs" />
+    <Compile Include="Commands\ViewDeleteUnplacedViews.cs" />
     <Compile Include="Commands\ViewScheduleCopy.cs" />
     <Compile Include="Commands\Warnings.cs" />
     <Compile Include="Forms\ElementsOfCategoryForm.cs">
@@ -148,6 +152,7 @@
       <DependentUpon>WarningsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Collectors.cs" />
+    <Compile Include="Helpers\CustomContainerClasses.cs" />
     <Compile Include="Helpers\Functions.cs" />
     <Compile Include="Helpers\StaticVariables.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,6 +161,15 @@
     <Compile Include="Settings\UpdatersOff.cs" />
     <Compile Include="Settings\UpdatersOn.cs" />
     <Compile Include="Updaters\ViewSheetUpdater.cs" />
+    <Compile Include="WPF\SheetFindReplaceWPF.xaml.cs">
+      <DependentUpon>SheetFindReplaceWPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\SheetSelectionWPF.xaml.cs">
+      <DependentUpon>SheetSelectionWPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ViewDeleteUnplacedWPF.xaml.cs">
+      <DependentUpon>ViewDeleteUnplacedWPF.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\FindReplace100x100.png" />
@@ -171,10 +185,11 @@
     <Resource Include="Resources\SheetScheduleToMultiple100x100.png" />
     <Resource Include="Resources\SheetLegendToMultiple100x100.png" />
     <Resource Include="Resources\MultipleSharedParameters100x100.png" />
-    <Content Include="square.ico">
+    <Resource Include="Resources\square.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
     <Resource Include="Resources\Button100x100.png" />
+    <Resource Include="Resources\ViewDeleteUnplaced100x100.png" />
     <Content Include="Revit_2020_Add-In.addin" />
   </ItemGroup>
   <ItemGroup>
@@ -215,8 +230,20 @@
       <DependentUpon>WarningsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="WPF\" />
+    <Page Include="WPF\SheetFindReplaceWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\SheetSelectionWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ViewDeleteUnplacedWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
