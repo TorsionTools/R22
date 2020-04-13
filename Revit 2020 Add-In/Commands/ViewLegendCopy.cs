@@ -1,9 +1,8 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using View = Autodesk.Revit.DB.View;
 using System.Linq;
-using System.Windows.Forms;
+using View = Autodesk.Revit.DB.View;
 
 
 namespace Revit_2020_Add_In.Commands
@@ -27,20 +26,18 @@ namespace Revit_2020_Add_In.Commands
             //We are using Linq to filter the Filtered Element Collector for only Legends, and then to make sure it isn't a View Template
             if (new FilteredElementCollector(doc).OfClass(typeof(View)).Cast<View>().Where(x => x.ViewType == ViewType.Legend && !x.IsTemplate).FirstOrDefault() is View tempLegend)
             {
-                //Create a new instance of the ViewLegendCopyForm form and pass the current document and Template Legend as variables
-                using (Forms.ViewLegendCopyForm form = new Forms.ViewLegendCopyForm(doc,tempLegend))
+                //Create a new instance of the LinkViewCopyWPF form and pass the current document and Template Legend as variables
+                WPF.LinkLegendCopyWPF form = new WPF.LinkLegendCopyWPF(doc, tempLegend);
+                //Show the WPF Form for user input and checks to see if the DialogResult of the form is OK and resturn the correct result as needed.
+                if (form.ShowDialog().Value)
                 {
-                    //Checks to see if the DialogResult of the form is OK and resturn the correct result as needed.
-                    if (form.ShowDialog() == DialogResult.OK)
-                    {
-                        //Let Revit know it executed successfully. This is also how you can roll back the entire feature.
-                        return Result.Succeeded;
-                    }
-                    else
-                    {
-                        //Let Revit know the Execute method did not finish successfully. All modifications to the Document will be rolled back based on the TransactionMode
-                        return Result.Cancelled;
-                    }
+                    //Let Revit know it executed successfully. This is also how you can roll back the entire feature.
+                    return Result.Succeeded;
+                }
+                else
+                {
+                    //Let Revit know the Execute method did not finish successfully. All modifications to the Document will be rolled back based on the TransactionMode
+                    return Result.Cancelled;
                 }
             }
             else

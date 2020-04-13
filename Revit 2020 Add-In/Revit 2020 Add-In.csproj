@@ -76,6 +76,7 @@
     <Compile Include="Commands\SheetSelection.cs" />
     <Compile Include="Commands\SheetTitleblockKeyPlan.cs" />
     <Compile Include="Commands\ViewDeleteUnplacedViews.cs" />
+    <Compile Include="Commands\ViewFindReplace.cs" />
     <Compile Include="Commands\ViewScheduleCopy.cs" />
     <Compile Include="Commands\Warnings.cs" />
     <Compile Include="Forms\ElementsOfCategoryForm.cs">
@@ -161,6 +162,12 @@
     <Compile Include="Settings\UpdatersOff.cs" />
     <Compile Include="Settings\UpdatersOn.cs" />
     <Compile Include="Updaters\ViewSheetUpdater.cs" />
+    <Compile Include="WPF\LinkScheduleCopyWPF.xaml.cs">
+      <DependentUpon>LinkScheduleCopyWPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\LinkLegendCopyWPF.xaml.cs">
+      <DependentUpon>LinkLegendCopyWPF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\SheetFindReplaceWPF.xaml.cs">
       <DependentUpon>SheetFindReplaceWPF.xaml</DependentUpon>
     </Compile>
@@ -169,6 +176,9 @@
     </Compile>
     <Compile Include="WPF\ViewDeleteUnplacedWPF.xaml.cs">
       <DependentUpon>ViewDeleteUnplacedWPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ViewFindReplaceWPF.xaml.cs">
+      <DependentUpon>ViewFindReplaceWPF.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +242,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="WPF\LinkScheduleCopyWPF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\LinkLegendCopyWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF\SheetFindReplaceWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -241,6 +259,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\ViewDeleteUnplacedWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ViewFindReplaceWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
