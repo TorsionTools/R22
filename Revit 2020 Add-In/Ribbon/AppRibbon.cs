@@ -35,6 +35,7 @@ namespace Revit_2020_Add_In.Ribbon
             BitmapImage ToolsSheetLegendMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetLegendToMultiple100x100.png"));
             BitmapImage ToolsSheetScheduleMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetScheduleToMultiple100x100.png"));
             BitmapImage ToolsFamilyMultipleSharedParametersImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/MultipleSharedParameters100x100.png"));
+            BitmapImage ViewsChangeViewReferenceImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ChangeViewReference100x100.png"));
 
             //Create a Panel within the Tab
             RibbonPanel RibbonPanelOne = application.CreateRibbonPanel(TabName, "PANEL 1");
@@ -59,6 +60,7 @@ namespace Revit_2020_Add_In.Ribbon
             PushButtonData pbdViewsLinkedViews = new PushButtonData("cmdToolsLinkedViews", "Linked\nViews", AssemblyPath, "Revit_2020_Add_In.Commands.LinkedViews");
             PushButtonData pbdViewsLinkedViewsUpdate = new PushButtonData("cmdToolsLinkedViewsUpdate", "Update\nViews", AssemblyPath, "Revit_2020_Add_In.Commands.LinkedViewUpdate");
             PushButtonData pbdViewsViewDeleteUnplaced = new PushButtonData("cmdToolsViewDeleteUnplaced", "Delete\nUnplaced", AssemblyPath, "Revit_2020_Add_In.Commands.ViewDeleteUnplacedViews");
+            PushButtonData pbdViewsChangeViewReference = new PushButtonData("cmdViewsChangeViewReference", "Change\nReference", AssemblyPath, "Revit_2020_Add_In.Commands.ViewChangeViewReference");
 
             PushButtonData pbdToolsWarnings = new PushButtonData("cmdToolsWarnings", "Warnings", AssemblyPath, "Revit_2020_Add_In.Commands.Warnings");
             PushButtonData pbdToolsElemOfCategory = new PushButtonData("cmdToolsElemOfCategory", "Family Instances\nof Category", AssemblyPath, "Revit_2020_Add_In.Commands.ElementsOfCategory");
@@ -110,6 +112,8 @@ namespace Revit_2020_Add_In.Ribbon
             pdbLinkedViews.AddPushButton(pbdViewsLinkedViews);
             pdbLinkedViews.AddPushButton(pbdViewsLinkedViewsUpdate);
 
+            PushButton pbViewsChangeViewReference = RibbonPanelViews.AddItem(pbdViewsChangeViewReference) as PushButton;
+
             PulldownButtonData pdbdPlaceMultipleLegendSchedule = new PulldownButtonData("pulldownPlaceMultipleLegendSchedule", "Place\nLegends");
             PulldownButton pdbPlaceMultipleLegendSchedule = RibbonPanelSheets.AddItem(pdbdPlaceMultipleLegendSchedule) as PulldownButton;
             pdbPlaceMultipleLegendSchedule.LargeImage = ToolsSheetLegendMultipleImage;
@@ -137,6 +141,7 @@ namespace Revit_2020_Add_In.Ribbon
 
             pbViewsFindReplace.LargeImage = FindReplaceImage;
             pbViewsViewDeleteUnplaced.LargeImage = ViewsViewDeleteunplacedImage;
+            pbViewsChangeViewReference.LargeImage = ViewsChangeViewReferenceImage;
 
             pbToolsWarnings.LargeImage = ToolsWarningsImage;
             pbToolsElemOfCategory.LargeImage = ToolsElemOfCategoryImage;
@@ -151,6 +156,7 @@ namespace Revit_2020_Add_In.Ribbon
 
             pbViewsFindReplace.ToolTip = "Find and Replace values in View Name or Title on Sheet";
             pbViewsViewDeleteUnplaced.ToolTip = "Delete Views, View Templates, Schedules, and Legends that are not used";
+            pbViewsChangeViewReference.ToolTip = "Change the Reference for all views that current reference a different View";
 
             pbToolsWarnings.ToolTip = "Display and isolate Warnings in the Document";
             pbToolsElemOfCategory.ToolTip = "Get all Elements of selected Category";

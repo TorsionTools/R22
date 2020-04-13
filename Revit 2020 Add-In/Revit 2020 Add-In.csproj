@@ -75,6 +75,7 @@
     <Compile Include="Commands\SheetNameCapitalize.cs" />
     <Compile Include="Commands\SheetSelection.cs" />
     <Compile Include="Commands\SheetTitleblockKeyPlan.cs" />
+    <Compile Include="Commands\ViewChangeViewReference.cs" />
     <Compile Include="Commands\ViewDeleteUnplacedViews.cs" />
     <Compile Include="Commands\ViewFindReplace.cs" />
     <Compile Include="Commands\ViewScheduleCopy.cs" />
@@ -174,6 +175,9 @@
     <Compile Include="WPF\SheetSelectionWPF.xaml.cs">
       <DependentUpon>SheetSelectionWPF.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\ViewChangeReferenceViewsWPF.xaml.cs">
+      <DependentUpon>ViewChangeReferenceViewsWPF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\ViewDeleteUnplacedWPF.xaml.cs">
       <DependentUpon>ViewDeleteUnplacedWPF.xaml</DependentUpon>
     </Compile>
@@ -200,6 +204,7 @@
     </Resource>
     <Resource Include="Resources\Button100x100.png" />
     <Resource Include="Resources\ViewDeleteUnplaced100x100.png" />
+    <Resource Include="Resources\ChangeViewReference100x100.png" />
     <Content Include="Revit_2020_Add-In.addin" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\SheetSelectionWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ViewChangeReferenceViewsWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

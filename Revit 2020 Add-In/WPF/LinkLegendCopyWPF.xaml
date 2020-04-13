@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Revit_2020_Add_In.WPF"
              mc:Ignorable="d" 
-        Height="600" Width="400" FontFamily="Arial Narrow" Title="Copy Legends from Link" FontSize="13" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Height="600" Width="400" FontFamily="Arial Narrow" Title="Copy Legends from Link" FontSize="13" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="../Resources/square.ico">
     <Border Padding="10">
     <Grid>
             <Grid.ColumnDefinitions>
