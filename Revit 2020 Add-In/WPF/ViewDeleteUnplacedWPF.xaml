@@ -135,7 +135,7 @@
                                     <!--You can apply the Content property and bind the Sheet name to the Checkbox, but that mean
                             that selecting any part of the row checks the box. here we create a separate column and bind the Sheet name
                             to it so it looks like the same thing-->
-                                    <GridViewColumn DisplayMemberBinding="{Binding SheetName}"/>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Name}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
