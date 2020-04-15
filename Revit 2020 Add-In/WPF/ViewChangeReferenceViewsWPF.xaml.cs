@@ -17,7 +17,6 @@ namespace Revit_2020_Add_In.WPF
             doc = _doc;
         }
 
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //Since View name must be unique, we can use a Sorted List to hold all of the views in the project.
@@ -26,7 +25,11 @@ namespace Revit_2020_Add_In.WPF
             //Iterate each view and add it to the SortedList
             foreach (View view in Helpers.Collectors.ByCategoryNotElementType(doc, BuiltInCategory.OST_Views))
             {
-                views.Add(view.Name, view);
+                //Filter out Legends as they can't be referenced
+                if (view.ViewType != ViewType.Legend)
+                {
+                    views.Add(view.Name, view);
+                }
             }
 
             //Set the Item Source of both Comboboxes to the list of view above

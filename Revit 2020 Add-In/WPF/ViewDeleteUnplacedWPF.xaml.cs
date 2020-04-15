@@ -2,8 +2,10 @@
 using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 
 namespace Revit_2020_Add_In.WPF
 {
@@ -30,6 +32,7 @@ namespace Revit_2020_Add_In.WPF
             List<ElementId> LegendsPlacedIds = new List<ElementId>();
             List<ElementId> SchedulesPlacedIds = new List<ElementId>();
             List<ElementId> ViewTemplatesUsedIds = new List<ElementId>();
+            List<View> RootViews = new List<View>();
 
             try
             {
@@ -97,6 +100,11 @@ namespace Revit_2020_Add_In.WPF
                                     //Add the view to the Master Container with the Custom ElementIdName class
                                     Views.Add(new ElementIdName() { Check = false, Name = view.Name, ElemId = view.Id });
                                 }
+                                else
+                                {
+                                    //Store all views that have dependents to check and see if they too can be deleted
+                                    RootViews.Add(view);
+                                }
                             }
                         }
                         else
@@ -124,6 +132,32 @@ namespace Revit_2020_Add_In.WPF
                             //If not, add it to the master container with the Custom ElementIdName class
                             ViewTemplates.Add(new ElementIdName() { Check = false, Name = view.Name, ElemId = view.Id });
                         }
+                    }
+                }
+
+                //Iterate through all Root views that had dependents
+                foreach (View RootView in RootViews)
+                {
+                    //Use a bool to be the switch if any dependent is placed
+                    bool placed = false;
+                    //Iterate each ViewId of each dependent 
+                    foreach (ElementId viewId in RootView.GetDependentViewIds())
+                    {
+                        //Use the Element Id to get the view associated
+                        View view = doc.GetElement(viewId) as View;
+                        //Check to see if the View has a viewport Sheet name or Number parameter
+                        if (!string.IsNullOrEmpty(view.get_Parameter(BuiltInParameter.VIEWPORT_SHEET_NAME).AsString()) || !string.IsNullOrEmpty(view.get_Parameter(BuiltInParameter.VIEWPORT_SHEET_NUMBER).AsString()))
+                        {
+                            //If ANY of the views along the way have this information, we don't want to delete the Root view 
+                            //so make the bool true
+                            placed = true;
+                        }
+                    }
+                    //Check the bool variable and add the Root view only if none of the dependents were placed
+                    if (!placed)
+                    {
+                        //Add the view to the Master Container with the Custom ElementIdName class
+                        Views.Add(new ElementIdName() { Check = false, Name = RootView.Name, ElemId = RootView.Id });
                     }
                 }
 
@@ -180,11 +214,18 @@ namespace Revit_2020_Add_In.WPF
                 TabLegends.Header = "Legends (" + Legends.Count + ")";
                 TabSchedules.Header = "Schedules (" + Schedules.Count + ")";
 
+
                 //Set the Item source for the 4 different list views to the Master Containers
                 ListViewViews.ItemsSource = Views;
                 ListViewViewTemplates.ItemsSource = ViewTemplates;
                 ListViewSchedules.ItemsSource = Schedules;
                 ListViewLegends.ItemsSource = Legends;
+
+                //Use a collection view on the item source of the list view to sort the items
+                CollectionView ViewsSort = (CollectionView)CollectionViewSource.GetDefaultView(ListViewViews.ItemsSource);
+                //We are using the "Name" column / property to sort in this case
+                ViewsSort.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+
             }
             //Catch any exceptions thrown and provide the user with the information
             catch (Exception ex)
