@@ -189,7 +189,6 @@ namespace Revit_2020_Add_In.WPF
                             }
                         }
                     }
-
                 }
 
                 //We have to iterate the views again after we have caught all the applied View templates above

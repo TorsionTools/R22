@@ -69,6 +69,7 @@
     <Compile Include="Commands\LinkedViews.cs" />
     <Compile Include="Commands\LinksReloadAll.cs" />
     <Compile Include="Commands\FamilyMultipleSharedParameters.cs" />
+    <Compile Include="Commands\MEPSpacesFromRooms.cs" />
     <Compile Include="Commands\SheetScheduleToMultiple.cs" />
     <Compile Include="Commands\SheetFindReplace.cs" />
     <Compile Include="Commands\SheetLegendToMultiple.cs" />
@@ -169,6 +170,9 @@
     <Compile Include="WPF\LinkLegendCopyWPF.xaml.cs">
       <DependentUpon>LinkLegendCopyWPF.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\MEPSpaceFromRoomWPF.xaml.cs">
+      <DependentUpon>MEPSpaceFromRoomWPF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\SheetFindReplaceWPF.xaml.cs">
       <DependentUpon>SheetFindReplaceWPF.xaml</DependentUpon>
     </Compile>
@@ -205,6 +209,7 @@
     <Resource Include="Resources\Button100x100.png" />
     <Resource Include="Resources\ViewDeleteUnplaced100x100.png" />
     <Resource Include="Resources\ChangeViewReference100x100.png" />
+    <Resource Include="Resources\CreateSpaces100x100.png" />
     <Content Include="Revit_2020_Add-In.addin" />
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +257,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="WPF\LinkLegendCopyWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\MEPSpaceFromRoomWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

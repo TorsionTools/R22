@@ -36,12 +36,14 @@ namespace Revit_2020_Add_In.Ribbon
             BitmapImage ToolsSheetScheduleMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetScheduleToMultiple100x100.png"));
             BitmapImage ToolsFamilyMultipleSharedParametersImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/MultipleSharedParameters100x100.png"));
             BitmapImage ViewsChangeViewReferenceImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ChangeViewReference100x100.png"));
+            BitmapImage MEPSpacesFromLinkedRoomsImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/CreateSpaces100x100.png"));
 
             //Create a Panel within the Tab
             RibbonPanel RibbonPanelOne = application.CreateRibbonPanel(TabName, "PANEL 1");
             RibbonPanel RibbonPanelSheets = application.CreateRibbonPanel(TabName, "Sheets");
             RibbonPanel RibbonPanelViews = application.CreateRibbonPanel(TabName, "Views");
             RibbonPanel RibbonPanelTools = application.CreateRibbonPanel(TabName, "Tools");
+            RibbonPanel RibbonPanelMEP = application.CreateRibbonPanel(TabName, "MEP");
             RibbonPanel RibbonPanelSettings = application.CreateRibbonPanel(TabName, "Settings");
 
             //Create Push Button Data to create the Push button from
@@ -66,6 +68,8 @@ namespace Revit_2020_Add_In.Ribbon
             PushButtonData pbdToolsElemOfCategory = new PushButtonData("cmdToolsElemOfCategory", "Family Instances\nof Category", AssemblyPath, "Revit_2020_Add_In.Commands.ElementsOfCategory");
             PushButtonData pbdToolsFamilyMultipleSharedParameters = new PushButtonData("cmdToolsFamilyMultipleSharedParameters", "Shared\nParameters", AssemblyPath, "Revit_2020_Add_In.Commands.FamilyMultipleSharedParameters");
 
+            PushButtonData pbdMEPSpacesFromLinkedRooms = new PushButtonData("cmdMEPSpacesFromLinkedRooms", "Create\nSpaces", AssemblyPath, "Revit_2020_Add_In.Commands.MEPSpacesFromRooms");
+
             //Create a Push Button from the Push Button Data
             PushButton pbTestButton = RibbonPanelOne.AddItem(pbdTestButton) as PushButton;
 
@@ -80,6 +84,8 @@ namespace Revit_2020_Add_In.Ribbon
             PushButton pbToolsWarnings = RibbonPanelTools.AddItem(pbdToolsWarnings) as PushButton;
             PushButton pbToolsElemOfCategory = RibbonPanelTools.AddItem(pbdToolsElemOfCategory) as PushButton;
             PushButton pbToolsFamilyMultipleSharedParameters = RibbonPanelTools.AddItem(pbdToolsFamilyMultipleSharedParameters) as PushButton;
+
+            PushButton pbMEPSpacesFromLinkedRooms = RibbonPanelMEP.AddItem(pbdMEPSpacesFromLinkedRooms) as PushButton;
 
             //If you are going to use PushButtonData objects for Pulldown or Split buttons, you have to set these properties BEFORE adding them
             pbdSheetLegendToMultiple.LargeImage = ToolsSheetLegendMultipleImage;
@@ -147,6 +153,8 @@ namespace Revit_2020_Add_In.Ribbon
             pbToolsElemOfCategory.LargeImage = ToolsElemOfCategoryImage;
             pbToolsFamilyMultipleSharedParameters.LargeImage = ToolsFamilyMultipleSharedParametersImage;
 
+            pbMEPSpacesFromLinkedRooms.LargeImage = MEPSpacesFromLinkedRoomsImage;
+
             //Set Button Tool Tips
             pbTestButton.ToolTip = "Tell the user what your button does here";
             pbSheetSelection.ToolTip = "Select from all of the Sheets in the Model";
@@ -156,11 +164,13 @@ namespace Revit_2020_Add_In.Ribbon
 
             pbViewsFindReplace.ToolTip = "Find and Replace values in View Name or Title on Sheet";
             pbViewsViewDeleteUnplaced.ToolTip = "Delete Views, View Templates, Schedules, and Legends that are not used";
-            pbViewsChangeViewReference.ToolTip = "Change the Reference for all views that current reference a different View";
+            pbViewsChangeViewReference.ToolTip = "Change the Reference for all views that currently reference a different View";
 
             pbToolsWarnings.ToolTip = "Display and isolate Warnings in the Document";
             pbToolsElemOfCategory.ToolTip = "Get all Elements of selected Category";
             pbToolsFamilyMultipleSharedParameters.ToolTip = "Add the selected Shared Parameters in all Revit Families within the selected Directory";
+
+            pbMEPSpacesFromLinkedRooms.ToolTip = "Create MEP Spaces for the Selected Rooms from a Linked Model";
 
             //Set Button Long description which is the text that flys out when you hover on a button longer
             pbTestButton.LongDescription = "Give the user more information about how they need to use the button features";
