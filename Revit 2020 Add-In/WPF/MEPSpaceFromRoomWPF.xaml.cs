@@ -78,9 +78,9 @@ namespace Revit_2020_Add_In.WPF
             if (ComboBoxLinks.SelectedValue != null)
             {
                 //Get the Link Document by casting the Selected Value of the Combo Box to a Document
-                RevitLinkInstance rvtLink = (RevitLinkInstance)ComboBoxLinks.SelectedValue;
+                RevitLinkInstance rvtLinkInstance = (RevitLinkInstance)ComboBoxLinks.SelectedValue;
                 //Get the Revit Link Type to check Type Parameter
-                RevitLinkType rvtLinkType = doc.GetElement(rvtLink.GetTypeId()) as RevitLinkType;
+                RevitLinkType rvtLinkType = doc.GetElement(rvtLinkInstance.GetTypeId()) as RevitLinkType;
                 //Check to see if the Link Type is Room Bounding
                 if (rvtLinkType.LookupParameter("Room Bounding").AsInteger() == 0)
                 {
@@ -88,7 +88,7 @@ namespace Revit_2020_Add_In.WPF
                     if (TaskDialog.Show("Linked Model Space Bounding", "The Revit Link " + rvtLinkType.Name + " is not Room Bounding.\n\nWould you like to proceed with creating Spaces?", TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No, TaskDialogResult.No) == TaskDialogResult.Yes)
                     {
                         //If you user says yes, get all rooms in the linked model via GetLinkedRoom method by passing the Linked Document
-                        GetLinkedRooms(rvtLink.GetLinkDocument());
+                        GetLinkedRooms(rvtLinkInstance.GetLinkDocument());
                     }
                     else
                     {
@@ -100,7 +100,7 @@ namespace Revit_2020_Add_In.WPF
                 else
                 {
                     //If the link is already room bounding, get all rooms in the linked model via GetLinkedRoom method by passing the Linked Document
-                    GetLinkedRooms(rvtLink.GetLinkDocument());
+                    GetLinkedRooms(rvtLinkInstance.GetLinkDocument());
                 }
             }
         }
@@ -200,6 +200,11 @@ namespace Revit_2020_Add_In.WPF
                 bool missingLevels = false;
                 int missingCount = 0;
 
+                //Get the Link Document by casting the Selected Value of the Combo Box to a Document
+                RevitLinkInstance rvtLinkInstance = (RevitLinkInstance)ComboBoxLinks.SelectedValue;
+                //Get the Transform for the Link Instance to position the spaces relative to any Transformation of the link instance
+                Transform LinkTransform = rvtLinkInstance.GetTotalTransform();
+
                 //Use a Transaction for the Document you are creating spaces in
                 using (Transaction trans = new Transaction(doc))
                 {
@@ -217,8 +222,8 @@ namespace Revit_2020_Add_In.WPF
                             //Try and get the level from the current document with the same name as the Linked Document
                             if (levels.TryGetValue(LinkedRoom.Level.Name, out Level level))
                             {
-                                //If a level with the same name is found, create the new Space from that level and location
-                                Space space = doc.Create.NewSpace(level, new UV(roomLocationPoint.Point.X, roomLocationPoint.Point.Y));
+                                //If a level with the same name is found, create the new Space from that level and transformed room location
+                                Space space = doc.Create.NewSpace(level, new UV(LinkTransform.OfPoint(roomLocationPoint.Point).X, LinkTransform.OfPoint(roomLocationPoint.Point).Y));
                                 //Set the Name and Number of the space to match the room it cam from.
                                 space.Name = LinkedRoom.get_Parameter(BuiltInParameter.ROOM_NAME).AsString();
                                 space.Number = LinkedRoom.Number;
