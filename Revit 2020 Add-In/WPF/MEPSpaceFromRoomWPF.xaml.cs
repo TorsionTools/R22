@@ -84,19 +84,22 @@ namespace Revit_2020_Add_In.WPF
                 //Check to see if the Link Type is Room Bounding
                 if (rvtLinkType.LookupParameter("Room Bounding").AsInteger() == 0)
                 {
-                    //If it is not 
+                    //If it is not room bounding, ask the user if they want to proceed or not
                     if (TaskDialog.Show("Linked Model Space Bounding", "The Revit Link " + rvtLinkType.Name + " is not Room Bounding.\n\nWould you like to proceed with creating Spaces?", TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No, TaskDialogResult.No) == TaskDialogResult.Yes)
                     {
+                        //If you user says yes, get all rooms in the linked model via GetLinkedRoom method by passing the Linked Document
                         GetLinkedRooms(rvtLink.GetLinkDocument());
                     }
                     else
                     {
+                        //If the user says no, close the form
                         DialogResult = false;
                         Close();
                     }
                 }
                 else
                 {
+                    //If the link is already room bounding, get all rooms in the linked model via GetLinkedRoom method by passing the Linked Document
                     GetLinkedRooms(rvtLink.GetLinkDocument());
                 }
             }
