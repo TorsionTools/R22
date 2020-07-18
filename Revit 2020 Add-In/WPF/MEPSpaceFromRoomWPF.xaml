@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Revit_2020_Add_In.WPF"
              mc:Ignorable="d" 
-             Height="600" Width="400" FontFamily="Arial Narrow" Title="Create Spaces from Rooms" FontSize="13" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="../Resources/square.ico">
+             Height="600" Width="400" FontFamily="Arial Narrow" Title="Create Spaces from Rooms" FontSize="13" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Icon="../Resources/square.ico" Topmost="True">
     <Border Padding="10">
     <Grid>
 
@@ -65,7 +65,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Name="btnCreateSpaces" Content="Copy" Grid.Row="2" Grid.Column="0" Width="75" HorizontalAlignment="Right" Margin="5 5 0 5" Click="BtnCreateSpaces_Click" IsDefault="True" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+            <Button Name="btnCreateSpaces" Content="Create" Grid.Row="2" Grid.Column="0" Width="75" HorizontalAlignment="Right" Margin="5 5 0 5" Click="BtnCreateSpaces_Click" IsDefault="True" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>

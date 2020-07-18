@@ -11,7 +11,7 @@ namespace Revit_2020_Add_In.Ribbon
         internal static void AddRibbonPanel(UIControlledApplication application)
         {
             //Tab Name that will display in Revit
-            string TabName = "My Tab";
+            string TabName = "Torsion";
 
             //Create the Ribbon Tab
             application.CreateRibbonTab(TabName);
@@ -53,8 +53,16 @@ namespace Revit_2020_Add_In.Ribbon
             PushButtonData pbdSheetFindReplace = new PushButtonData("cmdSheetFindReplace", "Sheets\nFind Replace", AssemblyPath, "Revit_2020_Add_In.Commands.SheetFindReplace");
             PushButtonData pbdSheetNameCapitalize = new PushButtonData("cmdSheetNameCapitalize", "Capitalize\nName", AssemblyPath, "Revit_2020_Add_In.Commands.SheetNameCapitalize");
             PushButtonData pbdSheetTitleblockKeyPlan = new PushButtonData("cmdSheetTitleblockKeyPlan", "Key Plan\nVisibility", AssemblyPath, "Revit_2020_Add_In.Commands.SheetTitleblockKeyPlan");
-            PushButtonData pbdSheetLegendToMultiple = new PushButtonData("cmdSheetLegendToMultiple", "Place\nLegends", AssemblyPath, "Revit_2020_Add_In.Commands.SheetLegendToMultiple");
-            PushButtonData pbdSheetScheduleToMultiple = new PushButtonData("cmdSheetScheduleToMultiple", "Place\nSchedules", AssemblyPath, "Revit_2020_Add_In.Commands.SheetScheduleToMultiple");
+            PushButtonData pbdSheetLegendToMultiple = new PushButtonData("cmdSheetLegendToMultiple", "Place\nLegends", AssemblyPath, "Revit_2020_Add_In.Commands.SheetLegendToMultiple")
+            {
+                //Use the PushButtonData property to determine when the ribbon button is enabled. In this case only when the active view is a Sheet
+                AvailabilityClassName = "RDGRevit.Ribbon.SheetCommandAvailability"
+            };
+            PushButtonData pbdSheetScheduleToMultiple = new PushButtonData("cmdSheetScheduleToMultiple", "Place\nSchedules", AssemblyPath, "Revit_2020_Add_In.Commands.SheetScheduleToMultiple")
+            {
+                //Use the PushButtonData property to determine when the ribbon button is enabled. In this case only when the active view is a Sheet
+                AvailabilityClassName = "RDGRevit.Ribbon.SheetCommandAvailability"
+            };
 
             PushButtonData pbdViewsFindReplace = new PushButtonData("cmdViewsFindReplace", "Views\nFind Replace", AssemblyPath, "Revit_2020_Add_In.Commands.ViewFindReplace");
             PushButtonData pbdViewsViewLegendCopy = new PushButtonData("cmdToolsViewLegendCopy", "Copy\nLegends", AssemblyPath, "Revit_2020_Add_In.Commands.ViewLegendCopy");

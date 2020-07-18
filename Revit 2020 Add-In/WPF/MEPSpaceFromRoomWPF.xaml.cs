@@ -38,22 +38,35 @@ namespace Revit_2020_Add_In.WPF
             dtLinkedDocuments.Columns.Add(new DataColumn("Document", typeof(Document)));
             //Add a row inthe DataTable for when no Link is Selected and give it a null value
 
-            //Get all of the Link Types in the Current Document
-            using (FilteredElementCollector LinkedDocumentsCollector = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_RvtLinks).OfClass(typeof(RevitLinkType)))
+            //Get all of the Link Instances in the Current Document
+            using (FilteredElementCollector LinkInstancesCollector = new FilteredElementCollector(doc).OfClass(typeof(RevitLinkInstance)))
             {
-                //Check to make sure there is at least one Link
-                if (LinkedDocumentsCollector.ToElements().Count > 0)
+                //Check to make sure there is at least one Link Instance
+                if (LinkInstancesCollector.ToElements().Count > 0)
                 {
-                    //Since we
-                    foreach (RevitLinkType LinkedDocumentType in LinkedDocumentsCollector.ToElements())
+                    //Get each Revit Link Instance since here may be more than one
+                    foreach (RevitLinkInstance LinkedInstance in LinkInstancesCollector.ToElements())
                     {
-                        //We only wan tto check Links that are currently Loaded
-                        if (LinkedDocumentType.GetLinkedFileStatus() == LinkedFileStatus.Loaded)
+                        //Get the Revit Link Type from the instance to check and see if it is loaded, which it should be if there is an instance
+                        RevitLinkType linkType = doc.GetElement(LinkedInstance.GetTypeId()) as RevitLinkType;
+                        
+                        //We only want to check Links that are currently Loaded
+                        if (linkType.GetLinkedFileStatus() == LinkedFileStatus.Loaded && !linkType.IsNestedLink)
                         {
                             //Iterate through the Link Instances in the Document and match the first one with the Link Type. This is because you need the Link Instance to get the Link Document, not the Link Type
-                            RevitLinkInstance LinkedDocumentInstance = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_RvtLinks).OfClass(typeof(RevitLinkInstance)).Where(x => x.GetTypeId() == LinkedDocumentType.Id).First() as RevitLinkInstance;
-                            //Add the Link Name and Link Document to the Dictionary
-                            linkInstances.Add(LinkedDocumentType.Name, LinkedDocumentInstance);
+                            //RevitLinkInstance LinkedDocumentInstance = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_RvtLinks).OfClass(typeof(RevitLinkInstance)).Where(x => x.GetTypeId() == LinkedInstance.Id).First() as RevitLinkInstance;
+                            //Add the Link Name and Link Instance to the Dictionary if it doesn't already exist
+                            if (!linkInstances.ContainsKey(linkType.Name + " - " + LinkedInstance.Name))
+                            {
+                                linkInstances.Add(linkType.Name + " - " + LinkedInstance.Name, LinkedInstance);
+                            }
+                            else
+                            {
+                                //Tell the User that the Link Type Name and Instance Name combination already exist
+                                TaskDialog.Show("Duplicate Link Instance Name", "More than one Link Instance has the same name. Only one instance has been added.");
+                                //Continue through the for loop
+                                continue;
+                            }
                         }
                     }
                 }
@@ -85,8 +98,15 @@ namespace Revit_2020_Add_In.WPF
                 if (rvtLinkType.LookupParameter("Room Bounding").AsInteger() == 0)
                 {
                     //If it is not room bounding, ask the user if they want to proceed or not
-                    if (TaskDialog.Show("Linked Model Space Bounding", "The Revit Link " + rvtLinkType.Name + " is not Room Bounding.\n\nWould you like to proceed with creating Spaces?", TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No, TaskDialogResult.No) == TaskDialogResult.Yes)
+                    if (TaskDialog.Show("Linked Model Room Bounding", "The Revit Link " + rvtLinkType.Name + " is not Room Bounding.\n\nWould you like to make it Room Bounding and proceed with creating Spaces?", TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No, TaskDialogResult.No) == TaskDialogResult.Yes)
                     {
+                        //Use a transaction and set the Link Type parameter to be room bounding
+                        using (Transaction trans = new Transaction(doc))
+                        {
+                            trans.Start("Change Link Room Bounding");
+                            rvtLinkType.LookupParameter("Room Bounding").Set(1);
+                            trans.Commit();
+                        }
                         //If you user says yes, get all rooms in the linked model via GetLinkedRoom method by passing the Linked Document
                         GetLinkedRooms(rvtLinkInstance.GetLinkDocument());
                     }
