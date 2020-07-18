@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Revit 2020 Add-In")]
+[assembly: AssemblyTitle("Revit 2021 Add-In")]
 [assembly: AssemblyDescription("Revit 2021 Add-In Template project solution.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Torsion Tools")]
