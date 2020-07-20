@@ -7,7 +7,7 @@ namespace Revit_2020_Add_In.Helpers
 {
     class Functions
     {
-        
+
     }
     
     //This class passes the handle (window / program) that Own a modeless dialog. 

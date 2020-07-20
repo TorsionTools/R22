@@ -16,8 +16,19 @@ namespace Revit_2020_Add_In.Commands
             //Get the Current Document from the Current Session
             Document doc = uiapp.ActiveUIDocument.Document;
 
+            //Create a new instance of the WPF form
             WPF.MEPSpaceFromRoomWPF form = new WPF.MEPSpaceFromRoomWPF(doc);
 
+            //Use the Main Windo Handle and Window Helper to make the Revit window the Owner. THis will
+            //prevent task dialogs from going behind the main window or losing focus
+            Helpers.JtWindowHandle rvtwin = new Helpers.JtWindowHandle(commandData.Application.MainWindowHandle);
+            //THis class specifically helps WPF coordinate with Win Form properties
+            System.Windows.Interop.WindowInteropHelper helper = new System.Windows.Interop.WindowInteropHelper(form)
+            {
+                Owner = rvtwin.Handle
+            };
+
+            //Show the form as a dialog and check the return value
             if (form.ShowDialog().Value)
             {
                 //Let Revit know it executed successfully. This is also how you can roll back the entire feature.

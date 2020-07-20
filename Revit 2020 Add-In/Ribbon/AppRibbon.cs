@@ -56,12 +56,12 @@ namespace Revit_2020_Add_In.Ribbon
             PushButtonData pbdSheetLegendToMultiple = new PushButtonData("cmdSheetLegendToMultiple", "Place\nLegends", AssemblyPath, "Revit_2020_Add_In.Commands.SheetLegendToMultiple")
             {
                 //Use the PushButtonData property to determine when the ribbon button is enabled. In this case only when the active view is a Sheet
-                AvailabilityClassName = "RDGRevit.Ribbon.SheetCommandAvailability"
+                AvailabilityClassName = "Revit_2020_Add-In.Ribbon.SheetCommandAvailability"
             };
             PushButtonData pbdSheetScheduleToMultiple = new PushButtonData("cmdSheetScheduleToMultiple", "Place\nSchedules", AssemblyPath, "Revit_2020_Add_In.Commands.SheetScheduleToMultiple")
             {
                 //Use the PushButtonData property to determine when the ribbon button is enabled. In this case only when the active view is a Sheet
-                AvailabilityClassName = "RDGRevit.Ribbon.SheetCommandAvailability"
+                AvailabilityClassName = "Revit_2020_Add-In.Ribbon.SheetCommandAvailability"
             };
 
             PushButtonData pbdViewsFindReplace = new PushButtonData("cmdViewsFindReplace", "Views\nFind Replace", AssemblyPath, "Revit_2020_Add_In.Commands.ViewFindReplace");
