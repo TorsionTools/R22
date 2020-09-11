@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using System.ComponentModel;
 
-namespace Revit_2020_Add_In
+namespace TorsionTools
 {
     //This class is used to Update the listview in real time when checking boxes which is really
     //change the value of the Check variable and representing it as a CheckBox

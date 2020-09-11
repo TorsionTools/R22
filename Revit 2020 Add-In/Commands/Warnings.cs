@@ -5,7 +5,7 @@ using ComponentManager = Autodesk.Windows.ComponentManager;
 using IWin32Window = System.Windows.Forms.IWin32Window;
 
 
-namespace Revit_2020_Add_In.Commands
+namespace TorsionTools.Commands
 {
     [Transaction(TransactionMode.Manual)]
     class Warnings : IExternalCommand

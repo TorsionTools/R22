@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Revit_2020_Add_In.Helpers
+namespace TorsionTools.Helpers
 {
     class Collectors
     {

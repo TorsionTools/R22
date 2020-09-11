@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Revit_2020_Add_In.WPF
+namespace TorsionTools.WPF
 {
     public partial class SheetSelectionWPF : Window
     {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Revit_2020_Add_In.WPF
+namespace TorsionTools.WPF
 {
     public partial class LinkScheduleCopyWPF : Window
     {

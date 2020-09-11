@@ -4,7 +4,7 @@ using Autodesk.Revit.UI.Events;
 using System;
 using System.Windows.Forms;
 
-namespace Revit_2020_Add_In
+namespace TorsionTools
 {
     class App : IExternalApplication
     {

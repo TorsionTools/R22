@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using IWin32Window = System.Windows.Forms.IWin32Window;
 
-namespace Revit_2020_Add_In.Helpers
+namespace TorsionTools.Helpers
 {
     class Functions
     {

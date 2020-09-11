@@ -4,14 +4,14 @@ using System.Reflection;
 using System.Windows.Media.Imaging;
 using RibbonPanel = Autodesk.Revit.UI.RibbonPanel;
 
-namespace Revit_2020_Add_In.Ribbon
+namespace TorsionTools.Ribbon
 {
     class AppRibbon
     {
         internal static void AddRibbonPanel(UIControlledApplication application)
         {
             //Tab Name that will display in Revit
-            string TabName = "Torsion";
+            string TabName = "Torsion Tools";
 
             //Create the Ribbon Tab
             application.CreateRibbonTab(TabName);
@@ -20,23 +20,23 @@ namespace Revit_2020_Add_In.Ribbon
             string AssemblyPath = Assembly.GetExecutingAssembly().Location;
 
             //Create an Image to display on the buttons
-            BitmapImage ButtonImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/Button100x100.png"));
-            BitmapImage FindReplaceImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/FindReplace100x100.png"));
-            BitmapImage SheetCapitalizeImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ToUpper100x100.png"));
-            BitmapImage SheetSelectionImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetSelection100x100.png"));
-            BitmapImage SheetTitleblockKeyPlanImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetTitleblockKeyPlan100x100.png"));
-            BitmapImage ViewsViewLegendCopyImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ViewLegendCopy100x100.png"));
-            BitmapImage ViewsViewScheduleCopyImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ViewScheduleCopy100x100.png"));
-            BitmapImage ViewsLinkedViewsImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/LinkedView100x100.png"));
-            BitmapImage ViewsLinkedViewsUpdateImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/LinkedViewUpdate100x100.png"));
-            BitmapImage ViewsViewDeleteunplacedImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ViewDeleteUnplaced100x100.png"));
-            BitmapImage ToolsWarningsImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/Warning100x100.png"));
-            BitmapImage ToolsElemOfCategoryImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ComponentInfo100x100.png"));
-            BitmapImage ToolsSheetLegendMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetLegendToMultiple100x100.png"));
-            BitmapImage ToolsSheetScheduleMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/SheetScheduleToMultiple100x100.png"));
-            BitmapImage ToolsFamilyMultipleSharedParametersImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/MultipleSharedParameters100x100.png"));
-            BitmapImage ViewsChangeViewReferenceImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/ChangeViewReference100x100.png"));
-            BitmapImage MEPSpacesFromLinkedRoomsImage = new BitmapImage(new Uri("pack://application:,,,/Revit 2020 Add-In;component/Resources/CreateSpaces100x100.png"));
+            BitmapImage ButtonImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/Button100x100.png"));
+            BitmapImage FindReplaceImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/FindReplace100x100.png"));
+            BitmapImage SheetCapitalizeImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/ToUpper100x100.png"));
+            BitmapImage SheetSelectionImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/SheetSelection100x100.png"));
+            BitmapImage SheetTitleblockKeyPlanImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/SheetTitleblockKeyPlan100x100.png"));
+            BitmapImage ViewsViewLegendCopyImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/ViewLegendCopy100x100.png"));
+            BitmapImage ViewsViewScheduleCopyImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/ViewScheduleCopy100x100.png"));
+            BitmapImage ViewsLinkedViewsImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/LinkedView100x100.png"));
+            BitmapImage ViewsLinkedViewsUpdateImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/LinkedViewUpdate100x100.png"));
+            BitmapImage ViewsViewDeleteunplacedImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/ViewDeleteUnplaced100x100.png"));
+            BitmapImage ToolsWarningsImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/Warning100x100.png"));
+            BitmapImage ToolsElemOfCategoryImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/ComponentInfo100x100.png"));
+            BitmapImage ToolsSheetLegendMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/SheetLegendToMultiple100x100.png"));
+            BitmapImage ToolsSheetScheduleMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/SheetScheduleToMultiple100x100.png"));
+            BitmapImage ToolsFamilyMultipleSharedParametersImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/MultipleSharedParameters100x100.png"));
+            BitmapImage ViewsChangeViewReferenceImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/ChangeViewReference100x100.png"));
+            BitmapImage MEPSpacesFromLinkedRoomsImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/CreateSpaces100x100.png"));
 
             //Create a Panel within the Tab
             RibbonPanel RibbonPanelOne = application.CreateRibbonPanel(TabName, "PANEL 1");
@@ -47,36 +47,36 @@ namespace Revit_2020_Add_In.Ribbon
             RibbonPanel RibbonPanelSettings = application.CreateRibbonPanel(TabName, "Settings");
 
             //Create Push Button Data to create the Push button from
-            PushButtonData pbdTestButton = new PushButtonData("cmdTestButton", "Button Name", AssemblyPath, "Revit_2020_Add_In.Commands.HelloWorld");
+            PushButtonData pbdTestButton = new PushButtonData("cmdTestButton", "Button Name", AssemblyPath, "TorsionTools.Commands.HelloWorld");
 
-            PushButtonData pbdSheetSelection = new PushButtonData("cmdSheetSelection", "Sheet\nSelector", AssemblyPath, "Revit_2020_Add_In.Commands.SheetSelection");
-            PushButtonData pbdSheetFindReplace = new PushButtonData("cmdSheetFindReplace", "Sheets\nFind Replace", AssemblyPath, "Revit_2020_Add_In.Commands.SheetFindReplace");
-            PushButtonData pbdSheetNameCapitalize = new PushButtonData("cmdSheetNameCapitalize", "Capitalize\nName", AssemblyPath, "Revit_2020_Add_In.Commands.SheetNameCapitalize");
-            PushButtonData pbdSheetTitleblockKeyPlan = new PushButtonData("cmdSheetTitleblockKeyPlan", "Key Plan\nVisibility", AssemblyPath, "Revit_2020_Add_In.Commands.SheetTitleblockKeyPlan");
-            PushButtonData pbdSheetLegendToMultiple = new PushButtonData("cmdSheetLegendToMultiple", "Place\nLegends", AssemblyPath, "Revit_2020_Add_In.Commands.SheetLegendToMultiple")
+            PushButtonData pbdSheetSelection = new PushButtonData("cmdSheetSelection", "Sheet\nSelector", AssemblyPath, "TorsionTools.Commands.SheetSelection");
+            PushButtonData pbdSheetFindReplace = new PushButtonData("cmdSheetFindReplace", "Sheets\nFind Replace", AssemblyPath, "TorsionTools.Commands.SheetFindReplace");
+            PushButtonData pbdSheetNameCapitalize = new PushButtonData("cmdSheetNameCapitalize", "Capitalize\nName", AssemblyPath, "TorsionTools.Commands.SheetNameCapitalize");
+            PushButtonData pbdSheetTitleblockKeyPlan = new PushButtonData("cmdSheetTitleblockKeyPlan", "Key Plan\nVisibility", AssemblyPath, "TorsionTools.Commands.SheetTitleblockKeyPlan");
+            PushButtonData pbdSheetLegendToMultiple = new PushButtonData("cmdSheetLegendToMultiple", "Place\nLegends", AssemblyPath, "TorsionTools.Commands.SheetLegendToMultiple")
             {
                 //Use the PushButtonData property to determine when the ribbon button is enabled. In this case only when the active view is a Sheet
-                AvailabilityClassName = "Revit_2020_Add_In.Ribbon.SheetCommandAvailability"
+                AvailabilityClassName = "TorsionTools.Ribbon.SheetCommandAvailability"
             };
-            PushButtonData pbdSheetScheduleToMultiple = new PushButtonData("cmdSheetScheduleToMultiple", "Place\nSchedules", AssemblyPath, "Revit_2020_Add_In.Commands.SheetScheduleToMultiple")
+            PushButtonData pbdSheetScheduleToMultiple = new PushButtonData("cmdSheetScheduleToMultiple", "Place\nSchedules", AssemblyPath, "TorsionTools.Commands.SheetScheduleToMultiple")
             {
                 //Use the PushButtonData property to determine when the ribbon button is enabled. In this case only when the active view is a Sheet
-                AvailabilityClassName = "Revit_2020_Add_In.Ribbon.SheetCommandAvailability"
+                AvailabilityClassName = "TorsionTools.Ribbon.SheetCommandAvailability"
             };
 
-            PushButtonData pbdViewsFindReplace = new PushButtonData("cmdViewsFindReplace", "Views\nFind Replace", AssemblyPath, "Revit_2020_Add_In.Commands.ViewFindReplace");
-            PushButtonData pbdViewsViewLegendCopy = new PushButtonData("cmdToolsViewLegendCopy", "Copy\nLegends", AssemblyPath, "Revit_2020_Add_In.Commands.ViewLegendCopy");
-            PushButtonData pbdViewsViewScheduleCopy = new PushButtonData("cmdToolsViewScheduleCopy", "Copy\nSchedules", AssemblyPath, "Revit_2020_Add_In.Commands.ViewScheduleCopy");
-            PushButtonData pbdViewsLinkedViews = new PushButtonData("cmdToolsLinkedViews", "Linked\nViews", AssemblyPath, "Revit_2020_Add_In.Commands.LinkedViews");
-            PushButtonData pbdViewsLinkedViewsUpdate = new PushButtonData("cmdToolsLinkedViewsUpdate", "Update\nViews", AssemblyPath, "Revit_2020_Add_In.Commands.LinkedViewUpdate");
-            PushButtonData pbdViewsViewDeleteUnplaced = new PushButtonData("cmdToolsViewDeleteUnplaced", "Delete\nUnplaced", AssemblyPath, "Revit_2020_Add_In.Commands.ViewDeleteUnplacedViews");
-            PushButtonData pbdViewsChangeViewReference = new PushButtonData("cmdViewsChangeViewReference", "Change\nReference", AssemblyPath, "Revit_2020_Add_In.Commands.ViewChangeViewReference");
+            PushButtonData pbdViewsFindReplace = new PushButtonData("cmdViewsFindReplace", "Views\nFind Replace", AssemblyPath, "TorsionTools.Commands.ViewFindReplace");
+            PushButtonData pbdViewsViewLegendCopy = new PushButtonData("cmdToolsViewLegendCopy", "Copy\nLegends", AssemblyPath, "TorsionTools.Commands.ViewLegendCopy");
+            PushButtonData pbdViewsViewScheduleCopy = new PushButtonData("cmdToolsViewScheduleCopy", "Copy\nSchedules", AssemblyPath, "TorsionTools.Commands.ViewScheduleCopy");
+            PushButtonData pbdViewsLinkedViews = new PushButtonData("cmdToolsLinkedViews", "Linked\nViews", AssemblyPath, "TorsionTools.Commands.LinkedViews");
+            PushButtonData pbdViewsLinkedViewsUpdate = new PushButtonData("cmdToolsLinkedViewsUpdate", "Update\nViews", AssemblyPath, "TorsionTools.Commands.LinkedViewUpdate");
+            PushButtonData pbdViewsViewDeleteUnplaced = new PushButtonData("cmdToolsViewDeleteUnplaced", "Delete\nUnplaced", AssemblyPath, "TorsionTools.Commands.ViewDeleteUnplacedViews");
+            PushButtonData pbdViewsChangeViewReference = new PushButtonData("cmdViewsChangeViewReference", "Change\nReference", AssemblyPath, "TorsionTools.Commands.ViewChangeViewReference");
 
-            PushButtonData pbdToolsWarnings = new PushButtonData("cmdToolsWarnings", "Warnings", AssemblyPath, "Revit_2020_Add_In.Commands.Warnings");
-            PushButtonData pbdToolsElemOfCategory = new PushButtonData("cmdToolsElemOfCategory", "Family Instances\nof Category", AssemblyPath, "Revit_2020_Add_In.Commands.ElementsOfCategory");
-            PushButtonData pbdToolsFamilyMultipleSharedParameters = new PushButtonData("cmdToolsFamilyMultipleSharedParameters", "Shared\nParameters", AssemblyPath, "Revit_2020_Add_In.Commands.FamilyMultipleSharedParameters");
+            PushButtonData pbdToolsWarnings = new PushButtonData("cmdToolsWarnings", "Warnings", AssemblyPath, "TorsionTools.Commands.Warnings");
+            PushButtonData pbdToolsElemOfCategory = new PushButtonData("cmdToolsElemOfCategory", "Family Instances\nof Category", AssemblyPath, "TorsionTools.Commands.ElementsOfCategory");
+            PushButtonData pbdToolsFamilyMultipleSharedParameters = new PushButtonData("cmdToolsFamilyMultipleSharedParameters", "Shared\nParameters", AssemblyPath, "TorsionTools.Commands.FamilyMultipleSharedParameters");
 
-            PushButtonData pbdMEPSpacesFromLinkedRooms = new PushButtonData("cmdMEPSpacesFromLinkedRooms", "Create\nSpaces", AssemblyPath, "Revit_2020_Add_In.Commands.MEPSpacesFromRooms");
+            PushButtonData pbdMEPSpacesFromLinkedRooms = new PushButtonData("cmdMEPSpacesFromLinkedRooms", "Create\nSpaces", AssemblyPath, "TorsionTools.Commands.MEPSpacesFromRooms");
 
             //Create a Push Button from the Push Button Data
             PushButton pbTestButton = RibbonPanelOne.AddItem(pbdTestButton) as PushButton;
@@ -136,8 +136,8 @@ namespace Revit_2020_Add_In.Ribbon
 
             RadioButtonGroupData rbgdUpdaters = new RadioButtonGroupData("UpdaterSettings");
             RadioButtonGroup rdoBtnGroup = RibbonPanelSettings.AddItem(rbgdUpdaters) as RadioButtonGroup;
-            ToggleButtonData tbdUpdaterOn = new ToggleButtonData("cmdUpdaterOn", "Turn On\nDynamic\nUpdaters", AssemblyPath, "Revit_2020_Add_In.Settings.UpdatersOn");
-            ToggleButtonData tbdUpdaterOff = new ToggleButtonData("cmdUpdaterOff", "Turn Off\nDynamic\nUpdaters", AssemblyPath, "Revit_2020_Add_In.Settings.UpdatersOff");
+            ToggleButtonData tbdUpdaterOn = new ToggleButtonData("cmdUpdaterOn", "Turn On\nDynamic\nUpdaters", AssemblyPath, "TorsionTools.Settings.UpdatersOn");
+            ToggleButtonData tbdUpdaterOff = new ToggleButtonData("cmdUpdaterOff", "Turn Off\nDynamic\nUpdaters", AssemblyPath, "TorsionTools.Settings.UpdatersOff");
 
             tbdUpdaterOn.ToolTip = "Turn all Dynamic Model Updaters On";
             tbdUpdaterOff.ToolTip = "Turn all Dynamic Model Updaters Off";

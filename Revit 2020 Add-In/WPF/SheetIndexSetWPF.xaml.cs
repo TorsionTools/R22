@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
-namespace Revit_2020_Add_In.WPF
+namespace TorsionTools.WPF
 {
     /// <summary>
     /// Interaction logic for SheetIndexSetWPF.xaml

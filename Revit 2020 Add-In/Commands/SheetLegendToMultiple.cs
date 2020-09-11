@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Revit_2020_Add_In.Commands
+namespace TorsionTools.Commands
 {
     //This Transaction Attribute allows us to control transactions manually, but also placed the entire class in a transaction that is controlled by the Result returned to prevent unwanted changes
     //during Transactions or sub-transactions if changes are made and then an exception is raised

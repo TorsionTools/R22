@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
-namespace Revit_2020_Add_In.Ribbon
+namespace TorsionTools.Ribbon
 {
     //Each one of the classes below allows for different availability for ribbon buttons
 

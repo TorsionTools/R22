@@ -3,7 +3,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System;
 
-namespace Revit_2020_Add_In.Commands
+namespace TorsionTools.Commands
 {
     [Transaction(TransactionMode.Manual)]
     class LinksReloadAll : IExternalCommand

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Revit 2021 Add-In")]
+[assembly: AssemblyTitle("Torsion Tools")]
 [assembly: AssemblyDescription("Revit 2021 Add-In Template project solution.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Torsion Tools")]
-[assembly: AssemblyProduct("Revit 2021 Add-In")]
+[assembly: AssemblyProduct("Revit Torsion Tools")]
 [assembly: AssemblyCopyright("Copyright © 2020 Torsion Tools")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("2020.07.17.0")]
+[assembly: AssemblyFileVersion("2020.09.11.0")]

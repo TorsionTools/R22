@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace Revit_2020_Add_In.WPF
+namespace TorsionTools.WPF
 {
     /// <summary>
     /// Interaction logic for SheetFindReplaceWPF.xaml

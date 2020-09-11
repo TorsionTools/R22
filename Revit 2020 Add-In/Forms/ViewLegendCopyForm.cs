@@ -7,7 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using View = Autodesk.Revit.DB.View;
 
-namespace Revit_2020_Add_In.Forms
+namespace TorsionTools.Forms
 {
     public partial class ViewLegendCopyForm : System.Windows.Forms.Form
     {

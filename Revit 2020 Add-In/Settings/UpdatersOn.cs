@@ -3,7 +3,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
 
-namespace Revit_2020_Add_In.Settings
+namespace TorsionTools.Settings
 {
     //This allows us to create transactions within our code, but also allows us to roll the entire command back if the Result is Failed or Cancelled
     [Transaction(TransactionMode.Manual)]

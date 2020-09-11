@@ -2,7 +2,7 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
-namespace Revit_2020_Add_In.Commands
+namespace TorsionTools.Commands
 {
     //This Attribute sets how transactions are handled. The Manual Transaction Mode allows us to control any 
     //transactions individually, but roll the entire function back if we return any Result other than Succeded

@@ -5,7 +5,7 @@ using ComponentManager = Autodesk.Windows.ComponentManager;
 using IWin32Window = System.Windows.Forms.IWin32Window;
 
 
-namespace Revit_2020_Add_In.Commands
+namespace TorsionTools.Commands
 {
     //This allows us to create transactions within our code, but also allows us to roll the entire command back if the Result is Failed or Cancelled
     [Transaction(TransactionMode.Manual)]

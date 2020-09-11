@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using System;
 
-namespace Revit_2020_Add_In.Updaters
+namespace TorsionTools.Updaters
 {
     //This class is for Dynamic Model  Updating (DMU) that can manipulate newly created elements that pass the filters st for them
     public class ViewSheetUpdater : IUpdater

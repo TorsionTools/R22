@@ -1,4 +1,4 @@
-﻿namespace Revit_2020_Add_In.Forms
+﻿namespace TorsionTools.Forms
 {
     partial class ElementsOfCategoryForm
     {

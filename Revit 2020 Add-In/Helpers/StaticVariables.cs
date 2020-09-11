@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Revit_2020_Add_In.Helpers
+namespace TorsionTools.Helpers
 {
     class StaticVariables
     {

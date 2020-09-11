@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using TaskDialog = Autodesk.Revit.UI.TaskDialog;
 
-namespace Revit_2020_Add_In.Forms
+namespace TorsionTools.Forms
 {
     public partial class FamilyMultipleSharedParametersForm : System.Windows.Forms.Form
     {

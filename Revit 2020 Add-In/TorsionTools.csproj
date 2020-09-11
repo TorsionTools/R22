@@ -7,8 +7,8 @@
     <ProjectGuid>{1C32917D-CBF9-45E1-874D-4B393E7BE4A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Revit_2020_Add_In</RootNamespace>
-    <AssemblyName>Revit 2020 Add-In</AssemblyName>
+    <RootNamespace>TorsionTools</RootNamespace>
+    <AssemblyName>Torsion Tools</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\square.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\TorsionTools.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdWindows, Version=2018.11.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -215,7 +215,10 @@
     <Resource Include="Resources\ViewDeleteUnplaced100x100.png" />
     <Resource Include="Resources\ChangeViewReference100x100.png" />
     <Resource Include="Resources\CreateSpaces100x100.png" />
-    <Content Include="Revit_2020_Add-In.addin" />
+    <Resource Include="Resources\TorsionTools.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="TorsionTools.addin" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\ElementsOfCategoryForm.resx">
@@ -296,9 +299,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Revit 2020 Add-In.dll" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
-xcopy "$(SolutionDir)Revit 2020 Add-In\Revit_2020_Add-In.addin" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
-xcopy "$(TargetDir)Revit 2020 Add-In.dll" "C:\ProgramData\Autodesk\Revit\Addins\2021\" /y
-xcopy "$(SolutionDir)Revit 2020 Add-In\Revit_2020_Add-In.addin" "C:\ProgramData\Autodesk\Revit\Addins\2021\" /y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)Torsion Tools.dll" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
+xcopy "$(SolutionDir)Revit 2020 Add-In\TorsionTools.addin" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
+xcopy "$(TargetDir)Torsion Tools.dll" "C:\ProgramData\Autodesk\Revit\Addins\2021\" /y
+xcopy "$(SolutionDir)Revit 2020 Add-In\TorsionTools.addin" "C:\ProgramData\Autodesk\Revit\Addins\2021\" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

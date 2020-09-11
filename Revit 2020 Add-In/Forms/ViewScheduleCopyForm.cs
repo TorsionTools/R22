@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Revit_2020_Add_In.Forms
+namespace TorsionTools.Forms
 {
     public partial class ViewScheduleCopyForm : System.Windows.Forms.Form
     {

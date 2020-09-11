@@ -4,7 +4,7 @@ using System;
 using System.Windows.Forms;
 using Form = System.Windows.Forms.Form;
 
-namespace Revit_2020_Add_In.Forms
+namespace TorsionTools.Forms
 {
     public partial class ViewSheetUpdaterForm : Form
     {

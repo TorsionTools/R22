@@ -1,9 +1,9 @@
-﻿<Window x:Class="Revit_2020_Add_In.WPF.SheetSelectionWPF"
+﻿<Window x:Class="TorsionTools.WPF.SheetSelectionWPF"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Revit_2020_Add_In.WPF"
+             xmlns:local="clr-namespace:TorsionTools.WPF"
              mc:Ignorable="d" 
              Height="700" Width="400" Title="Sheet Selection" ResizeMode="CanMinimize"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Icon="../Resources/square.ico" FontFamily="Arial Narrow" FontSize="13">
     <Window.Resources>

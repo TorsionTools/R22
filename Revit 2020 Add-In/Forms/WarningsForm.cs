@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using Form = System.Windows.Forms.Form;
 using View = Autodesk.Revit.DB.View;
 
-namespace Revit_2020_Add_In.Forms
+namespace TorsionTools.Forms
 {
     public partial class WarningsForm : Form
     {

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using ToolTip = System.Windows.Forms.ToolTip;
 using View = Autodesk.Revit.DB.View;
 
-namespace Revit_2020_Add_In.Forms
+namespace TorsionTools.Forms
 {
     public partial class LinkedViewSelectionForm : System.Windows.Forms.Form
     {

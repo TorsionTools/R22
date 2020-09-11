@@ -4,7 +4,7 @@ using Autodesk.Revit.UI;
 using System.Windows.Forms;
 
 
-namespace Revit_2020_Add_In.Commands
+namespace TorsionTools.Commands
 {
     [Transaction(TransactionMode.Manual)]
     //This class will call the Sheet Titleblock Key Plan form to change Yes / No instance Parameters on Titleblocks
