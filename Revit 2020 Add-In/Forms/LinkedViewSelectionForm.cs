@@ -361,7 +361,7 @@ namespace Revit_2020_Add_In.Forms
                     //sheet.LookupParameter("Sheet Sort").Set("PLANS");
 
                     //Set the Appears In Sheet List to False so duplicate sheets do not appear in Sheet Index Schedule
-                    sheet.LookupParameter("Appears In Sheet List").Set(0);
+                    sheet.get_Parameter(BuiltInParameter.SHEET_SCHEDULED).Set(0);
                 }
                 return sheet;
             }

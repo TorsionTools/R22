@@ -51,7 +51,7 @@ namespace Revit_2020_Add_In
 
     //This class is used to Update the listview in real time when checking boxes which is really
     //change the value of the Check variable and representing it as a CheckBox
-    internal class ViewSheets : INotifyPropertyChanged
+    internal class ViewSheetsIdName : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private bool _Check;
@@ -84,6 +84,62 @@ namespace Revit_2020_Add_In
             set
             {
                 _SheetId = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        //Makes sure the variable is not null, then fires a change event to update list view graphics
+        private void NotifyPropertyChanged(string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+    //This class is used to Update the listview in real time when checking boxes which is really
+    //change the value of the Check variable and representing it as a CheckBox
+    internal class ViewSheetsIdNumberName : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private ElementId _SheetId;
+        private string _SheetNumber;
+        private string _SheetName;
+        private bool _Check;
+
+        public ElementId SheetId
+        {
+            get { return _SheetId; }
+            set
+            {
+                _SheetId = value;
+                NotifyPropertyChanged();
+            }
+        }
+        
+        public string SheetNumber
+        {
+            get { return _SheetNumber; }
+            set
+            {
+                _SheetNumber = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public string SheetName
+        {
+            get { return _SheetName; }
+            set
+            {
+                _SheetName = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public bool Check
+        {
+            get { return _Check; }
+            set
+            {
+                _Check = value;
                 NotifyPropertyChanged();
             }
         }

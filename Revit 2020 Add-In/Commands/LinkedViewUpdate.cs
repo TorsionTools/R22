@@ -225,7 +225,7 @@ namespace Revit_2020_Add_In.Commands
                     //Set the Sheet Name, Number, and Appears In Sheet List parameters 
                     sheet.Name = "DO NOT PRINT";
                     sheet.SheetNumber = _sheetNumber;
-                    sheet.LookupParameter("Appears In Sheet List").Set(0);
+                    sheet.get_Parameter(BuiltInParameter.SHEET_SCHEDULED).Set(0);
                 }
                 //Return either the existing Sheet or the New Sheet
                 return sheet;

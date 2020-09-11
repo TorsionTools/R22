@@ -15,7 +15,7 @@ namespace Revit_2020_Add_In.WPF
         //This will the Sheet Element Ids returned to the command that call this form
         public List<ElementId> ViewSheetIds { get; set; }
         //This is the class level container for the sheet information from the ViewSheets class
-        List<ViewSheets> SheetList = new List<ViewSheets>();
+        List<ViewSheetsIdName> SheetList = new List<ViewSheetsIdName>();
 
         //We call this form with the current document and set the class Document variable
         public SheetSelectionWPF(Document _doc)
@@ -37,7 +37,7 @@ namespace Revit_2020_Add_In.WPF
                     if (!sheet.IsPlaceholder)
                     {
                         //Create a new instance of the ViewSheets class and add it to the master SheetList list of ViewSheets
-                        SheetList.Add(new ViewSheets() { Check = false, SheetName = sheet.SheetNumber + " - " + sheet.Name, SheetId = sheet.Id });
+                        SheetList.Add(new ViewSheetsIdName() { Check = false, SheetName = sheet.SheetNumber + " - " + sheet.Name, SheetId = sheet.Id });
                     }
                 }
                 //Sort the items by the Sheet Number before setting the ListView item source
@@ -60,7 +60,7 @@ namespace Revit_2020_Add_In.WPF
         private void BtnSelectAll_Click(object sender, RoutedEventArgs e)
         {
             //Iterate each items in the SheetList List of ViewSheets
-            foreach (ViewSheets check in SheetList)
+            foreach (ViewSheetsIdName check in SheetList)
             {
                 //Set the vool Check varaible to true or Checked in the ListView
                 check.Check = true;
@@ -73,7 +73,7 @@ namespace Revit_2020_Add_In.WPF
         private void BtnSelectNone_Click(object sender, RoutedEventArgs e)
         {
             //Iterate each items in the SheetList List of ViewSheets
-            foreach (ViewSheets check in SheetList)
+            foreach (ViewSheetsIdName check in SheetList)
             {
                 //Set the vool Check varaible to false or UnChecked in the ListView
                 check.Check = false;
@@ -86,14 +86,14 @@ namespace Revit_2020_Add_In.WPF
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             //Cast the selected items in the ListView to a List of the ViewSheets class
-            List<ViewSheets> TempSheets = ListViewSheets.SelectedItems.Cast<ViewSheets>().ToList();
+            List<ViewSheetsIdName> TempSheets = ListViewSheets.SelectedItems.Cast<ViewSheetsIdName>().ToList();
             //iterate through each of the ViewSheets items in that list
-            foreach (ViewSheets Sheet in TempSheets)
+            foreach (ViewSheetsIdName Sheet in TempSheets)
             {
                 //Try and find the item in the main SheetList list and get that object
                 //We can't directly change the SheetList because we have linked it to the Listview
                 //and we are using NotifyPropertyChanged events so that is why we need temp items
-                ViewSheets item = SheetList.Find(x => x.SheetId == Sheet.SheetId);
+                ViewSheetsIdName item = SheetList.Find(x => x.SheetId == Sheet.SheetId);
                 //set the bool Check variable to true or checked
                 item.Check = true;
             }
@@ -103,14 +103,14 @@ namespace Revit_2020_Add_In.WPF
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             //Cast the selected items in the ListView to a List of the ViewSheets class
-            List<ViewSheets> TempSheets = ListViewSheets.SelectedItems.Cast<ViewSheets>().ToList();
+            List<ViewSheetsIdName> TempSheets = ListViewSheets.SelectedItems.Cast<ViewSheetsIdName>().ToList();
             //iterate through each of the ViewSheets items in that list
-            foreach (ViewSheets Sheet in TempSheets)
+            foreach (ViewSheetsIdName Sheet in TempSheets)
             {
                 //Try and find the item in the main SheetList list and get that object
                 //We can't directly change the SheetList because we have linked it to the Listview
                 //and we are using NotifyPropertyChanged events so that is why we need temp items
-                ViewSheets item = SheetList.Find(x => x.SheetId == Sheet.SheetId);
+                ViewSheetsIdName item = SheetList.Find(x => x.SheetId == Sheet.SheetId);
                 //set the bool Check variable to false or Unchecked
                 item.Check = false;
             }
@@ -122,7 +122,7 @@ namespace Revit_2020_Add_In.WPF
             //Create a List to hold the ElementIds of the checkd sheets
             List<ElementId> SheetIds = new List<ElementId>();
             //Iterate through the SheetList master list for items that have the Check variable set to true or checked
-            foreach (ViewSheets sheet in SheetList)
+            foreach (ViewSheetsIdName sheet in SheetList)
             {
                 //Test to see if it is true
                 if (sheet.Check)
@@ -167,7 +167,7 @@ namespace Revit_2020_Add_In.WPF
             else
             {
                 //checked each item to see if the Sheetname contains any part of the search text and return true if so or false if not
-                return ((item as ViewSheets).SheetName.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as ViewSheetsIdName).SheetName.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
         }
     }

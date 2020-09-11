@@ -1,0 +1,64 @@
+﻿<Window x:Class="Revit_2020_Add_In.WPF.SheetIndexSetWPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Revit_2020_Add_In.WPF"
+             mc:Ignorable="d" 
+             Height="600" Width="400" Title="Sheet Index by Sheet Set" FontFamily="Arial Narrow" FontSize="13" Icon="../Resources/square.ico" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+    <Border BorderThickness="5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="90"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label>
+                Select Sheet Set:
+            </Label>
+            <ComboBox Name="cboSheetSet" Grid.Column="1" Grid.ColumnSpan="3"/>
+            <Button Name="btnGetSheetSet" Margin="3" Grid.Row="1" Grid.Column="3" Width="75" Content="Update" BorderBrush="#60CCE0" FontFamily="Arial Black" FontSize="12">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Name="btnNewSheetSet" Margin="3" Grid.Row="1" Grid.Column="2" Content="New Set" BorderBrush="#60CCE0" FontFamily="Arial Black" FontSize="12" Width="75
+                    ">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <DataGrid Name="dgSheetList" Grid.Row="2" Grid.ColumnSpan="4" ItemsSource="{Binding}" CanUserAddRows="False" AutoGenerateColumns="False">
+                <DataGridTextColumn Header="ID" Visibility="Hidden" Binding="{Binding SheetId}"/>
+                <DataGridTextColumn Header="Sheet Number" Binding="{Binding SheetNumber}"/>
+                <DataGridTextColumn Header="Sheet Name" Binding="{Binding SheetName}" Width="*"/>
+                <DataGridCheckBoxColumn Header="Index" Binding="{Binding Check}" Width="*"/>
+            </DataGrid>
+            <Button Name="btnCancel" Margin="3" Grid.Row="3" Grid.Column="2" Content="Cancel" BorderBrush="#60CCE0" FontFamily="Arial Black" FontSize="12" Width="75" Click="BtnCancel_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Name="btnApply" Margin="3" Grid.Row="3" Grid.Column="3" Content="Apply" BorderBrush="#60CCE0" FontFamily="Arial Black" FontSize="12" Width="75" Click="BtnApply_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

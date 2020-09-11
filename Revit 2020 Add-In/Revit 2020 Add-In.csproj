@@ -39,6 +39,7 @@
     <Reference Include="AdWindows, Version=2018.11.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\AdWindows.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -177,6 +178,9 @@
     <Compile Include="WPF\SheetFindReplaceWPF.xaml.cs">
       <DependentUpon>SheetFindReplaceWPF.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\SheetIndexSetWPF.xaml.cs">
+      <DependentUpon>SheetIndexSetWPF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\SheetSelectionWPF.xaml.cs">
       <DependentUpon>SheetSelectionWPF.xaml</DependentUpon>
     </Compile>
@@ -266,6 +270,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WPF\SheetFindReplaceWPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\SheetIndexSetWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
