@@ -220,6 +220,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\SheetViewRefSheet100x100.png" />
+    <Resource Include="Resources\SquareT100x100.png" />
     <Content Include="TorsionTools.addin" />
   </ItemGroup>
   <ItemGroup>

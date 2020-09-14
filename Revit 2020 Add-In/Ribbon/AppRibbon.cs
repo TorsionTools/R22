@@ -36,8 +36,10 @@ namespace TorsionTools.Ribbon
             BitmapImage ToolsSheetLegendMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/SheetLegendToMultiple100x100.png"));
             BitmapImage ToolsSheetScheduleMultipleImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/SheetScheduleToMultiple100x100.png"));
             BitmapImage ToolsFamilyMultipleSharedParametersImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/MultipleSharedParameters100x100.png"));
+            BitmapImage SquareTImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/SquareT100x100.png"));
             BitmapImage ViewsChangeViewReferenceImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/ChangeViewReference100x100.png"));
             BitmapImage MEPSpacesFromLinkedRoomsImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/CreateSpaces100x100.png"));
+
 
             //Create a Panel within the Tab
             RibbonPanel RibbonPanelOne = application.CreateRibbonPanel(TabName, "PANEL 1");
@@ -80,6 +82,7 @@ namespace TorsionTools.Ribbon
             PushButtonData pbdToolsWarnings = new PushButtonData("cmdToolsWarnings", "Warnings", AssemblyPath, "TorsionTools.Commands.Warnings");
             PushButtonData pbdToolsElemOfCategory = new PushButtonData("cmdToolsElemOfCategory", "Family Instances\nof Category", AssemblyPath, "TorsionTools.Commands.ElementsOfCategory");
             PushButtonData pbdToolsFamilyMultipleSharedParameters = new PushButtonData("cmdToolsFamilyMultipleSharedParameters", "Shared\nParameters", AssemblyPath, "TorsionTools.Commands.FamilyMultipleSharedParameters");
+            PushButtonData pbdToolsLinksReloadALl = new PushButtonData("cmdLinksReloadAll", "Reload\nLinks", AssemblyPath,"TorsionTools.Commands.LinksReloadAll");
 
             PushButtonData pbdMEPSpacesFromLinkedRooms = new PushButtonData("cmdMEPSpacesFromLinkedRooms", "Create\nSpaces", AssemblyPath, "TorsionTools.Commands.MEPSpacesFromRooms");
 
@@ -98,6 +101,7 @@ namespace TorsionTools.Ribbon
             PushButton pbToolsWarnings = RibbonPanelTools.AddItem(pbdToolsWarnings) as PushButton;
             PushButton pbToolsElemOfCategory = RibbonPanelTools.AddItem(pbdToolsElemOfCategory) as PushButton;
             PushButton pbToolsFamilyMultipleSharedParameters = RibbonPanelTools.AddItem(pbdToolsFamilyMultipleSharedParameters) as PushButton;
+            PushButton pbToolsLinkReloadAll = RibbonPanelTools.AddItem(pbdToolsLinksReloadALl) as PushButton;
 
             PushButton pbMEPSpacesFromLinkedRooms = RibbonPanelMEP.AddItem(pbdMEPSpacesFromLinkedRooms) as PushButton;
 
@@ -167,6 +171,7 @@ namespace TorsionTools.Ribbon
             pbToolsWarnings.LargeImage = ToolsWarningsImage;
             pbToolsElemOfCategory.LargeImage = ToolsElemOfCategoryImage;
             pbToolsFamilyMultipleSharedParameters.LargeImage = ToolsFamilyMultipleSharedParametersImage;
+            pbToolsLinkReloadAll.LargeImage = SquareTImage;
 
             pbMEPSpacesFromLinkedRooms.LargeImage = MEPSpacesFromLinkedRoomsImage;
 
@@ -185,6 +190,7 @@ namespace TorsionTools.Ribbon
             pbToolsWarnings.ToolTip = "Display and isolate Warnings in the Document";
             pbToolsElemOfCategory.ToolTip = "Get all Elements of selected Category";
             pbToolsFamilyMultipleSharedParameters.ToolTip = "Add the selected Shared Parameters in all Revit Families within the selected Directory";
+            pbToolsLinkReloadAll.ToolTip = "Reload all Revit Links that are currently loaded";
 
             pbMEPSpacesFromLinkedRooms.ToolTip = "Create MEP Spaces for the Selected Rooms from a Linked Model";
 
