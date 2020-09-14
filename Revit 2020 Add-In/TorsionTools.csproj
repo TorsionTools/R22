@@ -79,6 +79,7 @@
     <Compile Include="Commands\SheetTitleblockKeyPlan.cs" />
     <Compile Include="Commands\ViewChangeViewReference.cs" />
     <Compile Include="Commands\ViewDeleteUnplacedViews.cs" />
+    <Compile Include="Commands\ViewReferenceSheet.cs" />
     <Compile Include="Commands\ViewFindReplace.cs" />
     <Compile Include="Commands\ViewScheduleCopy.cs" />
     <Compile Include="Commands\Warnings.cs" />
@@ -218,6 +219,7 @@
     <Resource Include="Resources\TorsionTools.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\SheetViewRefSheet100x100.png" />
     <Content Include="TorsionTools.addin" />
   </ItemGroup>
   <ItemGroup>

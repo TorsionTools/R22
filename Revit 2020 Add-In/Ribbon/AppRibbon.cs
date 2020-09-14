@@ -25,6 +25,7 @@ namespace TorsionTools.Ribbon
             BitmapImage SheetCapitalizeImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/ToUpper100x100.png"));
             BitmapImage SheetSelectionImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/SheetSelection100x100.png"));
             BitmapImage SheetTitleblockKeyPlanImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/SheetTitleblockKeyPlan100x100.png"));
+            BitmapImage SheetViewRefSheetImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/SheetViewRefSheet100x100.png"));
             BitmapImage ViewsViewLegendCopyImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/ViewLegendCopy100x100.png"));
             BitmapImage ViewsViewScheduleCopyImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/ViewScheduleCopy100x100.png"));
             BitmapImage ViewsLinkedViewsImage = new BitmapImage(new Uri("pack://application:,,,/Torsion Tools;component/Resources/LinkedView100x100.png"));
@@ -48,7 +49,6 @@ namespace TorsionTools.Ribbon
 
             //Create Push Button Data to create the Push button from
             PushButtonData pbdTestButton = new PushButtonData("cmdTestButton", "Button Name", AssemblyPath, "TorsionTools.Commands.HelloWorld");
-
             PushButtonData pbdSheetSelection = new PushButtonData("cmdSheetSelection", "Sheet\nSelector", AssemblyPath, "TorsionTools.Commands.SheetSelection");
             PushButtonData pbdSheetFindReplace = new PushButtonData("cmdSheetFindReplace", "Sheets\nFind Replace", AssemblyPath, "TorsionTools.Commands.SheetFindReplace");
             PushButtonData pbdSheetNameCapitalize = new PushButtonData("cmdSheetNameCapitalize", "Capitalize\nName", AssemblyPath, "TorsionTools.Commands.SheetNameCapitalize");
@@ -59,6 +59,11 @@ namespace TorsionTools.Ribbon
                 AvailabilityClassName = "TorsionTools.Ribbon.SheetCommandAvailability"
             };
             PushButtonData pbdSheetScheduleToMultiple = new PushButtonData("cmdSheetScheduleToMultiple", "Place\nSchedules", AssemblyPath, "TorsionTools.Commands.SheetScheduleToMultiple")
+            {
+                //Use the PushButtonData property to determine when the ribbon button is enabled. In this case only when the active view is a Sheet
+                AvailabilityClassName = "TorsionTools.Ribbon.SheetCommandAvailability"
+            };
+            PushButtonData pbdSheetViewReferenceSheet = new PushButtonData("cmdSheetViewReferenceSheet", "Reference\nSheet", AssemblyPath, "TorsionTools.Commands.ViewReferenceSheet")
             {
                 //Use the PushButtonData property to determine when the ribbon button is enabled. In this case only when the active view is a Sheet
                 AvailabilityClassName = "TorsionTools.Ribbon.SheetCommandAvailability"
@@ -85,6 +90,7 @@ namespace TorsionTools.Ribbon
             PushButton pbSheetNameCapitalize = RibbonPanelSheets.AddItem(pbdSheetNameCapitalize) as PushButton;
             PushButton pbSheetFindReplace = RibbonPanelSheets.AddItem(pbdSheetFindReplace) as PushButton;
             PushButton pbSheetTitleblockKeyPlan = RibbonPanelSheets.AddItem(pbdSheetTitleblockKeyPlan) as PushButton;
+            PushButton pbSheetViewReferenceSheet = RibbonPanelSheets.AddItem(pbdSheetViewReferenceSheet) as PushButton;
 
             PushButton pbViewsFindReplace = RibbonPanelViews.AddItem(pbdViewsFindReplace) as PushButton;
             PushButton pbViewsViewDeleteUnplaced = RibbonPanelViews.AddItem(pbdViewsViewDeleteUnplaced) as PushButton;
@@ -152,6 +158,7 @@ namespace TorsionTools.Ribbon
             pbSheetFindReplace.LargeImage = FindReplaceImage;
             pbSheetSelection.LargeImage = SheetSelectionImage;
             pbSheetTitleblockKeyPlan.LargeImage = SheetTitleblockKeyPlanImage;
+            pbSheetViewReferenceSheet.LargeImage = SheetViewRefSheetImage;
 
             pbViewsFindReplace.LargeImage = FindReplaceImage;
             pbViewsViewDeleteUnplaced.LargeImage = ViewsViewDeleteunplacedImage;
@@ -169,6 +176,7 @@ namespace TorsionTools.Ribbon
             pbSheetFindReplace.ToolTip = "Find and Replace values in Sheet Name or Number";
             pbSheetNameCapitalize.ToolTip = "Capitalize the Name of all Sheets in the Model";
             pbSheetTitleblockKeyPlan.ToolTip = "Set Yes / No parameters of a Titleblock type based on search criteria of the Sheet Name or Sheet Number";
+            pbSheetViewReferenceSheet.ToolTip = "Select a Viewport on a sheet to open the Refering Sheet for the associated View";
 
             pbViewsFindReplace.ToolTip = "Find and Replace values in View Name or Title on Sheet";
             pbViewsViewDeleteUnplaced.ToolTip = "Delete Views, View Templates, Schedules, and Legends that are not used";

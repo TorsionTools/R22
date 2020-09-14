@@ -1840,12 +1840,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4DD819726030A76A1A1CDFF2CB9AC703"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_83E309B7BA0247FAA96FA2E353B9D9CA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2173,6 +2167,12 @@
         "OwnerKey" = "8:_75BDFF569D0414113612E3BB689DB4A8"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4DD819726030A76A1A1CDFF2CB9AC703"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -2223,6 +2223,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -4011,15 +4019,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RevitTorsionTools"
-        "ProductCode" = "8:{E812FA3B-458E-4ED0-BBEA-A95512E70448}"
-        "PackageCode" = "8:{0525CB0C-A1BE-4CA7-AD56-6FB9C942FF23}"
+        "ProductCode" = "8:{07C384CC-9A97-4797-9D26-D6F28074D2A0}"
+        "PackageCode" = "8:{405BE957-2AF8-40C6-AA1C-05D1D26C05DF}"
         "UpgradeCode" = "8:{9E27D7E9-D3EA-4066-92A4-A56F17613FD2}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:20.09.1101"
+        "ProductVersion" = "8:20.09.1401"
         "Manufacturer" = "8:Torsion Tools"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
