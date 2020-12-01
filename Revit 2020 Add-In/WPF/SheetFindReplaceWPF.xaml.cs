@@ -37,7 +37,7 @@ namespace TorsionTools.WPF
                 ParameterValueProvider pvp;
 
                 //Based on the Radio buttons for Name or Number to determine which parameter to use
-                if (rdoSheetNumber.IsChecked == true)
+                if (TogSheetNumber.IsToggled)
                 {
                     //Set the parameter to the ElementId of BuiltInParameter for the Sheet Number
                     pvp = new ParameterValueProvider(new ElementId(BuiltInParameter.SHEET_NUMBER));
@@ -74,7 +74,7 @@ namespace TorsionTools.WPF
                     foreach (ViewSheet sheet in fec.ToElements())
                     {
                         //Based on the Radio buttons for Name or Number to determine which parameter to replace the values for the Preview
-                        if (rdoSheetNumber.IsChecked == true)
+                        if (TogSheetNumber.IsToggled)
                         {
                             //Create a new row in the Data Table and add the sheet information to it when replacing the Sheet Number
                             SheetTable.Rows.Add(sheet.Id, sheet.SheetNumber, sheet.Name, sheet.SheetNumber.Replace(txtFind.Text, txtReplace.Text));
@@ -193,6 +193,35 @@ namespace TorsionTools.WPF
             {
                 TaskDialog.Show("Remove Item Error", ex.ToString());
             }
+        }
+
+        private void TogSheetName_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (TogSheetName.IsToggled)
+            {
+                TogSheetNumber.SetToggle(false);
+            }
+            else
+            {
+                TogSheetNumber.SetToggle(true);
+            }
+        }
+
+        private void TogSheetNumber_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (TogSheetNumber.IsToggled)
+            {
+                TogSheetName.SetToggle(false);
+            }
+            else
+            {
+                TogSheetName.SetToggle(true);
+            }
+        }
+
+        private void TogSheetName_Loaded(object sender, RoutedEventArgs e)
+        {
+            TogSheetName.SetToggle(true);
         }
     }
 }

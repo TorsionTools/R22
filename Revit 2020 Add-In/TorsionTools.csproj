@@ -61,6 +61,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WPFUserControls">
+      <HintPath>..\..\WPFUserControls\WPFUserControls\bin\Debug\WPFUserControls.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
@@ -303,6 +306,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Torsion Tools.dll" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
+xcopy "$(TargetDir)WPFUserControls.dll" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
 xcopy "$(SolutionDir)Revit 2020 Add-In\TorsionTools.addin" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
 xcopy "$(TargetDir)Torsion Tools.dll" "C:\ProgramData\Autodesk\Revit\Addins\2021\" /y
 xcopy "$(SolutionDir)Revit 2020 Add-In\TorsionTools.addin" "C:\ProgramData\Autodesk\Revit\Addins\2021\" /y</PostBuildEvent>

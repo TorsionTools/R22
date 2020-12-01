@@ -687,6 +687,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_78421A21BCD1376EB7218F3F4F02309E"
+        "OwnerKey" = "8:_83E309B7BA0247FAA96FA2E353B9D9CA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_797B204BD149A0C56568316506D66EE7"
         "OwnerKey" = "8:_B74CEBB1757506FF9267932AD126C848"
         "MsmSig" = "8:_UNDEFINED"
@@ -1846,6 +1852,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_78421A21BCD1376EB7218F3F4F02309E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_88C163ED3FC2E75D6E53906CEE7E3F9D"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2230,6 +2242,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -3032,6 +3052,37 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_78421A21BCD1376EB7218F3F4F02309E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:WPFUserControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_78421A21BCD1376EB7218F3F4F02309E"
+                    {
+                    "Name" = "8:WPFUserControls.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:WPFUserControls.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_8AAA84E95E164BAEBEC883D62895C65A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -4019,15 +4070,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RevitTorsionTools"
-        "ProductCode" = "8:{07C384CC-9A97-4797-9D26-D6F28074D2A0}"
-        "PackageCode" = "8:{405BE957-2AF8-40C6-AA1C-05D1D26C05DF}"
+        "ProductCode" = "8:{7CA3C63F-7652-4D4A-AE73-5E6EDAD18FB5}"
+        "PackageCode" = "8:{DB860061-9881-4428-9113-AB7633B28A6A}"
         "UpgradeCode" = "8:{9E27D7E9-D3EA-4066-92A4-A56F17613FD2}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:20.09.1401"
+        "ProductVersion" = "8:20.11.3001"
         "Manufacturer" = "8:Torsion Tools"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

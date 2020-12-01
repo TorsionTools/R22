@@ -1,14 +1,12 @@
-﻿<Window x:Class="TorsionTools.WPF.SheetFindReplaceWPF"
+﻿<Window
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TorsionTools.WPF"
+             xmlns:WPFUserControls="clr-namespace:WPFUserControls;assembly=WPFUserControls" x:Class="TorsionTools.WPF.SheetFindReplaceWPF"
              mc:Ignorable="d" 
-             Height="500" Width="800" FontFamily="Arial Narrow" Title="Find and Replace Sheet Name or Number" Icon="../Resources/square.ico" WindowStartupLocation="CenterScreen" FontSize="13" FontWeight="Bold">
-    <Window.Resources>
-        <BitmapImage x:Key="TorsionIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="pack://application:,,,/Revit 2020 Add-In;component/Resources/square.ico"/>
-    </Window.Resources>
+             Height="500" Width="800" FontFamily="Arial Narrow" Title="Find and Replace Sheet Name or Number" Icon="/Torsion Tools;component/Resources/TorsionTools.ico" WindowStartupLocation="CenterScreen" FontSize="13" FontWeight="Bold">
 
     <Border Padding="10">
         <Grid>
@@ -24,53 +22,59 @@
 
             <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
                 <GroupBox Header="Select Parameter" Height="Auto" Margin="5 0 5 0">
-                    <StackPanel Height="Auto" Margin="0 0 0 5">
-                        <RadioButton Name="rdoSheetName" Content="Sheet Name" Margin="5" IsChecked="True" Background="#9BAD22"/>
-                        <RadioButton Name="rdoSheetNumber" Content="Sheet Number" Margin="5" Background="#9BAD22"/>
+                    <StackPanel Height="Auto" Margin="0 3 0 5">
+                        <Grid>
+                            <Label>Use Sheet Name:</Label>
+                            <WPFUserControls:RoundToggleButton Name="TogSheetName" HorizontalAlignment="Right" Height="20" Margin="0,0,5,0"  VerticalAlignment="Center" Width="40" MouseLeftButtonDown="TogSheetName_MouseLeftButtonDown" Loaded="TogSheetName_Loaded"/>
+                        </Grid>
+                        <Grid>
+                            <Label>Use Sheet Number:</Label>
+                            <WPFUserControls:RoundToggleButton Name="TogSheetNumber" HorizontalAlignment="Right" Height="20" Margin="0,0,5,0"  VerticalAlignment="Center" Width="40" MouseLeftButtonDown="TogSheetNumber_MouseLeftButtonDown"/>
+                        </Grid>
                     </StackPanel>
                 </GroupBox>
                 <TextBlock Text="Find:" Margin="5 15 5 3"/>
-                <TextBox Name="txtFind" Margin="5 0 5 0" BorderBrush="#9BAD22"/>
+                <TextBox x:Name="txtFind" Margin="5 0 5 0" BorderBrush="#9BAD22"/>
                 <TextBlock Text="Replace With:" Margin="5 10 5 3"/>
-                <TextBox Name="txtReplace" Margin="5 0 5 0" BorderBrush="#9BAD22"/>
-                <Button Name="btnPreview" Content="Preview" Width="75" Height="25" HorizontalAlignment="Right" Margin="5 15 5 0" Click="BtnPreview_Click" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+                <TextBox x:Name="txtReplace" Margin="5 0 5 0" BorderBrush="#9BAD22"/>
+                <Button x:Name="btnPreview" Content="Preview" Width="75" Height="25" HorizontalAlignment="Right" Margin="5 15 5 0" Click="BtnPreview_Click" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
                     <Button.Resources>
-                        <Style TargetType="Border">
+                        <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>
                         </Style>
                     </Button.Resources>
                 </Button>
             </StackPanel>
 
-            <DataGrid Name="DataGridSheets" Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding}" Margin="5 0 0 10" CanUserAddRows="False" IsReadOnly="True" >
+            <DataGrid x:Name="DataGridSheets" Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding}" Margin="5 0 0 10" CanUserAddRows="False" IsReadOnly="True" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Visibility="Hidden" Binding="{Binding SheetId}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="ID" Visibility="Hidden" Binding="{Binding SheetId}"/>
                     <DataGridTextColumn Header="Sheet Number" Binding="{Binding SheetNumber}"/>
                     <DataGridTextColumn Header="Sheet Name" Binding="{Binding SheetName}" Width="*"/>
                     <DataGridTextColumn Header="Preview" Binding="{Binding Preview}" Width="Auto"/>
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Name="btnRemove" Click="BtnRemove_Click" Content="Remove" Width="75" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="5 5 0 5" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+            <Button x:Name="btnRemove" Click="BtnRemove_Click" Content="Remove" Width="75" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="5 5 0 5" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
                 <Button.Resources>
-                    <Style TargetType="Border">
+                    <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
                 <Button.ToolTip>
-                    <TextBlock>Select Rows and press Remove to Delete them from the List.</TextBlock>
+                    <TextBlock><Run Text="Select Rows and press Remove to Delete them from the List."/></TextBlock>
                 </Button.ToolTip>
             </Button>
-            <Button Name="btnClose" Click="BtnClose_Click" Content="Close" Width="75" Grid.Column="1" Grid.Row="1" Margin="5 5 80 5" HorizontalAlignment="Right" IsCancel="True" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
+            <Button x:Name="btnClose" Click="BtnClose_Click" Content="Close" Width="75" Grid.Column="1" Grid.Row="1" Margin="5 5 80 5" HorizontalAlignment="Right" IsCancel="True" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
                 <Button.Resources>
-                    <Style TargetType="Border">
+                    <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Name="btnReplace" Click="BtnReplace_Click" Content="OK" Width="75" Grid.Column="1" Grid.Row="1" Margin="5 5 0 5" HorizontalAlignment="Right" IsEnabled="False" IsDefault="True" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">                
+            <Button x:Name="btnReplace" Click="BtnReplace_Click" Content="OK" Width="75" Grid.Column="1" Grid.Row="1" Margin="5 5 0 5" HorizontalAlignment="Right" IsEnabled="False" IsDefault="True" FontFamily="Arial Black" FontSize="12" BorderBrush="#60CCE0">
                 <Button.Resources>
-                    <Style TargetType="Border">
+                    <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
