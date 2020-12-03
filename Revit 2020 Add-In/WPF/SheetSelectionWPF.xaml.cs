@@ -170,5 +170,22 @@ namespace TorsionTools.WPF
                 return ((item as ViewSheetsIdName).SheetName.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
         }
+        
+        //Pprovide a method to show the preview of the sheet from the Context Menu item
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //Get the selected item from the list view and cast that to our custom ViewSheetsIdsName calss
+            ViewSheetsIdName sheet = (ViewSheetsIdName)ListViewSheets.SelectedItem;
+            //Create a new instance of the SheetPreviewForm and change the caption to the Sheet Number & Name
+            Forms.SheetPreviewForm prvForm = new Forms.SheetPreviewForm()
+            {
+                Text = sheet.SheetName
+            };
+            //Add a new PreviewControl to the ElementHost retreived through the public property on the form.
+            //You need the current Document and the ElementId of the view to display, a Sheet in this case
+            prvForm.PreviewHost.Child = new PreviewControl(doc, sheet.SheetId);
+            //Show the form as a dialog
+            prvForm.ShowDialog();
+        }
     }
 }

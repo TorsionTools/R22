@@ -78,6 +78,10 @@ namespace TorsionTools.Ribbon
             PushButtonData pbdViewsLinkedViewsUpdate = new PushButtonData("cmdToolsLinkedViewsUpdate", "Update\nViews", AssemblyPath, "TorsionTools.Commands.LinkedViewUpdate");
             PushButtonData pbdViewsViewDeleteUnplaced = new PushButtonData("cmdToolsViewDeleteUnplaced", "Delete\nUnplaced", AssemblyPath, "TorsionTools.Commands.ViewDeleteUnplacedViews");
             PushButtonData pbdViewsChangeViewReference = new PushButtonData("cmdViewsChangeViewReference", "Change\nReference", AssemblyPath, "TorsionTools.Commands.ViewChangeViewReference");
+            PushButtonData pbdViewActiveToSheet = new PushButtonData("cmdViewActiveToSheet", "Active View\nTo Sheet", AssemblyPath, "TorsionTools.Commands.ViewActiveToSheet")
+            {
+                AvailabilityClassName = "TorsionTools.Ribbon.ViewCommandAvailability"
+            };
 
             PushButtonData pbdToolsWarnings = new PushButtonData("cmdToolsWarnings", "Warnings", AssemblyPath, "TorsionTools.Commands.Warnings");
             PushButtonData pbdToolsElemOfCategory = new PushButtonData("cmdToolsElemOfCategory", "Family Instances\nof Category", AssemblyPath, "TorsionTools.Commands.ElementsOfCategory");
@@ -97,6 +101,7 @@ namespace TorsionTools.Ribbon
 
             PushButton pbViewsFindReplace = RibbonPanelViews.AddItem(pbdViewsFindReplace) as PushButton;
             PushButton pbViewsViewDeleteUnplaced = RibbonPanelViews.AddItem(pbdViewsViewDeleteUnplaced) as PushButton;
+            PushButton pbViewActiveToSheet = RibbonPanelViews.AddItem(pbdViewActiveToSheet) as PushButton;
 
             PushButton pbToolsWarnings = RibbonPanelTools.AddItem(pbdToolsWarnings) as PushButton;
             PushButton pbToolsElemOfCategory = RibbonPanelTools.AddItem(pbdToolsElemOfCategory) as PushButton;
@@ -166,6 +171,7 @@ namespace TorsionTools.Ribbon
 
             pbViewsFindReplace.LargeImage = FindReplaceImage;
             pbViewsViewDeleteUnplaced.LargeImage = ViewsViewDeleteunplacedImage;
+            pbViewActiveToSheet.LargeImage = SquareTImage;
             pbViewsChangeViewReference.LargeImage = ViewsChangeViewReferenceImage;
 
             pbToolsWarnings.LargeImage = ToolsWarningsImage;
@@ -186,6 +192,7 @@ namespace TorsionTools.Ribbon
             pbViewsFindReplace.ToolTip = "Find and Replace values in View Name or Title on Sheet";
             pbViewsViewDeleteUnplaced.ToolTip = "Delete Views, View Templates, Schedules, and Legends that are not used";
             pbViewsChangeViewReference.ToolTip = "Change the Reference for all views that currently reference a different View";
+            pbViewActiveToSheet.ToolTip = "Place the Active View on the selected Sheet";
 
             pbToolsWarnings.ToolTip = "Display and isolate Warnings in the Document";
             pbToolsElemOfCategory.ToolTip = "Get all Elements of selected Category";

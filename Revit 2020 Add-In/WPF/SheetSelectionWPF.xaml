@@ -6,9 +6,6 @@
              xmlns:local="clr-namespace:TorsionTools.WPF"
              mc:Ignorable="d" 
              Height="700" Width="400" Title="Sheet Selection" ResizeMode="CanMinimize"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Icon="../Resources/square.ico" FontFamily="Arial Narrow" FontSize="13">
-    <Window.Resources>
-        <BitmapImage x:Key="TorsionIcon" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="pack://application:,,,/Revit 2020 Add-In;component/Resources/square.ico"/>
-    </Window.Resources>
 
     <!--Define a border for the entire window to offsetthings from the perimeter-->
     <Border Padding="10">
@@ -39,6 +36,11 @@
                         <Setter Property="Visibility" Value="Collapsed" />
                     </Style>
                 </ListView.Resources>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Sheet Preview" Click="MenuItem_Click"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
                 <!--Change the View / GridView settings for the columns needed-->
                 <ListView.View>
                     <GridView>

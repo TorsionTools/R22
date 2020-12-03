@@ -24,7 +24,7 @@ namespace TorsionTools.Commands
             {
                 //Get a new UIDocument from the current document to use to make a selection
                 UIDocument uidoc = new UIDocument(doc);
-                //Create a new instance of the ViewSelectionFilter to only allow the user to select a Legend Viewport
+                //Create a new instance of the ViewSelectionFilter to only allow the user to select a ScheduleSheetIntance
                 ISelectionFilter filter = new ViewSelectionFilter();
                 //A selection of elements from the current Document
                 Selection picked = uidoc.Selection;
@@ -39,7 +39,7 @@ namespace TorsionTools.Commands
                     {
                         //Set the Class variable to the Viewport the user selected
                         ScheduleInstanceSelected = doc.GetElement(selection) as ScheduleSheetInstance;
-                        //Prompt the user with a model dialog to select the sheets to place or update the Legends on
+                        //Prompt the user with a model dialog to select the sheets to place or update the Schedules on
                         WPF.SheetSelectionWPF frm = new WPF.SheetSelectionWPF(doc);
                         //Make sure the Sheet Selection Form returns the correct DialogResult
                         if (frm.ShowDialog().Value)
@@ -47,7 +47,7 @@ namespace TorsionTools.Commands
                             //Make sure the user selected at least 1 sheet
                             if (frm.ViewSheetIds.Count > 0)
                             {
-                                //Use this try to make sure Revit doesn't crash when trying to place or update the Legend Viewports
+                                //Use this try to make sure Revit doesn't crash when trying to place or update the Schedules
                                 try
                                 {
                                     //Create a Transaction within a using block to dispose of everything when complete
@@ -89,7 +89,7 @@ namespace TorsionTools.Commands
                                         return Result.Succeeded;
                                     }
                                 }
-                                //Catch an exceptions when adding or updating the Legend Viewports. Tell the user and return a Failed Result so Revit does not keep any changes
+                                //Catch an exceptions when adding or updating the Sheet Schedule instances. Tell the user and return a Failed Result so Revit does not keep any changes
                                 catch (Exception ex)
                                 {
                                     TaskDialog.Show("Schedule Placement Error", ex.ToString());
