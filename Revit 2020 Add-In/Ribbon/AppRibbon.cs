@@ -75,7 +75,9 @@ namespace TorsionTools.Ribbon
             PushButtonData pbdViewsViewLegendCopy = new PushButtonData("cmdToolsViewLegendCopy", "Copy\nLegends", AssemblyPath, "TorsionTools.Commands.ViewLegendCopy");
             PushButtonData pbdViewsViewScheduleCopy = new PushButtonData("cmdToolsViewScheduleCopy", "Copy\nSchedules", AssemblyPath, "TorsionTools.Commands.ViewScheduleCopy");
             PushButtonData pbdViewsLinkedViews = new PushButtonData("cmdToolsLinkedViews", "Linked\nViews", AssemblyPath, "TorsionTools.Commands.LinkedViews");
-            PushButtonData pbdViewsLinkedViewsUpdate = new PushButtonData("cmdToolsLinkedViewsUpdate", "Update\nViews", AssemblyPath, "TorsionTools.Commands.LinkedViewUpdate");
+            PushButtonData pbdViewsExternalViews = new PushButtonData("cmdToolsExternalViews", "External\nViews", AssemblyPath, "TorsionTools.Commands.ExternalViews");
+            PushButtonData pbdViewsLinkedViewsUpdate = new PushButtonData("cmdToolsLinkedViewsUpdate", "Update\nLinked", AssemblyPath, "TorsionTools.Commands.LinkedViewUpdate");
+            PushButtonData pbdViewsExternalViewsUpdate = new PushButtonData("cmdToolsExternalViewsUpdate", "Update\nExternal", AssemblyPath, "TorsionTools.Commands.ExternalViewUpdate");
             PushButtonData pbdViewsViewDeleteUnplaced = new PushButtonData("cmdToolsViewDeleteUnplaced", "Delete\nUnplaced", AssemblyPath, "TorsionTools.Commands.ViewDeleteUnplacedViews");
             PushButtonData pbdViewsChangeViewReference = new PushButtonData("cmdViewsChangeViewReference", "Change\nReference", AssemblyPath, "TorsionTools.Commands.ViewChangeViewReference");
             PushButtonData pbdViewActiveToSheet = new PushButtonData("cmdViewActiveToSheet", "Active View\nTo Sheet", AssemblyPath, "TorsionTools.Commands.ViewActiveToSheet")
@@ -117,12 +119,17 @@ namespace TorsionTools.Ribbon
             pbdSheetScheduleToMultiple.ToolTip = "Select a Schedule Instance to place on multiple sheets int he same location";
 
             pbdViewsLinkedViews.LargeImage = ViewsLinkedViewsImage;
+            pbdViewsExternalViews.LargeImage = ViewsLinkedViewsImage;
             pbdViewsLinkedViewsUpdate.LargeImage = ViewsLinkedViewsUpdateImage;
+            pbdViewsExternalViewsUpdate.LargeImage = ViewsLinkedViewsUpdateImage;
             pbdViewsViewLegendCopy.LargeImage = ViewsViewLegendCopyImage;
             pbdViewsViewScheduleCopy.LargeImage = ViewsViewScheduleCopyImage;
             pbdViewsLinkedViews.ToolTip = "Create Drafting Views based on Views in a Linked Model for reference";
+            pbdViewsExternalViews.ToolTip = "Create Drafting Views based on Views in an external Model for reference";
             pbdViewsLinkedViewsUpdate.ToolTip = "Update Linked View information referenced from a Linked Model";
+            pbdViewsExternalViewsUpdate.ToolTip = "Update Linked View information referenced from an External Model";
             pbdViewsLinkedViews.LongDescription = "Verify the current Revit Model has the following three parameters under Phasing paramter group and View category:\nLinked View - Yes/No\nLinked View GUID - Text\nLink Name - Text ";
+            pbdViewsExternalViews.LongDescription = "Verify the current Revit Model has the following three parameters under Phasing paramter group and View category:\nLinked View - Yes/No\nLinked View GUID - Text\nLink Name - Text ";
             pbdViewsViewLegendCopy.ToolTip = "Copy one or more Legend Views from a Linked Document";
             pbdViewsViewLegendCopy.LongDescription = "Select the Linked Document from which you want to copy the Legend from. Then select from the available Legend views. Then press the Copy button to copy the Legends into the current Document.";
             pbdViewsViewScheduleCopy.ToolTip = "Copy one or more Schedules form a Linked Document";
@@ -140,6 +147,9 @@ namespace TorsionTools.Ribbon
             pdbLinkedViews.LargeImage = ViewsLinkedViewsImage;
             pdbLinkedViews.AddPushButton(pbdViewsLinkedViews);
             pdbLinkedViews.AddPushButton(pbdViewsLinkedViewsUpdate);
+            pdbLinkedViews.AddSeparator();
+            pdbLinkedViews.AddPushButton(pbdViewsExternalViews);
+            pdbLinkedViews.AddPushButton(pbdViewsExternalViewsUpdate);
 
             PushButton pbViewsChangeViewReference = RibbonPanelViews.AddItem(pbdViewsChangeViewReference) as PushButton;
 

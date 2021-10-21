@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using Autodesk.Revit.DB;
+﻿using System.Collections.Generic;
 using Autodesk.Revit.UI;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TorsionTools.Helpers
+namespace TorsionTools
 {
-    class StaticVariables
-    {
-        public static UIControlledApplication revitApplication { get; set; }
-    }
+	class StaticVariables
+	{
+		public static UIControlledApplication revitApplication { get; set; }
+		//A list of custom MapParam class objects to store the Parameter Mappings
+		internal static List<MapParam> ParamMappings { get; set; } = null;
+	}
 }

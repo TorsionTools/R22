@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<!--This document is used for mapping parameters within Torsion Toolbar for 2022 and above-->
+<!DOCTYPE ParameterMappings>
+<ParameterMappings>
+  <!--Description:  What and where the parameter is used in the code-->
+  <!--Name:         The Reference used within the code-->
+  <!--Parameter:    The actual name of the Parameter in the Model-->
+  <Parameters>
+    <Mapping>
+      <Description>Text Parameter for Views and Rooms to identify what Linked Model they were Copied / Associated with</Description>
+      <Name>TT_Link_Name</Name>
+      <Parameter>TT Link Name</Parameter>
+    </Mapping>
+    <Mapping>
+      <Description>Yes/No Parameter for View Instances that indicates if they were associated with a Linked Model</Description>
+      <Name>TT_Linked_View</Name>
+      <Parameter>TT Linked View</Parameter>
+    </Mapping>
+    <Mapping>
+      <Description>Text Parameter for View Instances that stored the GUID of the Linked Room</Description>
+      <Name>TT_Linked_View_GUID</Name>
+      <Parameter>TT Linked View GUID</Parameter>
+    </Mapping>
+  </Parameters>
+</ParameterMappings>

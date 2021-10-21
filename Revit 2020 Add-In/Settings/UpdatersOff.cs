@@ -14,7 +14,7 @@ namespace TorsionTools.Settings
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             //Disable All Dynamic Updaters in the Application
-            App.DisableUpdaters(Helpers.StaticVariables.revitApplication);
+            App.DisableUpdaters(StaticVariables.revitApplication);
 
             //Let Revit know it executed successfully. This is also how you can roll back the entire feature.
             return Result.Succeeded;

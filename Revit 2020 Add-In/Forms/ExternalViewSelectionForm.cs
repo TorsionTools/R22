@@ -3,6 +3,7 @@ using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using ToolTip = System.Windows.Forms.ToolTip;
@@ -10,48 +11,23 @@ using View = Autodesk.Revit.DB.View;
 
 namespace TorsionTools.Forms
 {
-	public partial class LinkedViewSelectionForm : System.Windows.Forms.Form
+	public partial class ExternalViewSelectionForm : System.Windows.Forms.Form
 	{
 		//Set Class Variables
 		Document doc;
-		Document linkDoc;
 		SortedList<string, ElementId> vpTypes = new SortedList<string, ElementId>();
 
-		public LinkedViewSelectionForm(Document _doc)
+		public ExternalViewSelectionForm(Document _doc)
 		{
 			InitializeComponent();
 			doc = _doc;
 		}
-
-		//Populate the Links, Title Block and Viewport Type combo boxes
+ 		//Populate the Links, Title Block and Viewport Type combo boxes
 		private void LinkedViewSelectionForm_Load(object sender, EventArgs e)
 		{
 			ToolTip tTip = new ToolTip();
 			tTip.SetToolTip(cboTitleBlock, "Select a Title Block to use for created Sheets.");
 			tTip.SetToolTip(cbViewPortTypes, "Select a Viewport type to use for created Views.");
-			DataTable dtLinks = new DataTable();
-			dtLinks.Columns.Add(new DataColumn("Name", typeof(string)));
-			dtLinks.Columns.Add(new DataColumn("Doc", typeof(Document)));
-			dtLinks.Rows.Add("<Select Linked Model>", null);
-
-			using(FilteredElementCollector rvtLinks = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_RvtLinks).OfClass(typeof(RevitLinkType)))
-			{
-				if(rvtLinks.ToElements().Count > 0)
-				{
-					foreach(RevitLinkType rvtLink in rvtLinks.ToElements())
-					{
-						if(rvtLink.GetLinkedFileStatus() == LinkedFileStatus.Loaded)
-						{
-							RevitLinkInstance link = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_RvtLinks).OfClass(typeof(RevitLinkInstance)).Where(x => x.GetTypeId() == rvtLink.Id).First() as RevitLinkInstance;
-							dtLinks.Rows.Add(rvtLink.Name, link.GetLinkDocument());
-						}
-					}
-				}
-			}
-			cboLinks.DataSource = dtLinks;
-			cboLinks.ValueMember = "Doc";
-			cboLinks.DisplayMember = "Name";
-			cboLinks.SelectedIndex = 0;
 
 			SortedList<string, Element> titleBlocks = new SortedList<string, Element>();
 			foreach(Element tb in Helpers.Collectors.ByCategoryElementType(doc, BuiltInCategory.OST_TitleBlocks))
@@ -79,14 +55,12 @@ namespace TorsionTools.Forms
 			cbViewPortTypes.DisplayMember = "Key";
 			cbViewPortTypes.ValueMember = "Value";
 		}
-
-		//Close the Form
+ 		//Close the Form
 		private void btnClose_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
 			Close();
 		}
-
 		//Get the Selected Viewports from the linked model, check to see if the sheet they are on exists and if they are already placed. 
 		//If not, create and set the properties of both.
 		private void btnOK_Click(object sender, EventArgs e)
@@ -128,7 +102,7 @@ namespace TorsionTools.Forms
 							TextNoteType textnoteType = new FilteredElementCollector(doc).OfClass(typeof(TextNoteType)).Cast<TextNoteType>().FirstOrDefault();
 							ViewDrafting draftingView = ViewDrafting.Create(doc, viewfamilyType.Id);
 							draftingView.Name = (string)row.Cells[3].Value;
-							draftingView.get_Parameter(BuiltInParameter.VIEWPORT_ATTR_SHOW_LABEL).Set("REFERENCE VIEW - DO NOT PRINT");
+							draftingView.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION).Set("REFERENCE VIEW - DO NOT PRINT");
 
 							//Set additional View Parameters based on Firm standards and Project Broswer Sorting templates
 							//if (dView.LookupParameter("Sheet Sort") is Parameter sSort)
@@ -160,7 +134,7 @@ namespace TorsionTools.Forms
 							//Set the Link Name parameter to trak which Linked Model it came from.
 							if(draftingView.LookupParameter(Map.Find("TT_Link_Name")) is Parameter lName)
 							{
-								lName.Set(cboLinks.Text);
+								lName.Set(txtPath.Text);
 							}
 							else
 							{
@@ -253,61 +227,6 @@ namespace TorsionTools.Forms
 				Close();
 			}
 		}
-
-		//Loads all Viewports from the Linked Model Selection into the DataGridView
-		private void cbLinks_SelectionChangeCommitted(object sender, EventArgs e)
-		{
-			if(cboLinks.SelectedValue != null && cboLinks.SelectedIndex != 0)
-			{
-				try
-				{
-					DataTable dtViews = new DataTable();
-					dtViews.Columns.Add(new DataColumn("Type", typeof(string))); //#0
-					dtViews.Columns.Add(new DataColumn("Detail", typeof(string)));
-					dtViews.Columns.Add(new DataColumn("Sheet", typeof(string)));
-					dtViews.Columns.Add(new DataColumn("Name", typeof(string))); //#3
-					dtViews.Columns.Add(new DataColumn("Title on Sheet", typeof(string)));
-					dtViews.Columns.Add(new DataColumn("GUID", typeof(string)));
-					dtViews.Columns.Add(new DataColumn("View", typeof(View))); //#6
-					dtViews.Columns.Add(new DataColumn("Min", typeof(XYZ)));
-
-					linkDoc = (Document)cboLinks.SelectedValue;
-					foreach(Viewport vp in Helpers.Collectors.ByCategoryNotElementType(linkDoc, BuiltInCategory.OST_Viewports))
-					{
-						//Check to make sure the viewport type is Showing the Title so we can get the location
-						ElementType viewportType = linkDoc.GetElement(vp.GetTypeId()) as ElementType;
-						if(viewportType.get_Parameter(BuiltInParameter.VIEWPORT_ATTR_SHOW_LABEL).AsInteger() == 1)
-						{
-							if(linkDoc.GetElement(vp.ViewId) is View view)
-							{
-								if(view.ViewType != ViewType.Legend)
-								{
-									if(vp.get_Parameter(BuiltInParameter.VIEWPORT_SHEET_NUMBER) is Parameter sNum && vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER) is Parameter dNum)
-									{
-										if(vp.GetLabelOutline().MinimumPoint is XYZ point)
-										{
-											dtViews.Rows.Add(view.ViewType.ToString(), dNum.AsString(), sNum.AsString(), view.Name, view.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION).AsString(), vp.UniqueId, view, vp.GetLabelOutline().MinimumPoint);
-										}
-									}
-								}
-							}
-						}
-					}
-
-					dgvLinkedViews.DataSource = dtViews;
-					dgvLinkedViews.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-					dgvLinkedViews.Columns[5].Visible = false;
-					dgvLinkedViews.Columns[6].Visible = false;
-					dgvLinkedViews.Columns[7].Visible = false;
-					dgvLinkedViews.ClearSelection();
-				}
-				catch(Exception ex)
-				{
-					TaskDialog.Show("Error", ex.ToString());
-				}
-			}
-		}
-
 		//Search the list of views via the DataTable Row Filter
 		private void txtSearch_KeyUp(object sender, KeyEventArgs e)
 		{
@@ -317,8 +236,7 @@ namespace TorsionTools.Forms
 				dtDGV.DefaultView.RowFilter = string.Format("Name like '%{0}%' OR [Title on Sheet] like '%{0}%' OR Sheet like '%{0}%' OR Detail like '%{0}%'", txtSearch.Text);
 			}
 		}
-
-		//Checks to see if a viewport with a specific detail number already exists
+ 		//Checks to see if a viewport with a specific detail number already exists
 		private bool CheckViewport(string _detailNumber, ViewSheet _vs)
 		{
 			ParameterValueProvider pvp = new ParameterValueProvider(new ElementId(BuiltInParameter.VIEWPORT_DETAIL_NUMBER));
@@ -335,8 +253,7 @@ namespace TorsionTools.Forms
 				return true;
 			}
 		}
-
-		//Check to see if a Sheet Number already exists in the project and create it if not
+ 		//Check to see if a Sheet Number already exists in the project and create it if not
 		private ViewSheet CheckSheet(string _sheetNumber, ElementId _vpTypeId)
 		{
 			try
@@ -369,6 +286,96 @@ namespace TorsionTools.Forms
 			{
 				return null;
 			}
+		}
+ 		private void btnSelectFile_Click(object sender, EventArgs e)
+		{
+			//Create a new instance of an OpenFileDialog to get the revit model you want to get views from.
+			OpenFileDialog FileDialog = new OpenFileDialog
+			{
+				//Set it to only look for Revit Files
+				Filter = "Revit Project (*.rvt) | *.rvt",
+				Title = "Select Revit Project"
+			};
+			//Make sure the 'Open' button was pressed OpenFileDialog
+			if(FileDialog.ShowDialog() == DialogResult.OK)
+			{
+				//Check to make sure the file at that path exists
+				if(File.Exists(FileDialog.FileName))
+				{
+					try
+					{
+						//Open the model from the path selected
+						if(OpenModel(FileDialog.FileName) is Document linkDoc)
+						{
+							txtPath.Text = FileDialog.FileName;
+							DataTable dtViews = new DataTable();
+							dtViews.Columns.Add(new DataColumn("Type", typeof(string))); //#0
+							dtViews.Columns.Add(new DataColumn("Detail", typeof(string)));
+							dtViews.Columns.Add(new DataColumn("Sheet", typeof(string)));
+							dtViews.Columns.Add(new DataColumn("Name", typeof(string))); //#3
+							dtViews.Columns.Add(new DataColumn("Title on Sheet", typeof(string)));
+							dtViews.Columns.Add(new DataColumn("GUID", typeof(string)));
+							dtViews.Columns.Add(new DataColumn("View", typeof(View))); //#6
+							dtViews.Columns.Add(new DataColumn("Min", typeof(XYZ)));
+
+							foreach(Viewport vp in Helpers.Collectors.ByCategoryNotElementType(linkDoc, BuiltInCategory.OST_Viewports))
+							{
+								//Check to make sure the viewport type is Showing the Title so we can get the location
+								ElementType viewportType = linkDoc.GetElement(vp.GetTypeId()) as ElementType;
+								if(viewportType.get_Parameter(BuiltInParameter.VIEWPORT_ATTR_SHOW_LABEL).AsInteger() == 1)
+								{
+									if(linkDoc.GetElement(vp.ViewId) is View view)
+									{
+										if(view.ViewType != ViewType.Legend)
+										{
+											if(vp.get_Parameter(BuiltInParameter.VIEWPORT_SHEET_NUMBER) is Parameter sNum && vp.get_Parameter(BuiltInParameter.VIEWPORT_DETAIL_NUMBER) is Parameter dNum)
+											{
+												if(vp.GetLabelOutline().MinimumPoint is XYZ point)
+												{
+													dtViews.Rows.Add(view.ViewType.ToString(), dNum.AsString(), sNum.AsString(), view.Name, view.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION).AsString(), vp.UniqueId, view, vp.GetLabelOutline().MinimumPoint);
+												}
+											}
+										}
+									}
+								}
+							}
+
+							dgvLinkedViews.DataSource = dtViews;
+							dgvLinkedViews.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+							dgvLinkedViews.Columns[5].Visible = false;
+							dgvLinkedViews.Columns[6].Visible = false;
+							dgvLinkedViews.Columns[7].Visible = false;
+							dgvLinkedViews.ClearSelection();
+						}
+						else
+						{
+							TaskDialog.Show("Model Load Error", "Unable to open Model.");
+						}
+					}
+					catch(Exception ex)
+					{
+						TaskDialog.Show("Error", ex.ToString());
+					}
+				}
+			}
+		}
+		//This method will open and return a Document based on a path.
+		internal Document OpenModel(string _path)
+		{
+			//Set open options to make it easier to open in the background.
+			OpenOptions openOptions = new OpenOptions()
+			{
+				DetachFromCentralOption = DetachFromCentralOption.DetachAndPreserveWorksets,
+				Audit = false,
+				AllowOpeningLocalByWrongUser = true
+			};
+			//Convert the path to a Model Path and open the file. Return the Document once open.
+			ModelPath mPath = ModelPathUtils.ConvertUserVisiblePathToModelPath(_path);
+			if(doc.Application.OpenDocumentFile(mPath, openOptions) is Document oDoc)
+			{
+				return oDoc;
+			}
+			return null;
 		}
 	}
 }

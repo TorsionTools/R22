@@ -95,7 +95,7 @@ namespace TorsionTools.WPF
                 //Get the Revit Link Type to check Type Parameter
                 RevitLinkType rvtLinkType = doc.GetElement(rvtLinkInstance.GetTypeId()) as RevitLinkType;
                 //Check to see if the Link Type is Room Bounding
-                if (rvtLinkType.LookupParameter("Room Bounding").AsInteger() == 0)
+                if (rvtLinkType.get_Parameter(BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).AsInteger() == 0)
                 {
                     //If it is not room bounding, ask the user if they want to proceed or not
                     if (TaskDialog.Show("Linked Model Room Bounding", "The Revit Link " + rvtLinkType.Name + " is not Room Bounding.\n\nWould you like to make it Room Bounding and proceed with creating Spaces?", TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No, TaskDialogResult.No) == TaskDialogResult.Yes)
@@ -104,7 +104,7 @@ namespace TorsionTools.WPF
                         using (Transaction trans = new Transaction(doc))
                         {
                             trans.Start("Change Link Room Bounding");
-                            rvtLinkType.LookupParameter("Room Bounding").Set(1);
+                            rvtLinkType.get_Parameter(BuiltInParameter.WALL_ATTR_ROOM_BOUNDING).Set(1);
                             trans.Commit();
                         }
                         //If you user says yes, get all rooms in the linked model via GetLinkedRoom method by passing the Linked Document

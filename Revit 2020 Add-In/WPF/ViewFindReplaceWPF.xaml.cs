@@ -45,7 +45,7 @@ namespace TorsionTools.WPF
                     //Use a Filtered Collector to get the first view that is not a template of Floor Plan Type
                     View tempView = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Views).Cast<View>().Where(v => v.IsTemplate == false && v.ViewType == ViewType.FloorPlan).First();
                     //Get the paramter associated with the Title On Sheet
-                    Parameter param = tempView.LookupParameter("Title on Sheet");
+                    Parameter param = tempView.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION);
                     //Set the parameter to the ElementId of BuiltInParameter for the Title On Sheet
                     pvp = new ParameterValueProvider(param.Id);
                 }
@@ -75,7 +75,7 @@ namespace TorsionTools.WPF
                     //Loop through each sheet that is returned from the Collector
                     foreach (View view in fec.ToElements())
                     {
-                        Parameter viewTitle = view.LookupParameter("Title on Sheet");
+                        Parameter viewTitle = view.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION);
                         //Based on the Radio buttons for Name or Number to determine which parameter to replace the values for the Preview
                         if (rdoViewName.IsChecked == true)
                         {
@@ -139,7 +139,7 @@ namespace TorsionTools.WPF
                             else
                             {
                                 //Change the Title on Sheet
-                                view.LookupParameter("Title on Sheet").Set((string)row["Preview"]);
+                                view.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION).Set((string)row["Preview"]);
                             }
                         }
                         //Commit the Transaction to keep the changes

@@ -71,6 +71,8 @@
     <Compile Include="App.cs" />
     <Compile Include="Commands\ElementsOfCategory.cs" />
     <Compile Include="Commands\HelloWorld.cs" />
+    <Compile Include="Commands\ExternalViews.cs" />
+    <Compile Include="Commands\ExternalViewUpdate.cs" />
     <Compile Include="Commands\LinkedViewUpdate.cs" />
     <Compile Include="Commands\LinkedViews.cs" />
     <Compile Include="Commands\LinksReloadAll.cs" />
@@ -96,6 +98,12 @@
       <DependentUpon>ElementsOfCategoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\ViewLegendCopy.cs" />
+    <Compile Include="Forms\ExternalViewSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExternalViewSelectionForm.designer.cs">
+      <DependentUpon>ExternalViewSelectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LinkedViewSelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +179,8 @@
     <Compile Include="Helpers\Collectors.cs" />
     <Compile Include="Helpers\CustomContainerClasses.cs" />
     <Compile Include="Helpers\Functions.cs" />
+    <Compile Include="Helpers\Map.cs" />
+    <Compile Include="Helpers\MapParamViewModel.cs" />
     <Compile Include="Helpers\StaticVariables.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ribbon\AppRibbon.cs" />
@@ -236,11 +246,15 @@
     </Resource>
     <Resource Include="Resources\SheetViewRefSheet100x100.png" />
     <Resource Include="Resources\SquareT100x100.png" />
+    <Content Include="ParameterMappings.xml" />
     <Content Include="TorsionTools.addin" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\ElementsOfCategoryForm.resx">
       <DependentUpon>ElementsOfCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExternalViewSelectionForm.resx">
+      <DependentUpon>ExternalViewSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LinkedViewSelectionForm.resx">
       <DependentUpon>LinkedViewSelectionForm.cs</DependentUpon>
