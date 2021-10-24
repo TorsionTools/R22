@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\PropertyChanged.Fody.3.4.0\build\PropertyChanged.Fody.props" Condition="Exists('..\packages\PropertyChanged.Fody.3.4.0\build\PropertyChanged.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,6 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +46,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="PropertyChanged, Version=3.4.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
+      <HintPath>..\packages\PropertyChanged.Fody.3.4.0\lib\net40\PropertyChanged.dll</HintPath>
+    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
     </Reference>
@@ -84,6 +90,7 @@
     <Compile Include="Commands\SheetNameCapitalize.cs" />
     <Compile Include="Commands\SheetSelection.cs" />
     <Compile Include="Commands\SheetTitleblockKeyPlan.cs" />
+    <Compile Include="Commands\ParamMapping.cs" />
     <Compile Include="Commands\ViewActiveToSheet.cs" />
     <Compile Include="Commands\ViewChangeViewReference.cs" />
     <Compile Include="Commands\ViewDeleteUnplacedViews.cs" />
@@ -180,7 +187,8 @@
     <Compile Include="Helpers\CustomContainerClasses.cs" />
     <Compile Include="Helpers\Functions.cs" />
     <Compile Include="Helpers\Map.cs" />
-    <Compile Include="Helpers\MapParamViewModel.cs" />
+    <Compile Include="WPF\ViewModel\BaseViewModel.cs" />
+    <Compile Include="WPF\ViewModel\ParamMapViewModel.cs" />
     <Compile Include="Helpers\StaticVariables.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ribbon\AppRibbon.cs" />
@@ -197,6 +205,9 @@
     </Compile>
     <Compile Include="WPF\MEPSpaceFromRoomWPF.xaml.cs">
       <DependentUpon>MEPSpaceFromRoomWPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\ParameterMappingWPF.xaml.cs">
+      <DependentUpon>ParameterMappingWPF.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\SheetFindReplaceWPF.xaml.cs">
       <DependentUpon>SheetFindReplaceWPF.xaml</DependentUpon>
@@ -293,7 +304,14 @@
       <DependentUpon>WarningsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Resource Include="WPF\Fonts\fontawesome-webfont.ttf" />
+    <Resource Include="WPF\Fonts\Lato-Black.ttf" />
+    <Resource Include="WPF\Fonts\Lato-Bold.ttf" />
+    <Resource Include="WPF\Fonts\Lato-Regular.ttf" />
+    <Resource Include="WPF\Fonts\Lato-Thin.ttf" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="WPF\LinkScheduleCopyWPF.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -306,6 +324,10 @@
     <Page Include="WPF\MEPSpaceFromRoomWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPF\ParameterMappingWPF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="WPF\SheetFindReplaceWPF.xaml">
       <SubType>Designer</SubType>
@@ -323,6 +345,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WPF\Styles\Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\Styles\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\Styles\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPF\Styles\Text.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="WPF\ViewChangeReferenceViewsWPF.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -338,10 +380,21 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Torsion Tools.dll" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
-xcopy "$(TargetDir)WPFUserControls.dll" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
+    <PostBuildEvent>xcopy "$(TargetDir)Torsion Tools.dll" "C:\ProgramData\Autodesk\Revit\Addins\2020\TorsionTools\" /y
+xcopy "$(TargetDir)WPFUserControls.dll" "C:\ProgramData\Autodesk\Revit\Addins\2020\TorsionTools\" /y
 xcopy "$(SolutionDir)Revit 2020 Add-In\TorsionTools.addin" "C:\ProgramData\Autodesk\Revit\Addins\2020\" /y
-xcopy "$(TargetDir)Torsion Tools.dll" "C:\ProgramData\Autodesk\Revit\Addins\2021\" /y
-xcopy "$(SolutionDir)Revit 2020 Add-In\TorsionTools.addin" "C:\ProgramData\Autodesk\Revit\Addins\2021\" /y</PostBuildEvent>
+xcopy "$(TargetDir)Torsion Tools.dll" "C:\ProgramData\Autodesk\Revit\Addins\2021\TorsionTools\" /y
+xcopy "$(SolutionDir)Revit 2020 Add-In\TorsionTools.addin" "C:\ProgramData\Autodesk\Revit\Addins\2021\" /y
+xcopy "$(TargetDir)Torsion Tools.dll" "C:\ProgramData\Autodesk\Revit\Addins\2022\TorsionTools\" /y
+xcopy "$(SolutionDir)Revit 2020 Add-In\TorsionTools.addin" "C:\ProgramData\Autodesk\Revit\Addins\2022\" /y
+xcopy "$(SolutionDir)Revit 2020 Add-In\ParameterMappings.xml" "C:\ProgramData\Autodesk\Revit\Addins\2022\TorsionTools\Resources\" /y</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\Fody.6.5.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.5.1\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.6.5.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.5.1\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\PropertyChanged.Fody.3.4.0\build\PropertyChanged.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\PropertyChanged.Fody.3.4.0\build\PropertyChanged.Fody.props'))" />
+  </Target>
 </Project>

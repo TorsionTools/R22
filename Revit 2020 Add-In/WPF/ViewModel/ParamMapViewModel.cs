@@ -1,9 +1,18 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
-namespace TorsionTools
-{
+namespace TorsionTools.WPF
+{	
 	/// <summary>
-	/// This is a Container class for the Parameter elemnt class for Mapping project parameters to the code
+	/// Main View Model for the Parameter Mapping Window
+	/// </summary>
+	internal class ParamMapViewModel : BaseViewModel
+	{	
+		//List of MapParam classes to hold in the information gathered from the XML and linked to DataGrid
+		public List<MapParam> ParamMap { get; set; }
+	}
+	/// <summary>
+	/// This is a Container class for the Parameter element class for Mapping project parameters to the code
 	/// </summary>
 	public class MapParam : INotifyPropertyChanged
 	{

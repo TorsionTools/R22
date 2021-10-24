@@ -92,6 +92,10 @@ namespace TorsionTools.Ribbon
 
             PushButtonData pbdMEPSpacesFromLinkedRooms = new PushButtonData("cmdMEPSpacesFromLinkedRooms", "Create\nSpaces", AssemblyPath, "TorsionTools.Commands.MEPSpacesFromRooms");
 
+			PushButtonData pbdParamMapping = new PushButtonData("cmdParamMapping", "Parameter Mapping", AssemblyPath, "TorsionTools.Commands.ParamMapping");
+			pbdParamMapping.ToolTip = "View and Change the Parameter Mappings for the Torsion Tools toolbar";
+			pbdParamMapping.LargeImage = SquareTImage;
+
             //Create a Push Button from the Push Button Data
             PushButton pbTestButton = RibbonPanelOne.AddItem(pbdTestButton) as PushButton;
 
@@ -170,6 +174,11 @@ namespace TorsionTools.Ribbon
             rdoBtnGroup.AddItem(tbdUpdaterOn);
             rdoBtnGroup.AddItem(tbdUpdaterOff);
 
+			PulldownButtonData pdbdSettings = new PulldownButtonData("pullDownSettings", "Settings");
+			PulldownButton pdbSettings = RibbonPanelSettings.AddItem(pdbdSettings) as PulldownButton;
+			pdbSettings.LargeImage = SquareTImage;
+			pdbSettings.AddPushButton(pbdParamMapping);
+			
             //Set Button Image
             pbTestButton.LargeImage = ButtonImage;
 

@@ -1,12 +1,11 @@
-﻿using Autodesk.Revit.DB;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Reflection;
 using System.Xml.Linq;
+using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using System.IO;
 
 namespace TorsionTools.Helpers
 {
@@ -120,22 +119,27 @@ namespace TorsionTools.Helpers
 			}
 		}
 		/// <summary>
-		/// Read an xml file to provide <see cref="MapParam"/> Parameter Mapping for parameters changes in the document and not Code behind	for Parameter Lookups
+		/// Read an xml file to provide <see cref="MapParam"/> Parameter Mapping for 
+		/// parameters changes in the document and not Code behind	for Parameter Lookups
 		/// </summary>
 		/// <param name="_parent">Top level in the xml file with multiple Descendants</param>
 		/// <param name="_desc">The Decendents within the specified Parent</param>
 		/// <param name="_child1">The child of the Descendant by name for code Parameter Name</param>
-		/// <param name="_child2">The child of the Descendant by name for code Parameter Value in the Document</param>
-		/// <param name="_child3">The Child of the Descendant by name for the Description of the Parameter</param>
+		/// <param name="_child2">The child of the Descendant by name for code 
+		/// Parameter Value in the Document</param>
+		/// <param name="_child3">The Child of the Descendant by name for the Description 
+		/// of the Parameter</param>
 		/// <returns><see cref="List{T}"/> where T is <see cref="MapParam"/></returns>
-		internal static List<MapParam> GetParameterMappings(string _parent, string _desc, string _child1, string _child2, string _child3 = "Description")
+		internal static List<WPF.MapParam> GetParameterMappings(string _parent, string _desc, string 
+			_child1, string _child2, string _child3 = "Description")
 		{
 			try
 			{
 				//List of MapParam elements to store the values retrieved from the XML file
-				List<MapParam> Params = new List<MapParam>();
+				List<WPF.MapParam> Params = new List<WPF.MapParam>();
 				//Load the XML document from the path relative to the Executing Assembly or this application
-				XDocument xDoc = XDocument.Load(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Resources\ParameterMappings.xml"));
+				XDocument xDoc = XDocument.Load(Path.Combine(Path.GetDirectoryName(
+					Assembly.GetExecutingAssembly().Location),@"Resources\ParameterMappings.xml"));
 				//Loop through each descendant of the Parent
 				foreach(XElement Elem in xDoc.Descendants(_parent))
 				{
@@ -143,7 +147,9 @@ namespace TorsionTools.Helpers
 					foreach(XElement ElemDesc in Elem.Descendants(_desc))
 					{
 						//Get the child element of each 2nd descendant and the associated value
-						Params.Add(new MapParam() { Name = ElemDesc.Element(_child1).Value, Model = ElemDesc.Element(_child2).Value, Description = ElemDesc.Element(_child3).Value });
+						Params.Add(new WPF.MapParam() { Name = ElemDesc.Element(_child1).Value, 
+							Model = ElemDesc.Element(_child2).Value, 
+							Description = ElemDesc.Element(_child3).Value });
 					}
 				}
 				//Return the List of MapParam objects

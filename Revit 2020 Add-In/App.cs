@@ -45,7 +45,8 @@ namespace TorsionTools
 			UnregisterUpdaters(RevitApplication);
 
 			//Remove the Event Handler for Document Synchronized
-			RevitApplication.ControlledApplication.DocumentSynchronizedWithCentral -= Application_DocumentSynchronized;
+			RevitApplication.ControlledApplication.DocumentSynchronizedWithCentral -= 
+				Application_DocumentSynchronized;
 
 			//Let Revit know it was successfully executed
 			return Result.Succeeded;
@@ -228,7 +229,8 @@ namespace TorsionTools
 
 		private void GetDefaultSettings()
 		{
-			StaticVariables.ParamMappings = Helpers.Collectors.GetParameterMappings("Parameters", "Mapping", "Name", "Parameter");
+			StaticVariables.ParamMappings = Helpers.Collectors.GetParameterMappings("Parameters",
+				"Mapping", "Name", "Parameter");
 		}
 	}
 }

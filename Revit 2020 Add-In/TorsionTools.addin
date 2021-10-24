@@ -3,7 +3,7 @@
   <AddIn Type="Application">
     <!--Change 'Your Add-In Name' to the name you want visible in Revit-->
     <Name>Torsion Tools</Name>
-    <Assembly>Torsion Tools.dll</Assembly>
+    <Assembly>TorsionTools\Torsion Tools.dll</Assembly>
     <!--Use an online generator to create a new GUID to minimize any conflicts-->
     <AddInId>6CCBACAF-008D-4204-BCE5-F3EFB3EC5852</AddInId>
     <FullClassName>TorsionTools.App</FullClassName>

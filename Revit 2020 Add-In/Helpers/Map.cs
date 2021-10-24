@@ -10,7 +10,7 @@
 		internal static string Find(string name)
 		{
 			//Match a Name to the Parameter in the ParameterMapping.xml file
-			if(StaticVariables.ParamMappings.Find(x => x.Name == name) is MapParam param)
+			if(StaticVariables.ParamMappings.Find(x => x.Name == name) is WPF.MapParam param)
 			{
 				return param.Name;
 			}
